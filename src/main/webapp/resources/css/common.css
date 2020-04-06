@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+/* font-face(wott, ttf) setting */
+/* 나눔바른고딕 */
+@font-face {
+    font-family: 'nbg';
+    src: url('./fonts/NanumBarunGothicRegular.woff') format('woff'),
+         url('./fonts/NanumBarunGothicRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'nbgB';
+    src: url('./fonts/NanumBarunGothicBold.woff') format('woff'),
+         url('./fonts/NanumBarunGothicBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/* 나눔고딕 */
+@font-face {
+    font-family: 'ng';
+    src: url('./fonts/NanumGothic.woff') format('woff'),
+    	 url('./fonts/NanumGothic.woff2') format('woff2'),
+         url('./fonts/NanumGothic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ngB';
+    src: url('./fonts/NanumGothicBold.woff') format('woff'),
+    	 url('./fonts/NanumGothicBold.woff2') format('woff2'),
+         url('./fonts/NanumGothicBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 구버전 브라우저 초기화 */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family: "nbg";
+	background: #f8f8f8;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a{
+	text-decoration: none;
+	color: #212121;
+}
+/* common-header */
+#header{
+	width: 100%;
+	background: #FFECB3;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#header .header-bg{
+	max-width: 1280px;
+    margin: 0 auto;
+}
+.header-bg .logo-wrap{
+	float: left;
+    padding: 5px 0px;
+}
+.header-bg .logo-wrap img{
+	width: 92px;
+}
+.header-bg .menu-wrap{
+    float: left;
+    line-height: 85px;
+    font-family: "nbgB";
+    font-size: 18px;
+    padding-left: 50px;
+
+}
+.header-bg .info-wrap{
+	float: right;
+    font-family: "nbg";
+    line-height: 85px;
+}
+.header-bg .info-wrap li{
+    float: left;
+}
+.header-bg .info-wrap li:before{
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 12px;
+    background-color: #BDBDBD;
+    margin: 0 10px;
+}
+
+/* common-main */
+#main{
+	width: 1180px;
+	min-height: 600px;
+	margin: 0 auto;
+	clear: both;
+	padding: 160px 0 30px 0;
+}
+
+/* common-footer */
+.footer-wrap{
+	background: #202020;
+	padding: 20px;
+	color: #808080;
+	letter-spacing: -0.8px;
+	font-size: 15px;
+}
+.footer-wrap p:first-child{
+	margin-bottom: 20px;
+}
+.footer-wrap p:last-child{
+	color: #ffffff;
+}
+
+/* common-items */
+.sub-title{
+	margin-bottom: 30px;
+}
+
+.sub-title h1{
+	font-family: "ngB";
+	font-size: 23px;
+	text-align: center;
+	color: #464646;
+}
+.duck-ico{
+	position: absolute;
+    top: -65px;
+    left: 188px;
+}
+.duck-ico img{
+	width: 100px;
+}
+.btn{
+	font-family: "ng";
+	font-size: 15px;
+    padding: 15px;
+   	border: 0;
+	cursor: pointer;
+	color: #ffffff;
+}
+.error-msg{
+    font-size: 15px;
+    color: #c30b00;
+    text-align: left;
+    margin: 0 auto !important;
+    width: 354px;
+}
+
+

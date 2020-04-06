@@ -1,0 +1,125 @@
+@charset "UTF-8";
+.sign-wrap {
+	position: relative;
+	width: 480px;
+    margin: 40px auto;
+    padding: 55px 0;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.sign-wrap .sign-form ul li{
+	margin: 20px 0 10px
+}
+
+
+.sign-wrap .sign-form ul li input{
+	width: 300px;
+    padding: 15px 40px 15px 15px;
+    font-size: 15px;
+    border: 0;
+    background: #f8f8f8;
+}
+.sign-wrap .submit-form .btn{
+	margin-top: 20px;
+	width: 354px;
+    background: #4077B3;
+}
+#ico-checked{
+    cursor: pointer;
+    position: absolute;
+    top: 113px;
+    left: 381px;
+    width: 28px;
+    height: 28px;
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 665px;
+    background-position: -19px -24px;
+}
+#ico-checked.ico-status:after{
+    display: block;
+    content: '중복 체크';
+    position: relative;
+    top: 29px;
+    left: -6px;
+    font-size: 10px;
+    text-align: center;
+    width: 41px;
+}
+#ico-checked.ico-false:after{
+	display: block;
+    content: '중복 불가';
+    position: relative;
+    top: 29px;
+    left: -6px;
+    font-size: 10px;
+    text-align: center;
+    width: 41px;
+    color: #E01B1B;
+}
+#ico-checked.ico-true:after{
+	display: block;
+    content: '사용 가능';
+    position: relative;
+    top: 29px;
+    left: -6px;
+    font-size: 10px;
+    text-align: center;
+    width: 41px;
+    color: #16B546;
+}
+#pwd-ico{
+    position: absolute;
+    top: 176px;
+    left: 381px;
+    width: 28px;
+    height: 34px;
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 665px;
+    background-position: -263px -17px;
+}
+#pwd-ico.pwd-status:after{
+    display: block;
+    content: '보안 수준';
+    position: relative;
+    top: 35px;
+    left: -6px;
+    font-size: 10px;
+    text-align: center;
+    width: 41px;
+}
+#pwd-ico.pwd-low:after{
+    display: block;
+    content: '위험';
+    position: relative;
+    top: 35px;
+    left: -6px;
+    font-size: 10px;
+    text-align: center;
+    width: 41px;
+    color: #E01B1B;
+}
+#pwd-ico.pwd-normal:after{
+    display: block;
+    content: '보통';
+    position: relative;
+    top: 35px;
+    left: -6px;
+    font-size: 10px;
+    text-align: center;
+    width: 41px;
+    color: #C1C720;
+
+}
+#pwd-ico.pwd-high:after{
+    display: block;
+    content: '권장';
+    position: relative;
+    top: 35px;
+    left: -6px;
+    font-size: 10px;
+    text-align: center;
+    width: 41px;
+    color: #16B546;
+}

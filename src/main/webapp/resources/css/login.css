@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.login-wrap {
+	position: relative;
+	width: 480px;
+    margin: 40px auto;
+    padding: 55px 0;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.login-wrap .login-form ul li{
+	margin: 20px 0;
+}
+
+.login-wrap .login-form ul li input{
+	width: 250px;
+    padding: 15px 40px 15px 15px;
+    font-size: 15px;
+    border: 0;
+    background: #f8f8f8;
+}
+.login-wrap .submit-form .btn{
+	width: 307px;
+    background: #4077B3;
+}
