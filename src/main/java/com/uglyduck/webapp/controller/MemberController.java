@@ -1,6 +1,7 @@
 package com.uglyduck.webapp.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.ibatis.session.SqlSession;
@@ -39,16 +40,44 @@ public class MemberController {
 		return "login/loginPage";
 	}
 	
-	@RequestMapping("sign-form")
+	@RequestMapping(value = "sign-form")
 	public String signForm(Model model) {
 		model.addAttribute("memberDto", new MemberDto());
 		return "join/signPage";
 	}
 	
 	// Method
-	@RequestMapping("login-user")
-	public String loginUser() {
-		return "";
+	@RequestMapping("login")
+	public String loginUser(Model model, @RequestParam("id") String id, @RequestParam("pw") String pw,
+							HttpSession session, HttpServletRequest request, RedirectAttributes rtts) {
+		String urlPath = "";
+		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+		MemberDto idCheckResult = mDao.idCheck(id);
+		MemberDto idPwCheckResult = mDao.idPwCheck(id, pw);
+		if ( session.getAttribute("mDto") != null ){ // 세션 초기화  
+            session.removeAttribute("mDto"); 
+        }
+		if( idPwCheckResult != null ) { // 로그인 성공
+			session = request.getSession();
+			session.setAttribute("mDto", idPwCheckResult);
+			urlPath = "redirect:main";
+		} else { // 로그인 실패
+			if( idCheckResult == null ) { // 일치하는 아이디가 없을 경우
+				rtts.addFlashAttribute("failure", "noneId");
+				urlPath = "redirect:login-form";
+			} else {
+				rtts.addFlashAttribute("failure", "missMatchIdPw");
+				urlPath = "redirect:login-form";
+			}
+		}
+		
+		return urlPath;
+	}
+	@RequestMapping("logout")
+	public String logout(RedirectAttributes rtts, HttpSession session) {
+		session.invalidate(); 
+		rtts.addFlashAttribute("isLogout", "true");
+        return "redirect:main";
 	}
 	@SuppressWarnings("unchecked")
 	@ResponseBody
