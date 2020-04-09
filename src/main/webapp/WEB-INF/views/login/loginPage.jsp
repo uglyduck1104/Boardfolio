@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <script type="text/javascript">
@@ -29,11 +30,33 @@ if( failure == "missMatchIdPw" ){
 			<h1>회원 로그인</h1>
 		</div>
 		<div class="login-wrap">
-			<ul>
-				<li><input type="text" name="id" placeholder="아이디" /></li>
-				<li><input type="password" name="pw" placeholder="비밀번호" /></li>
-			</ul>
+			<c:choose>
+				<c:when test="${ cookie.id ne null }">	
+					<ul>
+						<li><input type="text" name="id" value="${ cookie.id.getValue() }" placeholder="아이디" /></li>
+						<li><input type="password" name="pw" placeholder="비밀번호" /></li>
+					</ul>
+				</c:when>
+				<c:otherwise>	
+					<ul>
+						<li><input type="text" name="id" placeholder="아이디" /></li>
+						<li><input type="password" name="pw" placeholder="비밀번호" /></li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 		</div>		
+		<div class="check-wrap">
+			<div class="chk-area">
+				<input type="checkbox" name="isChecked" id="isChecked" checked/>
+				<label for="isChecked">
+					<span class="txt">아이디 저장</span>
+				</label> 
+			</div>
+			<div class="find-area">
+				<a href="#" onclick="return false;">아이디 찾기</a>
+				<a href="#" onclick="return false;">비밀번호 찾기</a>
+			</div>
+		</div>
 		<div class="submit-wrap">
 			<ul>
 				<li><button type="submit" class="btn">로그인</button></li>

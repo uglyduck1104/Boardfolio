@@ -1,6 +1,8 @@
 package com.uglyduck.webapp.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -48,20 +50,40 @@ public class MemberController {
 	
 	// Method
 	@RequestMapping("login")
-	public String loginUser(Model model, @RequestParam("id") String id, @RequestParam("pw") String pw,
-							HttpSession session, HttpServletRequest request, RedirectAttributes rtts) {
+	public String loginUser(Model model, HttpSession session, HttpServletRequest request, 
+							RedirectAttributes rtts, HttpServletResponse response) {
 		String urlPath = "";
 		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		String isChecked = request.getParameter("isChecked");
 		MemberDto idCheckResult = mDao.idCheck(id);
 		MemberDto idPwCheckResult = mDao.idPwCheck(id, pw);
 		if ( session.getAttribute("mDto") != null ){ // 세션 초기화  
             session.removeAttribute("mDto"); 
         }
-		if( idPwCheckResult != null ) { // 로그인 성공
+		if( idPwCheckResult != null ) { // 로그인 성공 시
+			if( isChecked != null ) {   // 아이디 저장 체크 유무 확인
+				Cookie cookie = new Cookie("id", id);
+				cookie.setMaxAge(60 * 60 * 24 * 3);  // 쿠키 유효기간은 3일로 설정.
+				response.addCookie(cookie); 
+			} else {   					// 아이디 저장 체크 해제
+				Cookie[] cookieBox = request.getCookies(); // session에 저장되어있는 id 쿠키 확인 후 삭제
+				if( cookieBox != null && cookieBox.length > 0 ) {
+					for( Cookie ck : cookieBox ) {
+						if( ck.getName().equals("id") ) {
+							Cookie bisket = new Cookie("id", "");
+							bisket.setMaxAge(0);
+							response.addCookie(bisket);
+							break;
+						}
+					}
+				}
+			}
 			session = request.getSession();
 			session.setAttribute("mDto", idPwCheckResult);
 			urlPath = "redirect:main";
-		} else { // 로그인 실패
+		} else { // 로그인 실패 시
 			if( idCheckResult == null ) { // 일치하는 아이디가 없을 경우
 				rtts.addFlashAttribute("failure", "noneId");
 				urlPath = "redirect:login-form";

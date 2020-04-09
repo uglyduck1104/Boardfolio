@@ -20,7 +20,61 @@
     border: 0;
     background: #f8f8f8;
 }
+.check-wrap{
+	margin: 0 auto;
+	width: 306px;
+}
+.check-wrap .chk-area{
+	display: inline-block;
+   	position: relative;
+    left: -20px;
+}
+.check-wrap .chk-area input{
+	position: absolute;
+    z-index: 0;
+    opacity: 0;
+}
+.check-wrap .chk-area label{
+	font-size: 15px;
+	color: #333;
+	cursor: pointer;
+}
+.check-wrap .find-area{
+	float: right;
+	line-height: 1.5;
+}
+.check-wrap .find-area a{
+	font-size: 15px;
+}
+.check-wrap .find-area a:last-child:before{
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 15px;
+    margin: 0px 5px 0;
+    background-color: #919191;
+    position: relative;
+    top: 2px;
+    left: -2px;
+}
+.chk-area input + label:before{
+	content: '';
+    zoom: 1;
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    margin: -3px 0 0 0; 
+    background: url(../images/iconset.png) no-repeat;
+    vertical-align: middle;
+    background-size: 515px;
+    background-position: -318px -14px;
+}
+.chk-area input:checked + label:before{
+    background-size: 515px;
+    background-position: -277px -14px;
+}
 .login-form-wrap .submit-wrap .btn{
+   	margin-top: 20px;
 	width: 307px;
     background: #4077B3;
 }
