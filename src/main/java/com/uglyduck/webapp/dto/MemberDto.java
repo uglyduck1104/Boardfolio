@@ -40,7 +40,7 @@ public class MemberDto {
 		this.reg_date = reg_date;
 	}
 	
-	// Methods
+	// getters/setters
 	public String getId() {
 		return id;
 	}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.uglyduck.webapp.dao.BoardDao">
+
+	<resultMap id="clob_contents" type="boardDto">
+		<result property="contents" column="contents" jdbcType="CLOB" javaType="java.lang.String" /> 
+	</resultMap>
+	
+	<select id="getBoardList" resultType="boardDto" resultMap="clob_contents">
+		SELECT
+			*
+		FROM
+			BOARD
+		ORDER BY
+			BOARD_NO DESC
+	</select>
+	
+	<select id="getBoardTotalCount" resultType="boardDto">
+		SELECT 
+			COUNT(*)
+		FROM
+			BOARD
+	</select>
+	
+	<insert id="writeBoard" parameterType="boardDto">
+		INSERT INTO
+			BOARD
+		VALUES(BOARD_SEQ.NEXTVAL, #{member_id}, #{title}, #{contents}, SYSDATE, #{board_ip}, 0, 0, 0 )
+	</insert>
+
+</mapper>

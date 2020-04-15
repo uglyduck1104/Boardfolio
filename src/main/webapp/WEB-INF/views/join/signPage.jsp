@@ -5,7 +5,7 @@
 
 
 <div class="sign-wrap">
-	<form:form action="sign-user" method="POST" modelAttribute="memberDto">
+	<form:form action="add-member" method="POST" modelAttribute="memberDto">
 		<div class="duck-ico">
 			<img alt="duck-icon" src="./resources/images/login-duck-icon.png" />
 		</div>

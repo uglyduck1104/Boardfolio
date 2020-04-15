@@ -35,7 +35,8 @@
 	<!-- mybatis -->
 	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="ds" />
-		<beans:property name="mapperLocations" value="classpath:com/uglyduck/webapp/dao/mapper/*.xml" />
+		<beans:property name="mapperLocations" value="classpath:mappers/*Mapper.xml" />
+		<beans:property name="configLocation" value="classpath:config/mybatisConfig.xml" />
 	</beans:bean>
 	<beans:bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg ref="sqlSessionFactory" />

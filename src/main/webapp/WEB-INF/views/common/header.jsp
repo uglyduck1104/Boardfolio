@@ -9,6 +9,7 @@
 <link href="<c:url value="/resources/css/common.css"/>" type="text/css" rel="stylesheet">
 <link href="<c:url value="/resources/css/login.css"/>" type="text/css" rel="stylesheet">
 <link href="<c:url value="/resources/css/join.css"/>" type="text/css" rel="stylesheet">
+<link href="<c:url value="/resources/css/board.css"/>" type="text/css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -27,7 +28,7 @@ if( isLogout == "true" ){
 				</h1>
 				<div class="menu-wrap">
 					<ul>
-						<li><a href="#" onclick="return false;">DUCKLING</a></li>
+						<li><a href="board-list">DUCKLING</a></li>
 					</ul>
 				</div>
 				<div class="info-wrap">

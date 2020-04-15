@@ -1,4 +1,4 @@
-package com.uglyduck.member.command;
+package com.uglyduck.command.member;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;

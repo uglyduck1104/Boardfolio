@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.uglyduck.webapp.dao.MemberDao">
 
-	<insert id="addMember" parameterType="com.uglyduck.webapp.dto.MemberDto">
+	<insert id="addMember" parameterType="memberDto">
 		INSERT INTO 
 			MEMBER
 		VALUES (#{id}, #{pw}, #{name}, #{nickname}, #{email}, #{ip}, SYSDATE)
 	</insert>
 	
-	<select id="idCheck" resultType="com.uglyduck.webapp.dto.MemberDto">
+	<select id="idCheck" resultType="memberDto">
 		SELECT 
 			*
 		FROM
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ID = #{param1}
 	</select>
 	
-	<select id="idPwCheck" resultType="com.uglyduck.webapp.dto.MemberDto">
+	<select id="idPwCheck" resultType="memberDto">
 		SELECT
 			*
 		FROM 

@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.board-wrap table{
+	margin: 0 auto;
+	width: 100%;
+}
+.board-wrap table thead tr th{
+	border-top: 1px solid #101010;
+	background: #F2F2F2;
+	padding: 15px 20px;
+	font-size: 15px;
+	font-family: "ngB";
+}
+.board-wrap table tbody tr{
+	border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+}
+.board-wrap table tbody tr td{
+	text-align: center;
+	padding: 15px;
+}

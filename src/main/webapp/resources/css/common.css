@@ -184,5 +184,11 @@ a{
     margin: 0 auto !important;
     width: 354px;
 }
-
+.title-wrap{
+    display: inline-block;
+    font-family: "nbgB";
+    font-size: 35px;
+    border-bottom: 4px solid black;
+    margin-bottom: 22px;
+}
 

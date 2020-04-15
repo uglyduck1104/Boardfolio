@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.uglyduck.member.command.MemberCommand;
-import com.uglyduck.member.command.MemberJoinCommand;
+import com.uglyduck.command.member.MemberCommand;
+import com.uglyduck.command.member.MemberJoinCommand;
 import com.uglyduck.webapp.dao.MemberDao;
 import com.uglyduck.webapp.dto.MemberDto;
 
@@ -38,11 +38,10 @@ public class MemberController {
 	// Simply move page
 	@RequestMapping("login-form")
 	public String loginForm() {
-		
 		return "login/loginPage";
 	}
 	
-	@RequestMapping(value = "sign-form")
+	@RequestMapping("sign-form")
 	public String signForm(Model model) {
 		model.addAttribute("memberDto", new MemberDto());
 		return "join/signPage";
@@ -115,8 +114,8 @@ public class MemberController {
 		}
 		return obj.toJSONString();
 	}
-	@RequestMapping(value = "sign-user", method = RequestMethod.POST)
-	public String signUser(@Valid MemberDto memberDto, BindingResult bdr, RedirectAttributes rtts,
+	@RequestMapping(value = "add-member", method = RequestMethod.POST)
+	public String addMember(@Valid MemberDto memberDto, BindingResult bdr, RedirectAttributes rtts,
 							Model model, HttpServletRequest request) {
 		String urlPath = "";
 		model.addAttribute("memberDto", memberDto);
@@ -132,5 +131,6 @@ public class MemberController {
 		}
 		return urlPath;
 	}
+
 	
 }
