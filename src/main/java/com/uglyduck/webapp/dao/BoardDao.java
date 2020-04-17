@@ -11,5 +11,7 @@ public interface BoardDao {
 	// 게시물 갯수
 	public int getBoardTotalCount();
 	// 게시물 추가
-	public int writeBoard(BoardDto bDto);
+	public int boardWrite(BoardDto bDto);
+	// 게시물 보기
+	public BoardDto boardView(int boardNo);
 }

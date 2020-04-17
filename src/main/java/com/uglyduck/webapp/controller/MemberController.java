@@ -35,7 +35,7 @@ public class MemberController {
 	SqlSession sqlSession;
 	MemberCommand memberCommand;
 	
-	// Simply move page
+	// Method
 	@RequestMapping("login-form")
 	public String loginForm() {
 		return "login/loginPage";
@@ -47,7 +47,6 @@ public class MemberController {
 		return "join/signPage";
 	}
 	
-	// Method
 	@RequestMapping("login")
 	public String loginUser(Model model, HttpSession session, HttpServletRequest request, 
 							RedirectAttributes rtts, HttpServletResponse response) {

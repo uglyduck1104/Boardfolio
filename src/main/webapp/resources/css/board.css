@@ -19,3 +19,9 @@
 	text-align: center;
 	padding: 15px;
 }
+.board-wrap input, textarea{
+    padding: 10px;
+    width: 990px;
+    font-family: "ngB";
+    font-size: 15px;
+}

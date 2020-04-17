@@ -25,10 +25,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD
 	</select>
 	
-	<insert id="writeBoard" parameterType="boardDto">
+	<insert id="boardWrite" parameterType="boardDto">
 		INSERT INTO
-			BOARD
+			BOARD(BOARD_NO, MEMBER_ID, TITLE, CONTENTS, BOARD_DT, BOARD_IP, HITS_CNT, GOOD_CNT, REPLY_CNT)
 		VALUES(BOARD_SEQ.NEXTVAL, #{member_id}, #{title}, #{contents}, SYSDATE, #{board_ip}, 0, 0, 0 )
 	</insert>
+	
+	<select id="boardView" resultType="boardDto">
+		SELECT 
+			*
+		FROM 
+			BOARD
+		WHERE
+			BOARD_NO = #{param1}
+	</select>
 
 </mapper>
