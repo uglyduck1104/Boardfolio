@@ -9,23 +9,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.uglyduck.webapp.dao.BoardDao;
-import com.uglyduck.webapp.dto.BoardDto;
 
-public class BoardWriteCommand implements BoardCommand {
+public class BoardDeleteCommand implements BoardCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
-		
-		BoardDao bDao = sqlSession.getMapper(BoardDao.class);
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		RedirectAttributes rtts = (RedirectAttributes)map.get("rtts");
-		BoardDto bDto = (BoardDto) map.get("bDto");
-		bDto.setBoard_ip(request.getRemoteAddr());
-		bDto.setMember_id(request.getParameter("id"));
-		rtts.addFlashAttribute("isBoardWriteRes", bDao.boardWrite(bDto));
-		rtts.addFlashAttribute("isBoardWrite", "YES");
-
+		BoardDao bDao = sqlSession.getMapper(BoardDao.class);
+		int boardNo = Integer.parseInt(request.getParameter("board_no"));
+		rtts.addFlashAttribute("isBoardDeleteRes", bDao.boardDrop(boardNo));
+		rtts.addFlashAttribute("isBoardDelete", "YES");
 	}
 
 }

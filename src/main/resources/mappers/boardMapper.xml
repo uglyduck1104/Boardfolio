@@ -4,12 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.uglyduck.webapp.dao.BoardDao">
-
-	<resultMap id="clob_contents" type="boardDto">
-		<result property="contents" column="contents" jdbcType="CLOB" javaType="java.lang.String" /> 
-	</resultMap>
 	
-	<select id="getBoardList" resultType="boardDto" resultMap="clob_contents">
+	<select id="getBoardList" resultType="boardDto">
 		SELECT
 			*
 		FROM
@@ -39,5 +35,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			BOARD_NO = #{param1}
 	</select>
+	
+	<update id="boardUpdate">
+		UPDATE
+			BOARD
+		SET
+			TITLE = #{param1}, CONTENTS = #{param2}
+		WHERE 
+			BOARD_NO = #{param3}
+	</update>
+	
+	<delete id="boardDrop">
+		DELETE FROM
+			BOARD
+		WHERE
+			BOARD_NO = #{param1}
+	</delete>
 
 </mapper>

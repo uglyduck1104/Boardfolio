@@ -14,4 +14,8 @@ public interface BoardDao {
 	public int boardWrite(BoardDto bDto);
 	// 게시물 보기
 	public BoardDto boardView(int boardNo);
+	// 게시물 수정
+	public int boardUpdate(String title, String contents, int boardNo);
+	// 게시물 삭제
+	public int boardDrop(int boardNo);
 }

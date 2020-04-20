@@ -11,17 +11,17 @@
 		<table>
 			<tbody>
 				<tr>
-					<td><input type="text" name="title" id="title" placeholder="제목을 입력해주세요." autofocus/></td>
+					<td><input type="text" name="title" id="title" placeholder="제목을 입력해주세요." autofocus required/></td>
 									
 				</tr>
 				<tr>
-					<td><textarea rows="15" cols="70" name="contents" id="content" placeholder="내용을 입력해주세요."></textarea></td>
+					<td><textarea rows="15" cols="70" name="contents" id="content" placeholder="내용을 입력해주세요." required></textarea></td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
 					<td>
-						<button type="submit" id="write-btn">게시글 등록</button>
+						<button type="submit">게시글 등록</button>
 						<button type="button" onclick="location.href='board-list'">게시글 목록</button>
 						<input type="hidden" name="id" value="${sessionScope.mDto.id }" />
 					</td>

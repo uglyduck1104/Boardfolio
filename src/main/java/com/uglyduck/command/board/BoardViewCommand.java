@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.uglyduck.webapp.dao.BoardDao;
+import com.uglyduck.webapp.dto.BoardDto;
 
 public class BoardViewCommand implements BoardCommand {
 
@@ -16,7 +17,8 @@ public class BoardViewCommand implements BoardCommand {
 		BoardDao bDao = sqlSession.getMapper(BoardDao.class);
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		model.addAttribute("bDto", bDao.boardView(Integer.parseInt(request.getParameter("board_no")))); 
+		BoardDto bDto = bDao.boardView(Integer.parseInt(request.getParameter("board_no")));
+		model.addAttribute("bDto", bDto); 
 	}
 
 }

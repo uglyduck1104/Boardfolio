@@ -2,7 +2,36 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<script type="text/javascript">
+	var isBoardDelete = "${isBoardDelete}";
+	if( isBoardDelete == "YES" ){
+		var isBoardDeleteRes = "${isBoardDeleteRes}";
+		if( isBoardDeleteRes == 0 ){
+			alert("게시물 삭제가 실패했습니다.");
+		} else {
+			alert("게시물이 삭제되었습니다.");
+		}
+	}
+	var isBoardUpdate = "${isBoardUpdate}";
+	if(isBoardUpdate == "YES"){
+		var isBoardUpdateRes = "${isBoardUpdateRes}";
+		if( isBoardUpdateRes == 0 ){
+			alert("게시물 수정이 실패했습니다.");
+		} else {
+			alert("게시물 수정이 성공했습니다.");
+		}		
+	} 
+	var isBoardWrite = "${isBoardWrite}";
+	if(isBoardWrite == "YES"){
+		var isBoardWriteRes = "${isBoardWriteRes}";
+		if( isBoardWriteRes == 0 ){
+			alert("게시물 작성이 실패했습니다.");
+		} else {
+			alert("게시물 작성이 성공했습니다.");
+		}		
+	} 
 
+</script>
 <div class="board-wrap">
 	<div class="title-wrap">
 		<h2>DUCKLING</h2>
