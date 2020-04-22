@@ -48,13 +48,22 @@ function deleteBoard(){
 			</tr>
 		</tbody>
 		<tfoot>
-			<tr>
-				<td colspan="3">
-					<button type="button" onclick="updatePage()">수정</button>
-					<button type="button" onclick="deleteBoard()">삭제</button>
-					<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
-				</td>
-			</tr>
+			<c:if test="${ sessionScope.mDto.id eq bDto.member_id }">
+				<tr>
+					<td colspan="3">
+						<button type="button" onclick="updatePage()">수정</button>
+						<button type="button" onclick="deleteBoard()">삭제</button>
+						<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
+					</td>
+				</tr>
+			</c:if>
+			<c:if test="${ sessionScope.mDto.id ne bDto.member_id }">
+				<tr>
+					<td>
+						<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
+					</td>
+				</tr>
+			</c:if>
 		</tfoot>
 	</table>
 </div>

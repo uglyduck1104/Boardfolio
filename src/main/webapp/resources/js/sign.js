@@ -11,30 +11,34 @@ $(function(){
 	// 중복체크 여부
 	var checked = false;
 	$("#ico-checked").click(function(){
-		$.ajax({
-			url: "id-check",
-			type: "POST",
-			data: {
-				"id" : $("#id").val()
-			},
-			success: function( obj ){
-				console.log(obj);
-				if( obj["isValid"] == "TRUE" ){
-					alert("중복되지 않은 아이디입니다.");
-					$("#ico-checked").attr("class", "ico-true");
-					$("#ico-checked").css("background-position", "-121px -24px");
-					checked = true;
-				} else {
-					alert("중복된 아이디입니다.");
-					$("#ico-checked").attr("class", "ico-false");
-					$("#ico-checked").css("background-position", "-69px -24px");
-					checked = false;
+		if( $("#id").val()!="" ){
+			$.ajax({
+				url: "id-check",
+				type: "POST",
+				data: {
+					"id" : $("#id").val()
+				},
+				success: function( obj ){
+					console.log(obj);
+					if( obj["isValid"] == "TRUE" ){
+						alert("중복되지 않은 아이디입니다.");
+						$("#ico-checked").attr("class", "ico-true");
+						$("#ico-checked").css("background-position", "-121px -24px");
+						checked = true;
+					} else {
+						alert("중복된 아이디입니다.");
+						$("#ico-checked").attr("class", "ico-false");
+						$("#ico-checked").css("background-position", "-69px -24px");
+						checked = false;
+					}
+				},
+				error: function(){
+					alert("아이디 검증 실패");
 				}
-			},
-			error: function(){
-				alert("아이디 검증 실패");
-			}
-		});
+			});
+		}else{
+			alert("아이디 입력 후 중복 체크 해주세요!");
+		};
 	});
 	$("#pw").keyup(function(){
 		if( safeRegExp.test($(this).val()) ){

@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+	<context:component-scan base-package="com.uglyduck.webapp" />
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-</beans>
+	<!-- spring-jdbc template + mybatis -->
+	<!-- spring-jdbc template 생성을 위한 태그 -->
+	<beans:bean name="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<beans:property name="username" value="uglyduck" />
+		<beans:property name="password" value="swan" />
+	</beans:bean>
+	
+	<!-- mybatis -->
+	<beans:bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="ds" />
+		<beans:property name="mapperLocations" value="classpath:mappers/*Mapper.xml" />
+		<beans:property name="configLocation" value="classpath:config/mybatisConfig.xml" />
+	</beans:bean>
+	<beans:bean name="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg ref="sqlSessionFactory" />
+	</beans:bean>
+	
+
+	
+</beans:beans>

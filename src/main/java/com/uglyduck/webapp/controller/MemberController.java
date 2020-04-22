@@ -90,7 +90,6 @@ public class MemberController {
 				urlPath = "redirect:login-form";
 			}
 		}
-		
 		return urlPath;
 	}
 	@RequestMapping("logout")

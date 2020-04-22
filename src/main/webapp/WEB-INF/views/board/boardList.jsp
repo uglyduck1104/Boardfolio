@@ -36,11 +36,11 @@
 	<div class="title-wrap">
 		<h2>DUCKLING</h2>
 	</div>
-	<c:if test="${ sessionScope.mDto.id ne null }">
+<%-- 	<c:if test="${ sessionScope.mDto.id ne null }"> --%>
 		<div class="button-wrap">
 			<a href="write-page">새 글쓰기</a>
 		</div>
-	</c:if>
+<%-- 	</c:if> --%>
 	<div class="board-wrap">
 		<table>
 			<colgroup>

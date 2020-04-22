@@ -4,12 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.uglyduck.webapp.dao.BoardDao">
-
-	<resultMap id="clob_contents" type="boardDto">
-		<result property="contents" column="contents" jdbcType="CLOB" javaType="java.lang.String" /> 
-	</resultMap>
 	
-	<select id="getBoardList" resultType="boardDto" resultMap="clob_contents">
+	<select id="getBoardList" resultType="boardDto">
 		SELECT
 			*
 		FROM
@@ -25,10 +21,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD
 	</select>
 	
-	<insert id="writeBoard" parameterType="boardDto">
+	<insert id="boardWrite" parameterType="boardDto">
 		INSERT INTO
-			BOARD
+			BOARD(BOARD_NO, MEMBER_ID, TITLE, CONTENTS, BOARD_DT, BOARD_IP, HITS_CNT, GOOD_CNT, REPLY_CNT)
 		VALUES(BOARD_SEQ.NEXTVAL, #{member_id}, #{title}, #{contents}, SYSDATE, #{board_ip}, 0, 0, 0 )
 	</insert>
+	
+	<select id="boardView" resultType="boardDto">
+		SELECT 
+			*
+		FROM 
+			BOARD
+		WHERE
+			BOARD_NO = #{param1}
+	</select>
+	
+	<update id="boardUpdate">
+		UPDATE
+			BOARD
+		SET
+			TITLE = #{param1}, CONTENTS = #{param2}
+		WHERE 
+			BOARD_NO = #{param3}
+	</update>
+	
+	<delete id="boardDrop">
+		DELETE FROM
+			BOARD
+		WHERE
+			BOARD_NO = #{param1}
+	</delete>
 
 </mapper>

@@ -45,5 +45,5 @@
 		</div>	
 	</form:form>
 </div>
-<script type="text/javascript" src="resources/js/join.js" ></script>
+<script type="text/javascript" src="resources/js/sign.js" ></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %> 
