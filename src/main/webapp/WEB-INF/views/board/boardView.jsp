@@ -16,7 +16,7 @@ function deleteBoard(){
 		<tbody>
 			<tr>
 				<td>게시글 번호</td>
-				<td>#${ bDto.board_no }</td>
+				<td>#${bDto.board_no }</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -48,23 +48,17 @@ function deleteBoard(){
 			</tr>
 		</tbody>
 		<tfoot>
-			<c:if test="${ sessionScope.mDto.id eq bDto.member_id }">
-				<tr>
-					<td colspan="3">
-						<button type="button" onclick="updatePage()">수정</button>
-						<button type="button" onclick="deleteBoard()">삭제</button>
-						<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
-					</td>
-				</tr>
-			</c:if>
-			<c:if test="${ sessionScope.mDto.id ne bDto.member_id }">
-				<tr>
-					<td>
-						<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
-					</td>
-				</tr>
-			</c:if>
+			<tr>
+				<td colspan="3">
+				<c:if test="${ sessionScope.mDto.id eq bDto.member_id }">
+					<button type="button" onclick="updatePage()">수정</button>
+					<button type="button" onclick="deleteBoard()">삭제</button>
+				</c:if>
+					<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
+				</td>
+			</tr>
 		</tfoot>
 	</table>
 </div>
+<%@ include file="/WEB-INF/views/common/boardReply.jsp" %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

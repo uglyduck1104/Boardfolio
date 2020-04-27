@@ -33,6 +33,7 @@
 			<mvc:mapping path="/board-write" />
 			<mvc:mapping path="/board-update" />
 			<mvc:mapping path="/board-drop" />
+			<mvc:mapping path="/reply-write" />
 			<beans:ref bean="memberInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

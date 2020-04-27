@@ -100,7 +100,7 @@ public class MemberController {
 	}
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value = "id-check", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "id-check", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
 	public String idCheck(@RequestParam("id") String id) {
 		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
 		MemberDto mDto = mDao.idCheck(id);

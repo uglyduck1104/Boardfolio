@@ -31,5 +31,4 @@
 	</form>
 </div>
 
-<script type="text/javascript" src="resources/js/board.js" ></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
