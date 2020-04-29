@@ -11,10 +11,8 @@ public interface ReplyDao {
 	public Integer getReplyTotalCount();
 	// 댓글 삽입
 	public int replyWrite(ReplyDto rDto);
-	// 댓글 보기
-	// public ReplyDto replyView(int replyNo);
 	// 댓글 수정
-	public int replyUpdate(String replyCon);
+	public int replyUpdate(int replyNo, String replyCon);
 	// 댓글 삭제
 	public int replyDrop(int replyNo);
 	

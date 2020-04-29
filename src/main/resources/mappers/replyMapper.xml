@@ -31,9 +31,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE 
 			REPLY
 		SET
-			REPLY_CON = #{param1}
+			REPLY_CON = #{param2}
 		WHERE
-			REPLY_NO = #{param2}
+			REPLY_NO = #{param1}
 	</update>
 	
 	<delete id="replyDrop">

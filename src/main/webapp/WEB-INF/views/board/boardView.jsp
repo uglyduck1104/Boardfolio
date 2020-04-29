@@ -8,7 +8,9 @@ function updatePage(){
 	location.href="update-page?board_no=" + board_no;
 }
 function deleteBoard(){
-	location.href="board-drop?board_no=" + board_no;
+	if(confirm("게시글을 삭제하시겠습니까?")){
+		location.href="board-drop?board_no=" + board_no;
+	}
 }
 </script>
 <div class="board-wrap">

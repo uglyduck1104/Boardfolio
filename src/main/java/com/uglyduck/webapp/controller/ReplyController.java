@@ -51,6 +51,7 @@ public class ReplyController {
 		JSONArray jArray = new JSONArray();
 		for( int i = 0; i < rList.size(); i++ ) {
 			JSONObject obj = new JSONObject();
+			obj.put("reply_no", rList.get(i).getReply_no());
 			obj.put("member_id", rList.get(i).getMember_id());
 			obj.put("reply_con", rList.get(i).getReply_con());
 			obj.put("reply_dt", rList.get(i).getReply_dt().toString().replaceAll("-", ""));
@@ -83,6 +84,36 @@ public class ReplyController {
 			obj.put("isReplyWrite", "YES");
 		} else {
 			obj.put("isReplyWrite", "NO");
+		}
+		return obj.toJSONString();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "reply-update", produces="application/json; charset=UTF-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String replyUpdate(@RequestParam int replyNo, @RequestParam String replyCon) {
+		ReplyDao rDao = sqlSession.getMapper(ReplyDao.class);
+		int result = rDao.replyUpdate(replyNo, replyCon);
+		JSONObject obj = new JSONObject();
+		if( result > 0) {
+			obj.put("isReplyUpdate", "YES");
+		} else {
+			obj.put("isReplyUpdate", "NO");
+		}
+		return obj.toJSONString();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "reply-drop", produces="application/json; charset=UTF-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String replyDrop(@RequestParam int replyNo) {
+		ReplyDao rDao = sqlSession.getMapper(ReplyDao.class);
+		int result = rDao.replyDrop(replyNo);
+		JSONObject obj = new JSONObject();
+		if( result > 0) {
+			obj.put("isReplyDelete", "YES");
+		} else {
+			obj.put("isReplyDelete", "NO");
 		}
 		return obj.toJSONString();
 	}
