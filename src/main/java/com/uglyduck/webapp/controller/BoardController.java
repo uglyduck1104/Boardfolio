@@ -34,7 +34,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board-list")
-	public String getBoardList(Model model) {
+	public String getBoardList(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
 		boardCommand = new BoardListCommand();
 		boardCommand.execute(sqlSession, model);
 		return "board/boardList";

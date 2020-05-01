@@ -80,4 +80,10 @@ public class BoardDto {
 		this.board_dt = board_dt;
 	}
 	
+	@Override
+	public String toString() {
+		return "BoardDto [member_id=" + member_id + ", title=" + title + ", contents=" + contents + ", board_ip="
+				+ board_ip + ", board_no=" + board_no + ", hits_cnt=" + hits_cnt + ", good_cnt=" + good_cnt
+				+ ", reply_cnt=" + reply_cnt + ", board_dt=" + board_dt + "]";
+	}
 }

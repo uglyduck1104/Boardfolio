@@ -60,19 +60,20 @@
 			<tbody>
 				<c:choose>
 					<c:when test="${empty list}" >
-						<tr>
-							<td colspan="5">등록된 게시물이 없습니다.</td>
-						</tr>
+					<tr>
+						<td colspan="5">등록된 게시물이 없습니다.</td>
+					<tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="bDto" items="${list}">
-							<tr>
-								<td>${ bDto.board_no }</td>
-								<td><a href="board-view?board_no=${bDto.board_no}">${ bDto.title }</a>
-									[${ bDto.reply_cnt }]</td>
-								<td>${ bDto.member_id }</td>
-								<td>${ bDto.hits_cnt }</td>
-								<td>${ bDto.board_dt }</td>
+						<tr>
+							<td>${ bDto.board_no }</td>
+							<td><a href="board-view?board_no=${bDto.board_no}">${ bDto.title }</a>
+								[${ bDto.reply_cnt }]</td>
+							<td>${ bDto.member_id }</td>
+							<td>${ bDto.hits_cnt }</td>
+							<td>${ bDto.board_dt }</td>
+						<tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>

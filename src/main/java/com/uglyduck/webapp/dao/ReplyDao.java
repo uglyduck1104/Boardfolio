@@ -16,6 +16,4 @@ public interface ReplyDao {
 	// 댓글 삭제
 	public int replyDrop(int replyNo);
 	
-	
-	
 }

@@ -6,32 +6,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.uglyduck.webapp.dao.BoardDao">
 	
 	<select id="getBoardList" resultType="boardDto">
-		SELECT
-			*
-		FROM
-			BOARD
+		SELECT 
+			A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.BOARD_DT, (
+				SELECT COUNT(*) 
+				FROM REPLY B 
+				WHERE B.BOARD_NO = A.BOARD_NO
+			) AS REPLY_CNT
+		FROM 
+			BOARD A 
 		ORDER BY
 			BOARD_NO DESC
-	</select>
-	
-	<select id="getBoardTotalCount" resultType="boardDto">
-		SELECT 
-			COUNT(*)
-		FROM
-			BOARD
 	</select>
 	
 	<insert id="boardWrite" parameterType="boardDto">
 		INSERT INTO
 			BOARD(BOARD_NO, MEMBER_ID, TITLE, CONTENTS, BOARD_DT, BOARD_IP, HITS_CNT, GOOD_CNT, REPLY_CNT)
-		VALUES(BOARD_SEQ.NEXTVAL, #{member_id}, #{title}, #{contents}, SYSDATE, #{board_ip}, 0, 0, 0 )
+		VALUES(BOARD_SEQ.NEXTVAL, #{member_id}, #{title}, #{contents}, SYSDATE, #{board_ip}, 0, 0, #{reply_cnt})
 	</insert>
 	
 	<select id="boardView" resultType="boardDto">
 		SELECT 
-			*
+			A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.BOARD_DT, (
+				SELECT COUNT(*) 
+				FROM REPLY B 
+				WHERE B.BOARD_NO = A.BOARD_NO
+			) AS REPLY_CNT
 		FROM 
-			BOARD
+			BOARD A 
 		WHERE
 			BOARD_NO = #{param1}
 	</select>
@@ -52,4 +53,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_NO = #{param1}
 	</delete>
 
+	<update id="boardHits" parameterType="boardDto">
+		UPDATE
+			BOARD
+		SET
+			HITS_CNT = #{hits_cnt}
+		WHERE
+			BOARD_NO = #{board_no}
+	</update>
+	
+	
+	
 </mapper>
