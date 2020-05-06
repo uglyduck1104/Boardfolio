@@ -18,16 +18,18 @@ public class BoardViewCommand implements BoardCommand {
 		BoardDao bDao = sqlSession.getMapper(BoardDao.class);
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		String currentPage = request.getParameter("currentPage");
 		BoardDto bDto = bDao.boardView(Integer.parseInt(request.getParameter("board_no")));
 		HttpSession session = request.getSession();
-		Object isOpen = session.getAttribute("isOpen"); // 게시물을 열었는지 확인 
-		if( isOpen == null ) { // 최초 게시물을 열었다면
-			session.setAttribute("isOpen", "YES");
-			int hit = bDto.getHits_cnt();
-			bDto.setHits_cnt(hit + 1);
-			bDao.boardHits(bDto);
+		Object isOpen = session.getAttribute("isOpen: " + bDto.getBoard_no());  // 게시물 번호 기준 session 호출
+		if( isOpen == null ) { // 게시물이 열린적이 없다면
+ 			session.setAttribute("isOpen: " + bDto.getBoard_no(), "YES");  // 게시물 번호 기준 session 저장
+			int hit = bDto.getHits_cnt();		     
+			bDto.setHits_cnt(hit + 1);              
+			bDao.boardHits(bDto);                      
 		}
 		model.addAttribute("bDto", bDto); 
+		model.addAttribute("currentPage", currentPage);
 	}
 
 }

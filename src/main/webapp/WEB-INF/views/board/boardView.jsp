@@ -56,7 +56,7 @@ function deleteBoard(){
 					<button type="button" onclick="updatePage()">수정</button>
 					<button type="button" onclick="deleteBoard()">삭제</button>
 				</c:if>
-					<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
+					<button type="button" onclick="location.href='board-list?currentPage=${currentPage}'">목록으로 이동</button>
 				</td>
 			</tr>
 		</tfoot>

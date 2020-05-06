@@ -6,16 +6,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.uglyduck.webapp.dao.BoardDao">
 	
 	<select id="getBoardList" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.BOARD_DT, (
+						SELECT COUNT(*) 
+						FROM REPLY B 
+						WHERE B.BOARD_NO = A.BOARD_NO
+					) AS REPLY_CNT
+				FROM 
+					BOARD A 
+				ORDER BY
+					BOARD_NO DESC) R)
+		WHERE
+			R_NUM BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="getBoardListSize" resultType="int">
 		SELECT 
-			A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.BOARD_DT, (
-				SELECT COUNT(*) 
-				FROM REPLY B 
-				WHERE B.BOARD_NO = A.BOARD_NO
-			) AS REPLY_CNT
+			COUNT(*)
 		FROM 
-			BOARD A 
-		ORDER BY
-			BOARD_NO DESC
+			BOARD
 	</select>
 	
 	<insert id="boardWrite" parameterType="boardDto">
@@ -26,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="boardView" resultType="boardDto">
 		SELECT 
-			A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.BOARD_DT, (
+			A.BOARD_NO, A.TITLE, A.CONTENTS, A.MEMBER_ID, A.HITS_CNT, A.BOARD_DT, (
 				SELECT COUNT(*) 
 				FROM REPLY B 
 				WHERE B.BOARD_NO = A.BOARD_NO

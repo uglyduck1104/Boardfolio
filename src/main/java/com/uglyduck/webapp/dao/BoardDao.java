@@ -3,20 +3,26 @@ package com.uglyduck.webapp.dao;
 import java.util.List;
 
 import com.uglyduck.webapp.dto.BoardDto;
-
+/**
+ * 
+ * @author Uglyduck
+ * getBoardList: 게시물 전체 목록 조회
+ * getBoardListSize: 게시물 개수 조회
+ * boardWrite: 게시물 추가
+ * boardView: 게시물 상세 보기
+ * boardUpdate: 게시물 수정
+ * boardDrop: 게시물 삭제
+ * boardHits: 게시물 조회수 증가
+ *
+ */
 public interface BoardDao {
 
-	// 게시물 전체 목록 조회
-	public List<BoardDto> getBoardList();
-	// 게시물 추가
+	public List<BoardDto> getBoardList(int begin, int end);
+	public int getBoardListSize();
 	public int boardWrite(BoardDto bDto);
-	// 게시물 보기
 	public BoardDto boardView(int boardNo);
-	// 게시물 수정
 	public int boardUpdate(String title, String contents, int boardNo);
-	// 게시물 삭제
 	public int boardDrop(int boardNo);
-	// 게시물 조회수 증가
 	public int boardHits(BoardDto bDto);
 	
 }

@@ -68,7 +68,7 @@
 						<c:forEach var="bDto" items="${list}">
 						<tr>
 							<td>${ bDto.board_no }</td>
-							<td><a href="board-view?board_no=${bDto.board_no}">${ bDto.title }</a>
+							<td><a href="board-view?board_no=${bDto.board_no}&currentPage=${currentPage}">${ bDto.title }</a>
 								[${ bDto.reply_cnt }]</td>
 							<td>${ bDto.member_id }</td>
 							<td>${ bDto.hits_cnt }</td>
@@ -79,6 +79,11 @@
 				</c:choose>
 			</tbody>
 		</table>
+		<div class="pageNavi">
+			<div class="pagingWrap">
+				${ pagingView }
+			</div>
+		</div>
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

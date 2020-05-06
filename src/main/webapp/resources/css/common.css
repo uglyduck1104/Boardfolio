@@ -223,3 +223,71 @@ textarea{ resize: none; }
     margin-bottom: 50px;
 }
 
+/* pageNavi */
+.pageNavi{
+	padding-top: 56px;
+    font-size: 0;
+    text-align: center;
+    clear: both;
+}
+.pageNavi .pagingWrap{
+	font-family: "nbgB";
+	display: inline-block;
+    padding: 0 20px;
+    vertical-align: middle;
+}
+.pageNavi .pagingWrap a{
+	font-family: "nbgB";
+	display: inline-block;
+    min-width: 40px;
+    height: 40px;
+    background-color: #f8f8f8;
+    color: #606060;
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: top;
+}
+.pageNavi .pagingWrap a:hover{
+	border-bottom: 1px solid #202020;
+}
+.pageNavi .pagingWrap span{
+	
+    display: inline-block;
+    min-width: 40px;
+    height: 40px;
+    background-color: #f8f8f8;
+    color: #606060;
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+    vertical-align: top;
+}
+.pageNavi .pagingWrap a.nextBtn{
+    background: url(../images/right_arrow.png) no-repeat;
+    background-position: center;
+    background-size: 13px;
+    vertical-align: middle;
+}
+.pageNavi .pagingWrap a.prevBtn{
+    background: url(../images/left_arrow.png) no-repeat;
+    background-position: center;
+    background-size: 13px;
+    vertical-align: middle;
+}
+.pageNavi .pagingWrap span.nextBtnNone{
+    background: url(../images/right_arrow_none.png) no-repeat;
+    background-position: center;
+    background-size: 13px;
+    vertical-align: middle;
+}
+.pageNavi .pagingWrap span.prevBtnNone{
+    background: url(../images/left_arrow_none.png) no-repeat;
+    background-position: center;
+    background-size: 13px;
+    vertical-align: middle;
+}
+.pageNavi .pagingWrap span.ptPtxt{
+	background-color: #202020;
+    color: #fff;
+}
