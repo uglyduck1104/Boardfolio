@@ -77,6 +77,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_NO = #{board_no}
 	</update>
 	
+	<update id="setBoardGoodRec">
+		UPDATE
+			BOARD
+		SET
+			GOOD_CNT = GOOD_CNT + 1
+		WHERE BOARD_NO = #{param1}
+	</update>
 	
+	<update id="setBoardBadRec">
+		UPDATE
+			BOARD
+		SET
+			GOOD_CNT = GOOD_CNT - 1
+		WHERE BOARD_NO = #{param1}
+	</update>
 	
 </mapper>

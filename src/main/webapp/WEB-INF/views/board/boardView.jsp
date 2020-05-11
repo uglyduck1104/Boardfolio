@@ -18,7 +18,7 @@ function deleteBoard(){
 		<tbody>
 			<tr>
 				<td>게시글 번호</td>
-				<td>#${bDto.board_no }</td>
+				<td id="boardNo">${bDto.board_no }</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -61,6 +61,13 @@ function deleteBoard(){
 			</tr>
 		</tfoot>
 	</table>
+	<c:if test="${ sessionScope.mDto ne null }">
+		<div>
+			<button type="button" id="goodStat" onclick="countHits(this, 'good')">추천하기</button>
+			<button type="button" id="badStat" onclick="countHits(this, 'bad')">비추천하기</button>
+			<input type="hidden" id="memberId" value="${ sessionScope.mDto.id }" />
+		</div>
+	</c:if>
 </div>
 <%@ include file="/WEB-INF/views/common/boardReply.jsp" %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

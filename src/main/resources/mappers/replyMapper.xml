@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.uglyduck.webapp.dao.ReplyDao">
 		
-	<select id="getReplyList" resultType="ReplyDto">
+	<select id="getReplyList" resultType="replyDto">
 		SELECT
 			*
 		FROM 
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			REPLY
 	</select>
 	
-	<insert id="replyWrite" parameterType="ReplyDto">
+	<insert id="replyWrite" parameterType="replyDto">
 		INSERT INTO
 			REPLY(REPLY_NO, BOARD_NO, REPLY_DT, REPLY_CON, MEMBER_ID)
 		VALUES(REPLY_SEQ.NEXTVAL, #{board_no} , SYSDATE, #{reply_con}, #{member_id})

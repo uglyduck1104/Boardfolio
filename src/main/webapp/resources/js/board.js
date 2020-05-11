@@ -1,5 +1,18 @@
+/**
+ * 
+ * @author UglyDuck
+ * getReplyList(): 댓글 목록 불러오기
+ * refreshReplyList(): Jquery -> javascript로 함수 전달
+ * replyUpdateArea(): 댓글 입력 공간 만들기
+ * replyReset(): 댓글 수정 취소
+ * replyUpdate(): 댓글 수정
+ * replyDrop(): 댓글 삭제
+ * countRecs(): 추천, 비추천 처리
+ * 
+ */
 $(function(){
 	getReplyList();
+	getRecBtnStat();
 	
 	function getReplyList(){
 		var boardNo = $("#board_no").val();
@@ -49,7 +62,7 @@ $(function(){
 		});
 	}
 	
-	refreshReplyList = getReplyList; // javascript에 함수 전달
+	refreshReplyList = getReplyList;
 	
 	// 댓글 등록
 	$("#reply-btn").click(function(){
@@ -76,19 +89,49 @@ $(function(){
 		} // end if
 	}); // end click
 	
+	function getRecBtnStat(){
+		var memberId = $("#memberId").val();
+		var boardNo = $("#boardNo").text();
+		$.ajax({
+			url: "rec-btn-stat",
+			type: "GET",
+			dataType: "json",
+			data: "memberId=" + memberId +
+				  "&boardNo=" + boardNo,
+			success: function(obj){
+				if(obj["btnStat"]=="good"){
+					$("#badStat").css("background","gray");
+					$("#goodStat").css("background","");
+				} else if(obj["btnStat"]=="bad"){
+					$("#goodStat").css("background","gray");
+					$("#badStat").css("background","");
+				} else {
+					$("#badStat").css("background","");
+					$("#goodStat").css("background","");
+				}
+			},
+			error: function(){
+				alert("Ajax 통신 실패");
+			}
+			
+		});
+	}
+	refreshRecBtnStat = getRecBtnStat;
+	
 });
 function refreshReplyList(){
-	getReplyList(); // jQuery 함수 호출
+	getReplyList();
+}
+function refreshRecBtnStat(){
+	getRecBtnStat();
 }
 
-//댓글 입력 공간 만들기
 function replyUpdateArea(index){
 	var replyArea = $(`.comment-${index}`);
 	replyArea.children('td').children('div').css("display","block");
 	replyArea.children('td').children('span').css("display","none");
 } // end replyUpdateArea()
 
-// 댓글 수정 취소
 function replyReset(index){
 	var replyArea = $(`.comment-${index}`);
 	replyArea.children('td').children('div').css("display","none");
@@ -96,7 +139,6 @@ function replyReset(index){
 	
 } // end replyReset()
 
-// 댓글 수정
 function replyUpdate(index, content, no){
 	var replyArea = $(`.comment-${index}`);
 	var replyCon = replyArea.children('td').children('div').children('input').val();
@@ -124,7 +166,6 @@ function replyUpdate(index, content, no){
 	} // end if
 } // end replyUpdate()
 
-// 댓글 삭제
 function replyDrop(index,  no){
 	if( confirm("삭제하시겠습니까?") ){
 		jQuery.ajax({
@@ -148,6 +189,40 @@ function replyDrop(index,  no){
 	} // end if
 } // end replyDelete()
 
+function countRecs(recommend){
+	var boardNo = $("#boardNo").text();
+	var memberId = $("#memberId").val();
+	if( memberId != null ){
+		jQuery.ajax({
+			url: "count-recs",
+			type: "POST",
+			dataType: "json",
+			data: "boardNo=" + boardNo + 
+			"&memberId=" + memberId +
+			"&recVote=" + recommend,
+			success: function(obj){
+				console.log(obj);
+				if(obj["isChecked"] == "true"){
+					alert("이미 추천한 게시물입니다.");
+				} else if(obj["isChecked"] == "false"){
+					alert("이미 비추천한 게시물입니다.");
+				}
+				if(obj["isRecommend"] == "good"){
+					alert("추천 했습니다.");
+					refreshRecBtnStat();
+				} else if(obj["isRecommend"] == "bad"){
+					alert("비추천 했습니다.");
+					refreshRecBtnStat();
+				}
+			},
+			error: function(){
+				alert("Ajax 통신 실패!");
+			}
+		});
+	} else {
+		alert("로그인 후 이용해주세요.");
+	}
+}
 
 
 

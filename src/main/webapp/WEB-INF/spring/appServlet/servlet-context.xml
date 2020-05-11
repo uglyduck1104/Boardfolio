@@ -36,6 +36,7 @@
 			<mvc:mapping path="/reply-write" />
 			<mvc:mapping path="/reply-update" />
 			<mvc:mapping path="/reply-drop" />
+			<mvc:mapping path="/count-hits" />
 			<beans:ref bean="memberInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

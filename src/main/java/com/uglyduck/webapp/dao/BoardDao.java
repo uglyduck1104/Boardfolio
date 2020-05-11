@@ -13,6 +13,8 @@ import com.uglyduck.webapp.dto.BoardDto;
  * boardUpdate: 게시물 수정
  * boardDrop: 게시물 삭제
  * boardHits: 게시물 조회수 증가
+ * setBoardGoodRec: 게시물 추천수 증가
+ * setBoardBadRec: 게시물 추천수 감소
  *
  */
 public interface BoardDao {
@@ -24,5 +26,8 @@ public interface BoardDao {
 	public int boardUpdate(String title, String contents, int boardNo);
 	public int boardDrop(int boardNo);
 	public int boardHits(BoardDto bDto);
+	public int countHits(BoardDto bDto);
+	public int setBoardGoodRec(int boardNo);
+	public int setBoardBadRec(int boardNo);
 	
 }

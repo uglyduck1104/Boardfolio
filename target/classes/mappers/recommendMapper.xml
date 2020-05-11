@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.uglyduck.webapp.dao.RecommendDao">
+	
+	<select id="getRecommend" resultType="recommendDto">
+		SELECT 
+			*
+		FROM
+			RECOMMEND
+		WHERE
+			MEMBER_ID = #{param1} AND BOARD_NO = #{param2}
+	</select>
+	
+	<insert id="setRecommend" parameterType="recommendDto">
+		INSERT INTO
+			RECOMMEND(REC_NO, MEMBER_ID, BOARD_NO, REC_VOTE)
+		VALUES(RECOMMEND_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3})
+	</insert>
+	
+	<update id="updateRecommend">
+		UPDATE
+			RECOMMEND
+		SET
+			REC_VOTE = #{param3}
+		WHERE
+			MEMBER_ID = #{param1} AND BOARD_NO = #{param2}
+	</update>
+	
+</mapper>
