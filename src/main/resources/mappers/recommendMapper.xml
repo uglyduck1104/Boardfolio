@@ -29,4 +29,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			MEMBER_ID = #{param1} AND BOARD_NO = #{param2}
 	</update>
 	
+	<delete id="resetRecommend">
+		DELETE FROM
+			RECOMMEND
+		WHERE
+			MEMBER_ID = #{param1} AND BOARD_NO = #{param2}
+	</delete>
+	
 </mapper>

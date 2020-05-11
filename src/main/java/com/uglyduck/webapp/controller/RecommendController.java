@@ -74,8 +74,27 @@ public class RecommendController {
 				}
 			}
 		}
+		return obj.toJSONString();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="reset-recs", produces="aplication/json; charset=UTF-8", method=RequestMethod.POST)
+	@ResponseBody
+	public String resetRecommend(@RequestParam String memberId, @RequestParam int boardNo) {
+		JSONObject obj = new JSONObject();
+		RecommendDao rDao = sqlSession.getMapper(RecommendDao.class);
+		BoardDao bDao = sqlSession.getMapper(BoardDao.class);
+		RecommendDto rDto = rDao.getRecommend(memberId, boardNo);
+		if( rDto.getRec_vote().equals("good") ) {
+			bDao.setBoardBadRec(boardNo);
+		} else {
+			bDao.setBoardGoodRec(boardNo);
+		}
+		int result = rDao.resetRecommend(memberId, boardNo);
+		obj.put("result", result);
 		
 		return obj.toJSONString();
 	}
+
 	
 }

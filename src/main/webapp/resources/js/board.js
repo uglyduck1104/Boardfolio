@@ -8,6 +8,7 @@
  * replyUpdate(): 댓글 수정
  * replyDrop(): 댓글 삭제
  * countRecs(): 추천, 비추천 처리
+ * resetRecs(): 추천, 비추천 초기화(=삭제)
  * 
  */
 $(function(){
@@ -203,9 +204,13 @@ function countRecs(recommend){
 			success: function(obj){
 				console.log(obj);
 				if(obj["isChecked"] == "true"){
-					alert("이미 추천한 게시물입니다.");
+					if(confirm("추천을 취소하시겠습니까?")){
+						resetRecs(boardNo, memberId);
+					}
 				} else if(obj["isChecked"] == "false"){
-					alert("이미 비추천한 게시물입니다.");
+					if(confirm("비추천을 취소하시겠습니까?")){
+						resetRecs(boardNo, memberId);
+					}
 				}
 				if(obj["isRecommend"] == "good"){
 					alert("추천 했습니다.");
@@ -222,6 +227,24 @@ function countRecs(recommend){
 	} else {
 		alert("로그인 후 이용해주세요.");
 	}
+}
+
+function resetRecs(boardNo, memberId){
+	jQuery.ajax({
+		url: "reset-recs",
+		type: "POST",
+		dataType: "json",
+		data: "boardNo=" + boardNo + 
+		"&memberId=" + memberId,
+		success: function(obj){
+			if(obj["result"] > 0){
+				refreshRecBtnStat();
+			}
+		},
+		error: function(){
+			alert("Ajax 통신 실패!");
+		}
+	});
 }
 
 

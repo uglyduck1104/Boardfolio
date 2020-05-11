@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ROWNUM R_NUM, R.*
 			FROM
 				(SELECT 
-					A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.BOARD_DT, (
+					A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.GOOD_CNT, A.BOARD_DT, (
 						SELECT COUNT(*) 
 						FROM REPLY B 
 						WHERE B.BOARD_NO = A.BOARD_NO
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="boardView" resultType="boardDto">
 		SELECT 
-			A.BOARD_NO, A.TITLE, A.CONTENTS, A.MEMBER_ID, A.HITS_CNT, A.BOARD_DT, (
+			A.BOARD_NO, A.TITLE, A.CONTENTS, A.MEMBER_ID, A.HITS_CNT, A.GOOD_CNT, A.BOARD_DT, (
 				SELECT COUNT(*) 
 				FROM REPLY B 
 				WHERE B.BOARD_NO = A.BOARD_NO

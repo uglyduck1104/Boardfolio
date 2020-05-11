@@ -63,8 +63,8 @@ function deleteBoard(){
 	</table>
 	<c:if test="${ sessionScope.mDto ne null }">
 		<div>
-			<button type="button" id="goodStat" onclick="countHits(this, 'good')">추천하기</button>
-			<button type="button" id="badStat" onclick="countHits(this, 'bad')">비추천하기</button>
+			<button type="button" id="goodStat" onclick="countRecs('good')">추천하기</button>
+			<button type="button" id="badStat" onclick="countRecs('bad')">비추천하기</button>
 			<input type="hidden" id="memberId" value="${ sessionScope.mDto.id }" />
 		</div>
 	</c:if>
