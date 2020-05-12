@@ -79,6 +79,14 @@
 				</c:choose>
 			</tbody>
 		</table>
+		<div class="searchWrap">
+			<form action="search">
+				<div class="searchArea">
+					<input type="text" id="searchInput" name="query" value="${query}"placeholder="검색어" />
+					<input type="submit" id="searchBtn" value="검색" />
+				</div>
+			</form>
+		</div>
 		<div class="pageNavi">
 			<div class="pagingWrap">
 				${ pagingView }

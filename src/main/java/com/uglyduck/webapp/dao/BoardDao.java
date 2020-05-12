@@ -15,6 +15,8 @@ import com.uglyduck.webapp.dto.BoardDto;
  * boardHits: 게시물 조회수 증가
  * setBoardGoodRec: 게시물 추천수 증가
  * setBoardBadRec: 게시물 추천수 감소
+ * search: 게시물 검색어 기준 목록 조회
+ * searchListSize: 게시물 검색어 기준 목록 개수 조회 
  *
  */
 public interface BoardDao {
@@ -29,5 +31,8 @@ public interface BoardDao {
 	public int countHits(BoardDto bDto);
 	public int setBoardGoodRec(int boardNo);
 	public int setBoardBadRec(int boardNo);
+	public List<BoardDto> search(String query, int begin, int end);
+	public int searchListSize(String query);
+
 	
 }

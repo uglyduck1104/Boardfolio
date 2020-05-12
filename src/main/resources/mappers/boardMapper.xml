@@ -82,7 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD
 		SET
 			GOOD_CNT = GOOD_CNT + 1
-		WHERE BOARD_NO = #{param1}
+		WHERE 
+			BOARD_NO = #{param1}
 	</update>
 	
 	<update id="setBoardBadRec">
@@ -90,7 +91,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD
 		SET
 			GOOD_CNT = GOOD_CNT - 1
-		WHERE BOARD_NO = #{param1}
+		WHERE 
+			BOARD_NO = #{param1}
 	</update>
+	
+	<select id="search" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.GOOD_CNT, A.BOARD_DT, (
+						SELECT COUNT(*) 
+						FROM REPLY B 
+						WHERE B.BOARD_NO = A.BOARD_NO
+					) AS REPLY_CNT
+				FROM 
+					BOARD A 
+				WHERE
+					CONTAINS (title, '%'||#{param1}||'%') > 0
+				ORDER BY
+					A.BOARD_NO DESC) R)
+		WHERE
+			R_NUM BETWEEN #{param2} AND #{param3}
+	</select>
+	
+	<select id="searchListSize" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM 
+			BOARD
+		WHERE
+			CONTAINS (title, '%'||#{param1}||'%') > 0
+	</select>
 	
 </mapper>

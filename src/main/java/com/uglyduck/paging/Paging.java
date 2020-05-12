@@ -54,7 +54,7 @@ public class Paging {
 		if ( beginPageOfBlock < pagePerBlock ) {
 			sb.append("<span class='prevBtnNone'></span>");
 		} else {
-			sb.append("<a class='prevBtn' href='" + path + "?currentPage=" + (beginPageOfBlock - 1) + "'></a>");
+			sb.append("<a class='prevBtn' href='" + path + "currentPage=" + (beginPageOfBlock - 1) + "'></a>");
 		}
 		
 		// 페이지 번호 표시
@@ -64,7 +64,7 @@ public class Paging {
 			if ( page == nowPage ) {
 				sb.append("<span class='ptPtxt'>" + page + "</span>");
 			} else {
-				sb.append("<a href='" + path + "?currentPage=" + (page) + "'>" + page + "</a>");
+				sb.append("<a href='" + path + "currentPage=" + (page) + "'>" + page + "</a>");
 			}
 		}
 		
@@ -74,7 +74,7 @@ public class Paging {
 		if ( endPageOfBlock == totalPage ) {
 			sb.append("<span class='nextBtnNone'></span>");
 		} else {
-			sb.append("<a class='nextBtn' href='" + path + "?currentPage=" + (endPageOfBlock + 1) + "'></a>");
+			sb.append("<a class='nextBtn' href='" + path + "currentPage=" + (endPageOfBlock + 1) + "'></a>");
 		}
 		
 		return sb.toString();	

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.uglyduck.command.board.BoardCommand;
 import com.uglyduck.command.board.BoardDeleteCommand;
 import com.uglyduck.command.board.BoardListCommand;
+import com.uglyduck.command.board.BoardQueryCommand;
 import com.uglyduck.command.board.BoardUpdateCommand;
 import com.uglyduck.command.board.BoardViewCommand;
 import com.uglyduck.command.board.BoardWriteCommand;
@@ -84,6 +85,14 @@ public class BoardController {
 		boardCommand = new BoardDeleteCommand();
 		boardCommand.execute(sqlSession, model);
 		return "redirect:board-list";
+	}
+	
+	@RequestMapping("search")
+	public String search(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		boardCommand = new BoardQueryCommand();
+		boardCommand.execute(sqlSession, model);
+		return "board/boardList";
 	}
 	
 }

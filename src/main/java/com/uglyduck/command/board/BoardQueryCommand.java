@@ -19,9 +19,10 @@ import com.uglyduck.webapp.dto.BoardDto;
  * recordPerPage: 한 페이지에서 보여줄 게시물의 수
  * begin, end: Oracle ROWNUM(가상 컬럼)을 이용해서 가상의 순번, 시작 값과 끝 값을 지정하기 위함
  * totalRecord: 등록된 게시물의 총 개수로써 Paging클래스에서 전체 페이지의 총 개수를 계산하기 위함
+ * query: 사용자로부터 입력받은 검색어 파라미터
  *
  */
-public class BoardListCommand implements BoardCommand {
+public class BoardQueryCommand implements BoardCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
@@ -30,6 +31,7 @@ public class BoardListCommand implements BoardCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String currentPage = request.getParameter("currentPage");
+		String query = request.getParameter("query");
 		int nowPage = 1;
 		if( currentPage != null && !currentPage.isEmpty() ) {
 			nowPage = Integer.parseInt(currentPage);
@@ -38,14 +40,15 @@ public class BoardListCommand implements BoardCommand {
 		int begin = (nowPage - 1) * recordPerPage + 1; 
 		int end = begin + recordPerPage - 1;
 		
-		int totalRecord = bDao.getBoardListSize();
+		int totalRecord = bDao.searchListSize(query);
 		
-		String pagingView = Paging.getPaging("board-list?", nowPage, recordPerPage, totalRecord);
+		String pagingView = Paging.getPaging("search?query=" + query + "&", nowPage, recordPerPage, totalRecord);
+		List<BoardDto> list = bDao.search(query, begin, end);
 		
-		List<BoardDto> list = bDao.getBoardList(begin, end);
 		model.addAttribute("list", list);
 		model.addAttribute("pagingView", pagingView);
 		model.addAttribute("currentPage", nowPage);
+		model.addAttribute("query", query);
 
 	}
 
