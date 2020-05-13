@@ -28,3 +28,13 @@
 .board-wrap tfoot tr td{
 	text-align: center;
 }
+.sort-wrap{
+	float: left;
+}
+.sort-wrap > ul > li{
+	display: inline-block;
+	padding-right: 25px;
+}
+.sort-wrap > ul > li:hover{
+	text-decoration: underline;	
+}

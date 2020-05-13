@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.uglyduck.webapp.dao.BoardDao">
 	
-	<select id="getBoardList" resultType="boardDto">
+	<select id="getBoardList" resultType="boardDto" parameterType="String">
 		SELECT
 			*
 		FROM
@@ -21,9 +21,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				FROM 
 					BOARD A 
 				ORDER BY
-					BOARD_NO DESC) R)
+				<if test="param1 == 'latest' or param1 == null">
+					BOARD_NO
+				</if>
+				<if test="param1 == 'recommend'">
+					GOOD_CNT
+				</if>
+				<if test="param1 == 'reply'">
+					REPLY_CNT
+				</if>
+				<if test="param1 == 'hit'">
+					HITS_CNT  
+				</if>
+				DESC) R)
 		WHERE
-			R_NUM BETWEEN #{param1} AND #{param2}
+			R_NUM BETWEEN #{param2} AND #{param3}
 	</select>
 	
 	<select id="getBoardListSize" resultType="int">
@@ -95,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_NO = #{param1}
 	</update>
 	
-	<select id="search" resultType="boardDto">
+	<select id="search" resultType="boardDto" parameterType="String">
 		SELECT
 			*
 		FROM
@@ -109,16 +121,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						WHERE B.BOARD_NO = A.BOARD_NO
 					) AS REPLY_CNT
 				FROM 
-					BOARD A 
+					BOARD A
 				WHERE
 					CONTAINS (title, '%'||#{param1}||'%') > 0
 				ORDER BY
-					A.BOARD_NO DESC) R)
+				<if test="param2 == 'latest' or param2 == null">
+					BOARD_NO
+				</if>
+				<if test="param2 == 'recommend'">
+					GOOD_CNT
+				</if>
+				<if test="param2 == 'reply'">
+					REPLY_CNT
+				</if>
+				<if test="param2 == 'hit'">
+					HITS_CNT  
+				</if> 
+				DESC) R)
 		WHERE
-			R_NUM BETWEEN #{param2} AND #{param3}
+			R_NUM BETWEEN #{param3} AND #{param4}
 	</select>
 	
-	<select id="searchListSize" resultType="int">
+	<select id="searchListSize" resultType="int" parameterType="String">
 		SELECT 
 			COUNT(*)
 		FROM 

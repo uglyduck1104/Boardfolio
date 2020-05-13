@@ -30,16 +30,30 @@
 			alert("게시물 작성이 성공했습니다.");
 		}		
 	} 
+	function sortList(sortValue){
+		var searchInput = document.getElementById("searchInput").value;
+		location.href = "board-list?sort=" + sortValue + "&query=" + searchInput;
+	}
 
 </script>
 <div class="board-wrap">
 	<div class="title-wrap">
 		<h2>DUCKLING</h2>
 	</div>
-	<div class="button-wrap">
-		<a href="write-page">새 글쓰기</a>
+	<div>
+		<div class="sort-wrap">
+			<ul>
+				<li><a href="javascript:sortList('latest')">최신순</a></li>
+				<li><a href="javascript:sortList('recommend')">추천순</a></li>
+				<li><a href="javascript:sortList('reply')">댓글순</a></li>
+				<li><a href="javascript:sortList('hit')">조회순</a></li>
+			</ul>
+		</div>
+		<div class="button-wrap">
+			<a href="write-page">새 글쓰기</a>
+		</div>
 	</div>
-	<div class="board-wrap">
+	<div>
 		<table>
 			<colgroup>
 	       		<col width="10%">
@@ -79,8 +93,8 @@
 				</c:choose>
 			</tbody>
 		</table>
-		<div class="searchWrap">
-			<form action="search">
+		<div class="search-wrap">
+			<form action="board-list">
 				<div class="searchArea">
 					<input type="text" id="searchInput" name="query" value="${query}"placeholder="검색어" />
 					<input type="submit" id="searchBtn" value="검색" />

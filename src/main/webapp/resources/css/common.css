@@ -188,7 +188,7 @@ textarea{ resize: none; }
 .button-wrap{
     float: right;
     position: relative;
-    top: 45px;
+    bottom: 10px;
     border-radius: 5px;
     background: #4cae4c;
     cursor: pointer;

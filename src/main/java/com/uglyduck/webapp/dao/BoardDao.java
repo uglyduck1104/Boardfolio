@@ -21,7 +21,7 @@ import com.uglyduck.webapp.dto.BoardDto;
  */
 public interface BoardDao {
 
-	public List<BoardDto> getBoardList(int begin, int end);
+	public List<BoardDto> getBoardList(String sort, int begin, int end);
 	public int getBoardListSize();
 	public int boardWrite(BoardDto bDto);
 	public BoardDto boardView(int boardNo);
@@ -31,7 +31,7 @@ public interface BoardDao {
 	public int countHits(BoardDto bDto);
 	public int setBoardGoodRec(int boardNo);
 	public int setBoardBadRec(int boardNo);
-	public List<BoardDto> search(String query, int begin, int end);
+	public List<BoardDto> search(String query, String sort, int begin, int end);
 	public int searchListSize(String query);
 
 	

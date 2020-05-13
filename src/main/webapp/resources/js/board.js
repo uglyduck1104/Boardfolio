@@ -2,7 +2,9 @@
  * 
  * @author UglyDuck
  * getReplyList(): 댓글 목록 불러오기
+ * getRecBtnStat(): 추천, 비추천 처리에 따른 상태 불러오기
  * refreshReplyList(): Jquery -> javascript로 함수 전달
+ * refreshRecBtnStat(): Jquery -> javascript로 함수 전달
  * replyUpdateArea(): 댓글 입력 공간 만들기
  * replyReset(): 댓글 수정 취소
  * replyUpdate(): 댓글 수정
@@ -246,6 +248,4 @@ function resetRecs(boardNo, memberId){
 		}
 	});
 }
-
-
 
