@@ -83,6 +83,7 @@ a{
 	color: #212121;
 }
 textarea{ resize: none; }
+input{ box-sizing: border-box; }
 /* common-header */
 #header{
 	width: 100%;
@@ -129,7 +130,7 @@ textarea{ resize: none; }
 
 /* common-main */
 #main{
-	width: 1180px;
+	max-width: 1280px;
 	min-height: 600px;
 	margin: 0 auto;
 	clear: both;

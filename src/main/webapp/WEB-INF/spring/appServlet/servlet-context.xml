@@ -41,8 +41,7 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
-	<!-- 이미지 업로드  -->	
-	<!-- fileupload : 멀티파트리졸버 -->
+	<!-- fileupload : multipartResolver -->
  	<beans:bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="utf-8" />
 		<beans:property name="maxUploadSize" value="5242880" /> <!-- 최대업로드크기: 5MB -->

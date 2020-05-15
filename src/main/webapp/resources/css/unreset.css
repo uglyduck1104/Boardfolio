@@ -1,0 +1,290 @@
+/**
+ * Unreset CSS
+ *
+ * Copyright (C) 2016 Kite (ixkaito@gmail.com)
+ * License MIT
+ * Version 1.0.0
+ *
+ * Unreset CSS restores browsers' default element styles which are reset by
+ * Eric Meyer's Reset CSS, YUI 3 Reset CSS, HTML5 Reset Stylesheet of HTML5
+ * Doctor, or Tim Murtaugh's HTML5 Reset.
+ */
+
+.unreset html {
+	box-sizing: content-box;
+}
+
+.unreset body {
+	margin: 8px;
+	line-height: normal;
+}
+
+.unreset p {
+	margin: 1em 0;
+}
+
+.unreset blockquote,
+.unreset figure {
+	margin: 1em 40px;
+}
+
+.unreset q {
+	quotes: "“" "”" "‘" "’";
+
+	&:before {
+		content: open-quote;
+	}
+
+	&:after {
+		content: close-quote;
+	}
+}
+
+.unreset hr {
+	border: 1px inset;
+	box-sizing: border-box;
+	margin: 0.5em auto;
+}
+
+.unreset h1 {
+	font-size: 2em;
+	font-weight: bold;
+	margin: 0.67em 0;
+}
+
+.unreset h2 {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0.83em 0;
+}
+
+.unreset h3 {
+	font-size: 1.17em;
+	font-weight: bold;
+	margin: 1em 0;
+}
+
+.unreset h4 {
+	font-size: 1.00em;
+	font-weight: bold;
+	margin: 1.33em 0;
+}
+
+.unreset h5 {
+	font-size: 0.83em;
+	font-weight: bold;
+	margin: 1.67em 0;
+}
+
+.unreset h6 {
+	font-size: 0.67em;
+	font-weight: bold;
+	margin: 2.33em 0;
+}
+
+.unreset article, .unreset aside, .unreset nav, .unreset section {
+
+	h1 {
+		font-size: 1.5em;
+		font-weight: bold;
+		margin: 0.83em 0;
+	}
+
+	article, aside, nav, section {
+
+		h1 {
+			font-size: 1.17em;
+			font-weight: bold;
+			margin: 1em 0;
+		}
+
+		article, aside, nav, section {
+
+			h1 {
+				font-size: 1.00em;
+				font-weight: bold;
+				margin: 1.33em 0;
+			}
+
+			article, aside, nav, section {
+
+				h1 {
+					font-size: 0.83em;
+					font-weight: bold;
+					margin: 1.67em 0;
+				}
+
+				article, aside, nav, section {
+
+					h1 {
+						font-size: 0.67em;
+						font-weight: bold;
+						margin: 2.33em 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+.unreset table {
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+}
+
+.unreset thead,
+.unreset tbody,
+.unreset tfoot,
+.unreset tr {
+	border-color: inherit;
+	vertical-align: middle;
+}
+
+.unreset td, .unreset th {
+	padding: 1px;
+	vertical-align: inherit;
+}
+
+.unreset th {
+	font-weight: bold
+}
+
+.unreset caption {
+	text-align: center;
+}
+
+.unreset ul, .unreset menu {
+	list-style-type: disc;
+	margin: 1em 0;
+	padding: 0 0 0 40px;
+}
+
+.unreset ol {
+	list-style-type: decimal;
+	margin: 1em 0;
+	padding: 0 0 0 40px;
+}
+
+.unreset ul, .unreset ol {
+
+	ul {
+		list-style-type: circle;
+	}
+
+	ul, ol {
+
+		ul {
+			list-style-type: square;
+		}
+	}
+}
+
+.unreset dd {
+	margin: 0 0 0 40px;
+}
+
+.unreset dl {
+	margin: 1em 0;
+}
+
+.unreset ul, .unreset ol, .unreset menu, .unreset dl {
+
+	ul, ol, menu, dl {
+		margin: 0;
+	}
+}
+
+.unreset legend {
+	padding: 0 2px;
+}
+
+.unreset fieldset {
+	border-style: groove;
+	border-width: 2px;
+	border: 2px groove ThreeDFace;
+	margin: 0 2px;
+	padding: 0 2px 3px;
+	-webkit-padding-before: 0.35em;
+	-webkit-padding-start: 0.75em;
+	-webkit-padding-end: 0.75em;
+	-webkit-padding-after: 0.625em;
+}
+
+.unreset ins {
+	background-color: transparent;
+	font-weight: inherit;
+	text-decoration: underline;
+}
+
+.unreset b, .unreset strong {
+	font-weight: bold;
+}
+
+.unreset i, .unreset cite, .unreset em, .unreset var, .unreset address, .unreset dfn {
+	font-style: italic;
+	font-weight: inherit;
+}
+
+.unreset abbr[title], .unreset dfn[title] {
+	border-bottom: 0;
+	cursor: default;
+	font-weight: inherit;
+}
+
+.unreset tt, .unreset code, .unreset kbd, .unreset samp {
+	font-family: monospace;
+	font-weight: inherit;
+}
+
+.unreset pre {
+	font-family: monospace;
+	margin: 1em 0;
+	white-space: pre;
+}
+
+.unreset mark {
+	background-color: yellow;
+	color: black;
+	font-style: normal;
+	font-weight: inherit;
+}
+
+.unreset big {
+	font-size: larger;
+	font-weight: inherit;
+}
+
+.unreset small {
+	font-size: smaller;
+	font-weight: inherit;
+}
+
+.unreset sub, .unreset sup {
+	font-weight: inherit;
+	line-height: inherit;
+	position: static;
+}
+
+.unreset sub {
+	font-size: smaller;
+	bottom: 0;
+	vertical-align: sub;
+}
+
+.unreset sup {
+	font-size: smaller;
+	top: 0;
+	vertical-align: super;
+}
+
+.unreset ruby {
+
+	> rt {
+		font-size: 50%;
+	}
+}
+
+.unreset iframe {
+	border: 2px inset;
+}

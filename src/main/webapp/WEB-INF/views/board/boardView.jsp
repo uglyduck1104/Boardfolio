@@ -46,7 +46,7 @@ function deleteBoard(){
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><pre>${bDto.contents }</pre></td>
+				<td><pre class="unreset">${bDto.contents }</pre></td>
 			</tr>
 		</tbody>
 		<tfoot>

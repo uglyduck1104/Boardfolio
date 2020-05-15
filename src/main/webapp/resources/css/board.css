@@ -16,12 +16,18 @@
     border-bottom: 1px solid #ededed;
 }
 .board-wrap table tbody tr td{
-	text-align: center;
 	padding: 15px;
 }
-.board-wrap input, textarea{
-    padding: 10px;
-    width: 990px;
+.board-wrap #board-list tbody tr td{
+	text-align: center;
+}
+.board-wrap #write-form{
+	width: 100%;
+	margin: auto;
+}
+.board-wrap input{
+	width: 100%;
+	padding: 10px;
     font-family: "ngB";
     font-size: 15px;
 }

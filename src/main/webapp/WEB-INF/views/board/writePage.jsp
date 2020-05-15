@@ -6,16 +6,17 @@
 	<h2>새 글쓰기</h2>
 </div>
 
-<div class="board-wrap">
+<div class="board-wrap" >
 	<form action="board-write" id="write-form" method="POST">
 		<table>
 			<tbody>
 				<tr>
 					<td><input type="text" name="title" id="title" placeholder="제목을 입력해주세요." autofocus required/></td>
-									
 				</tr>
 				<tr>
-					<td><textarea rows="15" cols="70" name="contents" id="content" placeholder="내용을 입력해주세요." required></textarea></td>
+					<td class="unreset">
+						<textarea name="contents" id="content" placeholder="내용을 입력해주세요."></textarea>
+					</td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -27,8 +28,9 @@
 					</td>
 				</tr>
 			</tfoot>
-		</table>		
+		</table>	
 	</form>
 </div>
 
+<script src="resources/js/ckeditor.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
