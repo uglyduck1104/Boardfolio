@@ -28,4 +28,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			ID = #{param1} AND PW = #{param2}
 	</select> 
+	
+	<update id="modifyMember" parameterType="memberDto">
+		UPDATE 
+			MEMBER
+		SET
+			NAME = #{name}, NICKNAME = #{nickname}, EMAIL = #{email}
+		WHERE
+			ID = #{id} 
+	</update>
 </mapper>

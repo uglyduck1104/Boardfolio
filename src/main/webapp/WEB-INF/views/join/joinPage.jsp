@@ -4,7 +4,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 
-<div class="sign-wrap">
+<div class="join-wrap">
 	<form:form action="add-member" method="POST" modelAttribute="memberDto">
 		<div class="duck-ico">
 			<img alt="duck-icon" src="./resources/images/login-duck-icon.png" />
@@ -12,7 +12,7 @@
 		<div class="sub-title">
 			<h1>회원가입</h1>
 		</div>
-		<div class="sign-form">
+		<div class="join-form">
 			<ul>
 				<li>
 					<form:input path="id" placeholder="아이디" />
@@ -45,5 +45,5 @@
 		</div>	
 	</form:form>
 </div>
-<script type="text/javascript" src="resources/js/sign.js" ></script>
+<script type="text/javascript" src="resources/js/join.js" ></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %> 

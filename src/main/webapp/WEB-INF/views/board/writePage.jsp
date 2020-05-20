@@ -14,7 +14,7 @@
 				</tr>
 				<tr>
 					<td class="unreset">
-						<textarea name="contents" ></textarea>
+						<textarea name="contents"></textarea>
 					</td>
 				</tr>
 			</tbody>

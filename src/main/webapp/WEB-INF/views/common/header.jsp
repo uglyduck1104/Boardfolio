@@ -11,11 +11,13 @@
 <link href="<c:url value="/resources/css/join.css"/>" type="text/css" rel="stylesheet">
 <link href="<c:url value="/resources/css/board.css"/>" type="text/css" rel="stylesheet">
 <link href="<c:url value="/resources/css/unreset.css"/>" type="text/css" rel="stylesheet">
+<link href="<c:url value="/resources/css/user.css"/>" type="text/css" rel="stylesheet">
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 var isLogout = "${isLogout}";
+var isMemberUpdate = "${isMemberUpdate}";
 if( isLogout == "true" ){
 	alert("로그아웃 되었습니다.");
 }
@@ -26,7 +28,7 @@ if( isLogout == "true" ){
 		<div id="header">
 			<div class="header-bg">
 				<h1 class="logo-wrap">
-					<a href="main"><img alt="logo" src="./resources/images/header-logo.png" /></a>
+					<a href="/"><img alt="logo" src="./resources/images/header-logo.png" /></a>
 				</h1>
 				<div class="menu-wrap">
 					<ul>
@@ -43,6 +45,7 @@ if( isLogout == "true" ){
 					<c:if test="${ sessionScope.mDto ne null }">
 						<ul>
 							<li>${ sessionScope.mDto.name }님</li>
+							<li><a href="my-page">My page</a></li>
 							<li><a href="logout">Logout</a></li>
 						</ul>
 					</c:if>

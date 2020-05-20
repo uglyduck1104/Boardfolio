@@ -69,5 +69,5 @@ function deleteBoard(){
 		</div>
 	</c:if>
 </div>
-<%@ include file="/WEB-INF/views/common/boardReply.jsp" %>
+<%@ include file="/WEB-INF/views/board/boardReply.jsp" %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

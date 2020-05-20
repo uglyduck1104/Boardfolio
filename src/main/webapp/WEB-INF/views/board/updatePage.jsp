@@ -32,11 +32,11 @@
 				</tr>
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title" value="${bDto.title }" required/></td>
+					<td><input type="text" name="title" value="${bDto.title }"/></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea rows="15" cols="70" name="contents" placeholder="내용을 입력해주세요." required>${bDto.contents }</textarea></td>
+					<td><textarea name="contents">${bDto.contents }</textarea></td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -51,4 +51,5 @@
 		</table>
 	</form>
 </div>
+<script type="text/javascript" src="resources/js/ckeditor.js" ></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

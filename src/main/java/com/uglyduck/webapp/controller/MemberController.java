@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.uglyduck.command.member.MemberCommand;
 import com.uglyduck.command.member.MemberJoinCommand;
+import com.uglyduck.command.member.MemberUpdateCommand;
 import com.uglyduck.webapp.dao.MemberDao;
 import com.uglyduck.webapp.dto.MemberDto;
 
@@ -44,7 +45,7 @@ public class MemberController {
 	@RequestMapping("sign-form")
 	public String signForm(Model model) {
 		model.addAttribute("memberDto", new MemberDto());
-		return "join/signPage";
+		return "join/joinPage";
 	}
 	
 	@RequestMapping("login")
@@ -80,7 +81,7 @@ public class MemberController {
 			}
 			session = request.getSession();
 			session.setAttribute("mDto", idPwCheckResult);
-			urlPath = "redirect:main";
+			urlPath = "redirect:/";
 		} else { // 로그인 실패 시
 			if( idCheckResult == null ) { // 일치하는 아이디가 없을 경우
 				rtts.addFlashAttribute("failure", "noneId");
@@ -96,7 +97,7 @@ public class MemberController {
 	public String logout(RedirectAttributes rtts, HttpSession session) {
 		session.invalidate(); 
 		rtts.addFlashAttribute("isLogout", "true");
-        return "redirect:main";
+        return "redirect:/";
 	}
 	@SuppressWarnings("unchecked")
 	@ResponseBody
@@ -121,7 +122,7 @@ public class MemberController {
 		model.addAttribute("rtts", rtts);
 		// 유효성 검증
 		if( bdr.hasErrors() ) {
-			urlPath = "join/signPage";
+			urlPath = "join/joinPage";
 		} else {
 			memberCommand = new MemberJoinCommand();
 			memberCommand.execute(sqlSession, model);
@@ -129,6 +130,52 @@ public class MemberController {
 		}
 		return urlPath;
 	}
-
+	
+	@RequestMapping("my-page")
+	public String myPage() {
+		return "user/myPage";
+	}
+	@RequestMapping("member-update-page")
+	public String memberUpdatePage() {
+		return "user/memberUpdatePage";
+	}
+	@RequestMapping("member-update-confirm")
+	public String memberUpdateConfirm(RedirectAttributes rtts, HttpServletRequest request) {
+		String urlPath = "";
+		String id = request.getParameter("confirmId");
+		String pw = request.getParameter("confirmPw");
+		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+		MemberDto mDto = mDao.idPwCheck(id, pw);
+		if( mDto != null ) {
+			urlPath = "redirect:member-info";
+			rtts.addFlashAttribute("mDto", mDto);
+		} else {
+			urlPath = "redirect:member-update-page";
+			rtts.addFlashAttribute("flag", "1");
+		}
+		return urlPath;
+	}
+	@RequestMapping("member-info")
+	public String memberInfo(Model model) {
+		model.addAttribute("memberDto", new MemberDto());
+		return "user/memberInfo";
+	}
+	@RequestMapping(value = "member-update", method = RequestMethod.POST)
+	public String memberUpdate(@Valid MemberDto memberDto, BindingResult bdr, HttpServletRequest request,
+								RedirectAttributes rtts, Model model) {
+		String urlPath="";
+		model.addAttribute("memberDto", memberDto);
+		model.addAttribute("request", request);
+		model.addAttribute("rtts", rtts);
+		if( bdr.hasErrors() ) {
+			urlPath = "user/memberInfo";
+		} else {
+			memberCommand = new MemberUpdateCommand();
+			memberCommand.execute(sqlSession, model);
+			urlPath = "redirect:login-form";
+		}
+		return urlPath;
+	}
+	
 	
 }

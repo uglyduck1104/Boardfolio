@@ -19,6 +19,14 @@ if( failure == "noneId" ){
 if( failure == "missMatchIdPw" ){
 	alert("아이디 패스워드가 일치하지 않습니다.");
 } 
+if( isMemberUpdate == "YES" ){
+	var isMemberUpdateRes = "${isMemberUpdateRes}";
+	if( isMemberUpdateRes > 0){
+		alert("회원 정보가 변경되었습니다. 회원 정보 반영을 위해 다시 로그인해주세요.");
+	} else {
+		alert("회원 정보 변경이 실패했습니다. 관리자에게 문의하세요.");
+	}
+}
 </script>
 
 <div class="login-form-wrap">

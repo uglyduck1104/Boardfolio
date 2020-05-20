@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.sign-wrap {
+.join-wrap {
 	position: relative;
 	width: 480px;
     margin: 40px auto;
@@ -9,18 +9,18 @@
     border-radius: 10px;
 }
 
-.sign-wrap .sign-form ul li{
+.join-wrap .join-form ul li{
 	margin: 20px 0 10px
 }
 
-.sign-wrap .sign-form ul li input{
+.join-wrap .join-form ul li input{
 	width: 300px;
     padding: 15px 40px 15px 15px;
     font-size: 15px;
     border: 0;
     background: #f8f8f8;
 }
-.sign-wrap .submit-form .btn{
+.join-wrap .submit-form .btn{
 	margin-top: 20px;
 	width: 354px;
     background: #4077B3;

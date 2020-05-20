@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.left-menu {
+	float: left;
+}
+.left-menu .my-menu > dt{
+	padding: 10px;
+	border: 1px solid #000;
+}
+.my-menu .menu-list >li > a{
+	display: block;
+    color: #fff;
+    padding: 10px;
+    background: #cb4545;
+}
+.right-content{
+	float: right;
+	width: 940px;
+}
