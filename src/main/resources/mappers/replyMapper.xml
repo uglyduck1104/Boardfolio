@@ -45,4 +45,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			REPLY_NO = #{param1}
 	</delete>
 	
+	<select id="memberReplyList" resultType="replyDto">
+		SELECT 
+			*
+		FROM
+			REPLY
+		WHERE
+			MEMBER_ID = #{param1}
+		ORDER BY
+			REPLY_DT DESC
+	</select>
+	
 </mapper>

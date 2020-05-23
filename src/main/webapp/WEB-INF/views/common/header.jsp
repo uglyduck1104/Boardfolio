@@ -17,39 +17,42 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 var isLogout = "${isLogout}";
-var isMemberUpdate = "${isMemberUpdate}";
-if( isLogout == "true" ){
+if( isLogout == "YES" ){
 	alert("로그아웃 되었습니다.");
 }
+console.log(isLogout); 
 </script>
 </head>
 <body>
 	<div id="wrap">
 		<div id="header">
-			<div class="header-bg">
-				<h1 class="logo-wrap">
-					<a href="/"><img alt="logo" src="./resources/images/header-logo.png" /></a>
-				</h1>
-				<div class="menu-wrap">
-					<ul>
-						<li><a href="board-list">DUCKLING</a></li>
-					</ul>
-				</div>
-				<div class="info-wrap">
-					<c:if test="${ sessionScope.mDto eq null }">
+			<div class="gnb-wrap">
+				<div class="gnb-menu">
+					<h1 class="logo-wrap">
+						<a href="/"><img alt="logo" src="./resources/images/header-logo.png" /></a>
+					</h1>
+					<div class="menu-wrap">
 						<ul>
-							<li><a href="login-form">Login</a></li>
-							<li><a href="sign-form">Sign up</a></li>
+							<li><a href="board-list">DUCKLING</a></li>
 						</ul>
-					</c:if>
-					<c:if test="${ sessionScope.mDto ne null }">
-						<ul>
-							<li>${ sessionScope.mDto.name }님</li>
-							<li><a href="my-page">My page</a></li>
-							<li><a href="logout">Logout</a></li>
-						</ul>
-					</c:if>
+					</div>
+					<div class="info-wrap">
+						<c:if test="${ sessionScope.mDto eq null }">
+							<ul>
+								<li><a href="login-form">Login</a></li>
+								<li><a href="sign-form">Sign up</a></li>
+							</ul>
+						</c:if>
+						<c:if test="${ sessionScope.mDto ne null }">
+							<ul>
+								<li>${ sessionScope.mDto.name }님</li>
+								<li><a href="my-page">My page</a></li>
+								<li><a href="logout">Logout</a></li>
+							</ul>
+						</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div id="main">
+			<div id="content">

@@ -151,4 +151,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			CONTAINS (title, '%'||#{param1}||'%') > 0
 	</select>
 	
+	<select id="memberWriteList" resultType="boardDto">
+		SELECT 
+			*
+		FROM
+			BOARD
+		WHERE 
+			MEMBER_ID = #{param1}
+		ORDER BY
+			BOARD_DT DESC
+	</select>
+	
 </mapper>

@@ -15,5 +15,6 @@ public interface ReplyDao {
 	public int replyUpdate(int replyNo, String replyCon);
 	// 댓글 삭제
 	public int replyDrop(int replyNo);
-	
+	// 내가 쓴 댓글 조회
+	public List<ReplyDto> memberReplyList(String id);
 }

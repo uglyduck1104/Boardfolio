@@ -12,11 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.uglyduck.command.reply.MemberReplyListCommand;
 import com.uglyduck.command.reply.ReplyCommand;
 import com.uglyduck.webapp.dao.ReplyDao;
 import com.uglyduck.webapp.dto.MemberDto;
@@ -116,5 +118,13 @@ public class ReplyController {
 			obj.put("isReplyDelete", "NO");
 		}
 		return obj.toJSONString();
+	}
+	
+	@RequestMapping("member-reply-list")
+	public String memberReplyList(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		replyCommand = new MemberReplyListCommand();
+		replyCommand.execute(sqlSession, model);
+		return "user/memberReplyList";
 	}
 }

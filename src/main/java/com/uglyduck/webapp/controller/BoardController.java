@@ -25,6 +25,7 @@ import com.uglyduck.command.board.BoardListCommand;
 import com.uglyduck.command.board.BoardUpdateCommand;
 import com.uglyduck.command.board.BoardViewCommand;
 import com.uglyduck.command.board.BoardWriteCommand;
+import com.uglyduck.command.board.MemberWriteListCommand;
 import com.uglyduck.webapp.dao.BoardDao;
 import com.uglyduck.webapp.dto.BoardDto;
 
@@ -34,6 +35,7 @@ public class BoardController {
 	@Autowired
 	SqlSession sqlSession;
 	BoardCommand boardCommand;
+	
 	// Method
 	@RequestMapping("write-page")
 	public String boardWrite() {
@@ -126,6 +128,14 @@ public class BoardController {
 		obj.put("url", multiRequest.getContextPath() + "/resources/upload/" + saveFileName);
 		
 		return obj.toJSONString();
+	}
+	
+	@RequestMapping("member-write-list")
+	public String memberWriteList(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		boardCommand = new MemberWriteListCommand();
+		boardCommand.execute(sqlSession, model);
+		return "user/memberWriteList";
 	}
 	
 	

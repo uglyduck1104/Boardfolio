@@ -47,4 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ID = #{param2}
 	</update>
 	
+	<select id="memberReplyList" resultType="memberDto">
+	
+	</select>
+	
 </mapper>

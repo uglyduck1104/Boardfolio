@@ -17,6 +17,7 @@ import com.uglyduck.webapp.dto.BoardDto;
  * setBoardBadRec: 게시물 추천수 감소
  * search: 게시물 검색어 기준 목록 조회
  * searchListSize: 게시물 검색어 기준 목록 개수 조회 
+ * memberWriteList: 내가 쓴 게시물 조회
  *
  */
 public interface BoardDao {
@@ -33,6 +34,7 @@ public interface BoardDao {
 	public int setBoardBadRec(int boardNo);
 	public List<BoardDto> search(String query, String sort, int begin, int end);
 	public int searchListSize(String query);
+	public List<BoardDto> memberWriteList(String id);
 
 	
 }

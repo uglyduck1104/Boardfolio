@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	<div>
-		<table id="board-list">
+		<table class="board-list">
 			<colgroup>
 	       		<col width="10%">
 	       		<col width="*">

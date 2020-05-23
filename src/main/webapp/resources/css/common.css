@@ -84,42 +84,57 @@ a{
 }
 textarea{ resize: none; }
 input{ box-sizing: border-box; }
+#wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#content{
+	min-height:500px;
+    padding: 52px 0 140px;
+}
 /* common-header */
 #header{
 	width: 100%;
 	background: #FFECB3;
-	position: absolute;
-	top: 0;
-	left: 0;
 }
-#header .header-bg{
+#header .gnb-wrap{
 	max-width: 1280px;
     margin: 0 auto;
 }
-.header-bg .logo-wrap{
+.gnb-wrap .gnb-menu{
+	position: relative;
+    max-width: 1920px;
+    min-width: 1260px;
+    height: 81px;
+    margin: 0 auto;
+    text-align: center;
+} 
+.gnb-menu .logo-wrap{
 	float: left;
-    padding: 5px 0px;
+	position: relative;
+    top: 2px;
 }
-.header-bg .logo-wrap img{
+.gnb-menu .logo-wrap img{
 	width: 92px;
 }
-.header-bg .menu-wrap{
+.gnb-menu .menu-wrap{
     float: left;
-    line-height: 85px;
+    line-height: 81px;
     font-family: "nbgB";
     font-size: 18px;
     padding-left: 50px;
 
 }
-.header-bg .info-wrap{
+.gnb-wrap .info-wrap{
 	float: right;
     font-family: "nbg";
-    line-height: 85px;
+    line-height: 81px;
 }
-.header-bg .info-wrap li{
+.gnb-wrap .info-wrap li{
     float: left;
 }
-.header-bg .info-wrap li:before{
+.gnb-wrap .info-wrap li:before{
     content: '';
     display: inline-block;
     width: 2px;
@@ -130,14 +145,15 @@ input{ box-sizing: border-box; }
 
 /* common-main */
 #main{
-	max-width: 1280px;
-	min-height: 600px;
-	margin: 0 auto;
-	clear: both;
-	padding: 160px 0 30px 0;
+	width: 1180px;
+    height: 100%;
+    margin: 0 auto;
 }
 
 /* common-footer */
+#footer{
+	clear: both;
+}
 .footer-wrap{
 	background: #202020;
 	padding: 20px;
@@ -292,3 +308,4 @@ input{ box-sizing: border-box; }
 	background-color: #202020;
     color: #fff;
 }
+/* my-page-wrap */

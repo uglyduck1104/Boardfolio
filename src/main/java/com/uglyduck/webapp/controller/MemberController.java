@@ -96,9 +96,9 @@ public class MemberController {
 	
 	@RequestMapping("logout")
 	public String logout(RedirectAttributes rtts, HttpSession session) {
+		rtts.addFlashAttribute("isLogout", "YES");
 		session.invalidate(); 
-		rtts.addFlashAttribute("isLogout", "true");
-        return "redirect:/";
+        return "redirect:/main";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -207,9 +207,8 @@ public class MemberController {
 			rtts.addFlashAttribute("isPwUpdate", "NO");
 			urlPath = "redirect:member-update-page";
 		}
-		
 		return urlPath;
 	}
-
+	
 	
 }
