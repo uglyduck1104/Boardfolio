@@ -37,4 +37,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			ID = #{id} 
 	</update>
+	
+	<update id="pwUpdate">
+		UPDATE
+			MEMBER
+		SET
+			PW = #{param1}
+		WHERE
+			ID = #{param2}
+	</update>
+	
 </mapper>

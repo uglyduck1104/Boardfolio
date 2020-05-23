@@ -28,7 +28,6 @@
 	<beans:bean id="memberInterceptor" class="com.uglyduck.Interceptor.MemberInterceptor" />
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/write-page" />
 			<mvc:mapping path="/update-page" />
 			<mvc:mapping path="/board-write" />
 			<mvc:mapping path="/board-update" />
@@ -42,6 +41,9 @@
 			<mvc:mapping path="/member-update" />
 			<mvc:mapping path="/member-update-confirm" />
 			<mvc:mapping path="/member-info" />
+			<mvc:mapping path="/member-update" />
+			<mvc:mapping path="/pw-update-page" />
+			<mvc:mapping path="/pw-update" />
 			<beans:ref bean="memberInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

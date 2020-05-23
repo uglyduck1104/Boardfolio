@@ -3,6 +3,7 @@ $(function(){
 	 * 비밀번호 
 	 * 	safeRegExp : 8~20자 영문 대문자 + 소문자 + 숫자 + 언더스코어를 제외한 특수문자를 조합  
 	 * 	normalRegExp : 8~20자 영문 대소문자 + 숫자 혹은 특수문자를 조합
+	 *  dangerRegExp : 8~20자 영문 대소문자
 	 */
 	var safeRegExp = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?=.*\d).{8,20}$/); // 권장
 	var normalRegExp = RegExp(/^([a-zA-Z0-9]{8,20})\w$/); 	// 보통

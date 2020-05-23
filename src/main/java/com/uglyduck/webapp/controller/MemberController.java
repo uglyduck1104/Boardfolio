@@ -93,12 +93,14 @@ public class MemberController {
 		}
 		return urlPath;
 	}
+	
 	@RequestMapping("logout")
 	public String logout(RedirectAttributes rtts, HttpSession session) {
 		session.invalidate(); 
 		rtts.addFlashAttribute("isLogout", "true");
         return "redirect:/";
 	}
+	
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value = "id-check", produces = "application/json; charset=UTF-8", method = RequestMethod.POST)
@@ -113,6 +115,7 @@ public class MemberController {
 		}
 		return obj.toJSONString();
 	}
+	
 	@RequestMapping(value = "add-member", method = RequestMethod.POST)
 	public String addMember(@Valid MemberDto memberDto, BindingResult bdr, RedirectAttributes rtts,
 							Model model, HttpServletRequest request) {
@@ -135,10 +138,12 @@ public class MemberController {
 	public String myPage() {
 		return "user/myPage";
 	}
+	
 	@RequestMapping("member-update-page")
 	public String memberUpdatePage() {
 		return "user/memberUpdatePage";
 	}
+	
 	@RequestMapping("member-update-confirm")
 	public String memberUpdateConfirm(RedirectAttributes rtts, HttpServletRequest request) {
 		String urlPath = "";
@@ -155,11 +160,13 @@ public class MemberController {
 		}
 		return urlPath;
 	}
+	
 	@RequestMapping("member-info")
 	public String memberInfo(Model model) {
 		model.addAttribute("memberDto", new MemberDto());
 		return "user/memberInfo";
 	}
+	
 	@RequestMapping(value = "member-update", method = RequestMethod.POST)
 	public String memberUpdate(@Valid MemberDto memberDto, BindingResult bdr, HttpServletRequest request,
 								RedirectAttributes rtts, Model model) {
@@ -177,5 +184,32 @@ public class MemberController {
 		return urlPath;
 	}
 	
+	@RequestMapping("pw-update-page")
+	public String pwUpdatePage() {
+		return "user/pwUpdatePage";
+	}
+	
+	@RequestMapping("pw-update")
+	public String pwUpdate(Model model, RedirectAttributes rtts, HttpServletRequest request) {
+		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+		String urlPath = "";
+		HttpSession session = request.getSession();
+		String oldPw = request.getParameter("oldPw");
+		String newPw = request.getParameter("newPw");
+		String id = request.getParameter("id");
+		MemberDto mDto = mDao.idPwCheck(id, oldPw);
+		if( mDto != null ) {
+			rtts.addFlashAttribute("isPwUpdateRes", mDao.pwUpdate(newPw, id));
+			rtts.addFlashAttribute("isPwUpdate", "YES");
+			session.invalidate();
+			urlPath = "redirect:login-form";
+		} else {
+			rtts.addFlashAttribute("isPwUpdate", "NO");
+			urlPath = "redirect:member-update-page";
+		}
+		
+		return urlPath;
+	}
+
 	
 }

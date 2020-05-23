@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <jsp:include page="/WEB-INF/views/user/myPageL.jsp" />
+<script>
+function pwUpdatePage(){
+	location.href="pw-update-page";
+}
+function memberDrop(){
+	if(confirm("회원을 탈퇴하시겠습니까?")){
+		location.href="member-drop";
+	}
+}
+</script>
 <div class="user-main">
 	<div class="title-wrap">
 		<h2>회원정보 수정</h2>
@@ -29,8 +39,8 @@
 			</ul>
 		</div>
 		<div class="cont-btn-wrap">
-			<button type="button" onclick="return false;">비밀번호 변경</button>
-			<button type="button" onclick="return false;">회원 탈퇴</button>
+			<button type="button" onclick="pwUpdatePage()">비밀번호 변경</button>
+			<button type="button" onclick="memberDrop()">회원 탈퇴</button>
 		</div>
 	</form:form>
 </div>

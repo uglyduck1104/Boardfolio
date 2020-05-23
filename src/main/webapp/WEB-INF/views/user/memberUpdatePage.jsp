@@ -3,9 +3,13 @@
 <jsp:include page="/WEB-INF/views/user/myPageL.jsp" />
 <script>
 var flag = "${flag}";
+var isPwUpdate = "${isPwUpdate}";
 if( flag == "1"){
 	alert("비밀번호가 일치하지 않습니다.");
 }
+if( isPwUpdate == "NO" ){
+	alert("현재 비밀번호가 일치하지 않습니다.");
+} 
 </script>
 <div class="user-main">
 	<div class="title-wrap">

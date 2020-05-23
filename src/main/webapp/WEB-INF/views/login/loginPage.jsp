@@ -6,19 +6,25 @@
 <script type="text/javascript">
 var userJoin = "${userJoin}";
 var failure = "${failure}";
+var isMemberUpdate = "${isMemberUpdate}";
+var isPwUpdate = "${isPwUpdate}";
 if( userJoin == "SUCCESS" ){
 	alert("회원가입이 완료되었습니다.");
 } 
+
 if( userJoin == "FAIL" ){ 
 	alert("회원가입이 실패했습니다.");
 	history.back();
 }
+
 if( failure == "noneId" ){
 	alert("일치하는 아이디가 없습니다.");
 } 
+
 if( failure == "missMatchIdPw" ){
 	alert("아이디 패스워드가 일치하지 않습니다.");
 } 
+
 if( isMemberUpdate == "YES" ){
 	var isMemberUpdateRes = "${isMemberUpdateRes}";
 	if( isMemberUpdateRes > 0){
@@ -27,6 +33,15 @@ if( isMemberUpdate == "YES" ){
 		alert("회원 정보 변경이 실패했습니다. 관리자에게 문의하세요.");
 	}
 }
+
+if( isPwUpdate == "YES" ){
+	var isPwUpdateRes = "${isPwUpdateRes}";
+	if( isPwUpdateRes > 0){
+		alert("비밀번호가 변경되었습니다. 다시 로그인해주세요.");
+	} else {
+		alert("비밀번호가 변경이 실패했습니다. 관리자에게 문의하세요.");
+	}
+} 
 </script>
 
 <div class="login-form-wrap">

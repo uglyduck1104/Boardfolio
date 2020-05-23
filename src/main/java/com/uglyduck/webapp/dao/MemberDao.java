@@ -9,4 +9,5 @@ public interface MemberDao {
 	public MemberDto idCheck(String id);
 	public MemberDto idPwCheck(String id, String pw);
 	public int modifyMember(MemberDto mDto);
+	public int pwUpdate(String pw, String id);
 }
