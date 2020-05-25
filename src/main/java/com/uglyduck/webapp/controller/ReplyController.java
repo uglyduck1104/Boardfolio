@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.uglyduck.command.reply.MemberReplyListCommand;
 import com.uglyduck.command.reply.ReplyCommand;
 import com.uglyduck.webapp.dao.ReplyDao;
 import com.uglyduck.webapp.dto.MemberDto;
@@ -122,9 +121,39 @@ public class ReplyController {
 	
 	@RequestMapping("member-reply-list")
 	public String memberReplyList(Model model, HttpServletRequest request) {
-		model.addAttribute("request", request);
-		replyCommand = new MemberReplyListCommand();
-		replyCommand.execute(sqlSession, model);
 		return "user/memberReplyList";
 	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("reply-ajax-list")
+	@ResponseBody
+	public String replyAjaxList(HttpServletRequest request) {
+		ReplyDao rDao = sqlSession.getMapper(ReplyDao.class);
+		String id = request.getParameter("id");
+		String currentPage = request.getParameter("currentPage");
+		int nowPage = 1;
+		if( currentPage != null && currentPage.length() != 0 ) {
+			nowPage = Integer.parseInt(currentPage);
+		}
+		int recordPerPage = 8;
+		int begin = (nowPage - 1) * recordPerPage + 1; 
+		int end = begin + recordPerPage - 1;
+		List<ReplyDto> list = rDao.memberReplyList(id, begin, end);
+		JSONObject jObject = new JSONObject();
+		JSONArray jArray = new JSONArray();
+		for( int i = 0; i < list.size(); i++ ) {
+			JSONObject obj = new JSONObject();
+			obj.put("board_no", list.get(i).getBoard_no());
+			obj.put("reply_con", list.get(i).getReply_con());
+			obj.put("reply_dt", list.get(i).getReply_dt().toString().replaceAll("-", "/"));
+			jArray.add(obj);
+		}
+		jObject.put("data", jArray);
+		jObject.put("dataSize", list.size());
+		
+		return jObject.toJSONString();
+	}
+	
+
+	
 }

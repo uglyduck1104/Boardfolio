@@ -20,26 +20,11 @@
 					<th>작성일</th>
 				</tr>
 			</thead>
-			<tbody>
-				<c:choose>
-					<c:when test="${empty list}" >
-					<tr>
-						<td colspan="3">등록된 댓글이 없습니다.</td>
-					<tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="rDto" items="${list}">
-						<tr>
-							<td><a href="board-view?board_no=${rDto.board_no}">${ rDto.board_no }</a></td>
-							<td>${ rDto.reply_con }</td>
-							<td>${ rDto.reply_dt }</td>
-						<tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+			<tbody id="reply-write-list">
 			</tbody>
 		</table>
+		<input type="hidden" id="id" value=${ sessionScope.mDto.id } />
 	</div>
 </div>
-
+<script type="text/javascript" src="resources/js/myReplyList.js" ></script>
 <jsp:include page="/WEB-INF/views/user/myPageR.jsp" />

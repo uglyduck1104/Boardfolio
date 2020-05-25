@@ -152,14 +152,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="memberWriteList" resultType="boardDto">
-		SELECT 
+		SELECT
 			*
 		FROM
-			BOARD
-		WHERE 
-			MEMBER_ID = #{param1}
-		ORDER BY
-			BOARD_DT DESC
+			(SELECT
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					A.BOARD_NO, A.TITLE, A.BOARD_DT
+				FROM 
+					BOARD A
+				WHERE 
+					MEMBER_ID = #{param1} 
+				ORDER BY
+					BOARD_DT DESC) 
+				R)
+		WHERE
+			R_NUM BETWEEN #{param2} AND #{param3}
 	</select>
 	
 </mapper>

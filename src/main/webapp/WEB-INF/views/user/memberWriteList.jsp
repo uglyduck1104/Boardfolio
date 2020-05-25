@@ -20,26 +20,11 @@
 					<th>작성일</th>
 				</tr>
 			</thead>
-			<tbody>
-				<c:choose>
-					<c:when test="${empty list}" >
-					<tr>
-						<td colspan="4">등록된 게시물이 없습니다.</td>
-					<tr>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="bDto" items="${list}">
-						<tr>
-							<td>${ bDto.board_no }</td>
-							<td><a href="board-view?board_no=${bDto.board_no}">${ bDto.title }</a></td>
-							<td>${ bDto.board_dt }</td>
-						<tr>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+			<tbody id="board-write-list">
 			</tbody>
 		</table>
+		<input type="hidden" id="id" value=${ sessionScope.mDto.id } />
 	</div>
 </div>
-
+<script type="text/javascript" src="resources/js/myBoardList.js" ></script>
 <jsp:include page="/WEB-INF/views/user/myPageR.jsp" />

@@ -53,9 +53,7 @@ $(function(){
 					});
 					$("#reply-con").val('');
 				} else {
-					htmls += "<tr>";
-					htmls += "<td colspan='3'>작성된 댓글이 없습니다.</td>";
-					htmls += "</tr>";
+					htmls += "<tr><td colspan='3'>작성된 댓글이 없습니다.</td></tr>";
 				}
 				$("#reply-view").append(htmls);
 			},

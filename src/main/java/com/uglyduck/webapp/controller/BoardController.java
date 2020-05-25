@@ -7,12 +7,14 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +27,6 @@ import com.uglyduck.command.board.BoardListCommand;
 import com.uglyduck.command.board.BoardUpdateCommand;
 import com.uglyduck.command.board.BoardViewCommand;
 import com.uglyduck.command.board.BoardWriteCommand;
-import com.uglyduck.command.board.MemberWriteListCommand;
 import com.uglyduck.webapp.dao.BoardDao;
 import com.uglyduck.webapp.dto.BoardDto;
 
@@ -131,12 +132,37 @@ public class BoardController {
 	}
 	
 	@RequestMapping("member-write-list")
-	public String memberWriteList(Model model, HttpServletRequest request) {
-		model.addAttribute("request", request);
-		boardCommand = new MemberWriteListCommand();
-		boardCommand.execute(sqlSession, model);
+	public String memberWriteList() {
 		return "user/memberWriteList";
 	}
 	
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@RequestMapping(value="board-ajax-list", produces="application/json; charset=UTF-8", method = RequestMethod.GET)
+	public String boardAjaxList(HttpServletRequest request) {
+		BoardDao bDao = sqlSession.getMapper(BoardDao.class);
+		String id = request.getParameter("id");
+		String currentPage = request.getParameter("currentPage");
+		int nowPage = 1;
+		if( currentPage != null && currentPage.length() != 0 ) {
+			nowPage = Integer.parseInt(currentPage);
+		}
+		int recordPerPage = 8;
+		int begin = (nowPage - 1) * recordPerPage + 1; 
+		int end = begin + recordPerPage - 1;
+		List<BoardDto> list = bDao.memberWriteList(id, begin, end);
+		JSONObject jObject = new JSONObject();
+		JSONArray jArray = new JSONArray();
+		for( int i = 0; i < list.size(); i++ ) {
+			JSONObject obj = new JSONObject();
+			obj.put("board_no", list.get(i).getBoard_no());
+			obj.put("title", list.get(i).getTitle());
+			obj.put("board_dt", list.get(i).getBoard_dt().toString().replaceAll("-", "/"));
+			jArray.add(obj);
+		}
+		jObject.put("data", jArray);
+		jObject.put("dataSize", list.size());
+		return jObject.toJSONString();
+	}
 	
 }

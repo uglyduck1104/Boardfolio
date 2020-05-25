@@ -49,11 +49,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT 
 			*
 		FROM
-			REPLY
+			(SELECT 
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT
+					A.BOARD_NO, A.REPLY_CON, A.REPLY_DT
+				FROM 
+					REPLY A
+				WHERE
+					MEMBER_ID = #{param1}
+				ORDER BY
+					REPLY_DT DESC)
+				R)
 		WHERE
-			MEMBER_ID = #{param1}
-		ORDER BY
-			REPLY_DT DESC
+			R_NUM BETWEEN #{param2} AND #{param3}
 	</select>
 	
 </mapper>

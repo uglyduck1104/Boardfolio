@@ -34,7 +34,7 @@ public interface BoardDao {
 	public int setBoardBadRec(int boardNo);
 	public List<BoardDto> search(String query, String sort, int begin, int end);
 	public int searchListSize(String query);
-	public List<BoardDto> memberWriteList(String id);
+	public List<BoardDto> memberWriteList(String id, int begin, int end);
 
 	
 }
