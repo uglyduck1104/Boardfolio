@@ -20,6 +20,15 @@ var isLogout = "${isLogout}";
 if( isLogout == "YES" ){
 	alert("로그아웃 되었습니다.");
 }
+var isMemberDrop = "${isMemberDrop}";
+if( isMemberDrop == "YES" ){
+	var isMemberDropRes = "${isMemberDropRes}";
+	if( isMemberDropRes > 0 ){
+		alert("회원 탈퇴 처리되었습니다.");
+	} else {
+		alert("회원 탈퇴가 실패하였습니다. 관리자에게 문의해주세요.");
+	}
+}
 console.log(isLogout); 
 </script>
 </head>

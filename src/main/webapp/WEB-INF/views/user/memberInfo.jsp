@@ -7,9 +7,7 @@ function pwUpdatePage(){
 	location.href="pw-update-page";
 }
 function memberDrop(){
-	if(confirm("회원을 탈퇴하시겠습니까?")){
-		location.href="member-drop";
-	}
+	location.href="member-drop-page";
 }
 </script>
 <div class="user-main">

@@ -1,6 +1,5 @@
 package com.uglyduck.webapp.controller;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.uglyduck.command.member.MemberCommand;
+import com.uglyduck.command.member.MemberDropCommand;
 import com.uglyduck.command.member.MemberJoinCommand;
+import com.uglyduck.command.member.MemberLoginCommand;
 import com.uglyduck.command.member.MemberUpdateCommand;
 import com.uglyduck.webapp.dao.MemberDao;
 import com.uglyduck.webapp.dto.MemberDto;
@@ -53,43 +54,32 @@ public class MemberController {
 							RedirectAttributes rtts, HttpServletResponse response) {
 		String urlPath = "";
 		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+		model.addAttribute("request", request);
+		model.addAttribute("response", response);
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		String isChecked = request.getParameter("isChecked");
 		MemberDto idCheckResult = mDao.idCheck(id);
 		MemberDto idPwCheckResult = mDao.idPwCheck(id, pw);
 		if ( session.getAttribute("mDto") != null ){ // 세션 초기화  
             session.removeAttribute("mDto"); 
         }
-		if( idPwCheckResult != null ) { // 로그인 성공 시
-			if( isChecked != null ) {   // 아이디 저장 체크 유무 확인
-				Cookie cookie = new Cookie("id", id);
-				cookie.setMaxAge(60 * 60 * 24 * 3);  // 쿠키 유효기간은 3일로 설정.
-				response.addCookie(cookie); 
-			} else {   					// 아이디 저장 체크 해제
-				Cookie[] cookieBox = request.getCookies(); // session에 저장되어있는 id 쿠키 확인 후 삭제
-				if( cookieBox != null && cookieBox.length > 0 ) {
-					for( Cookie ck : cookieBox ) {
-						if( ck.getName().equals("id") ) {
-							Cookie bisket = new Cookie("id", "");
-							bisket.setMaxAge(0);
-							response.addCookie(bisket);
-							break;
-						}
-					}
-				}
-			}
-			session = request.getSession();
-			session.setAttribute("mDto", idPwCheckResult);
-			urlPath = "redirect:/";
-		} else { // 로그인 실패 시
-			if( idCheckResult == null ) { // 일치하는 아이디가 없을 경우
-				rtts.addFlashAttribute("failure", "noneId");
+		if( idPwCheckResult != null ) { // 아이디 비밀번호 검증 성공
+			if(idCheckResult.getRole().equals("withdraw")) { // 탈퇴 계정 처리
+				rtts.addFlashAttribute("failure", "withDrawId");
 				urlPath = "redirect:login-form";
-			} else {
-				rtts.addFlashAttribute("failure", "missMatchIdPw");
-				urlPath = "redirect:login-form";
+			} else { // 정상 로그인
+				memberCommand = new MemberLoginCommand();
+				memberCommand.execute(sqlSession, model);
+				session.setAttribute("mDto", idPwCheckResult);
+				urlPath = "redirect:/";
 			}
+		} else { // 아이디 비밀번호 검증 실패
+			rtts.addFlashAttribute("failure", "missMatchIdPw");
+			urlPath = "redirect:login-form";
+		}
+		if( idCheckResult == null ) { // 일치하는 아이디 없을 때
+			rtts.addFlashAttribute("failure", "noneId");
+			urlPath = "redirect:login-form";
 		}
 		return urlPath;
 	}
@@ -208,6 +198,20 @@ public class MemberController {
 			urlPath = "redirect:member-update-page";
 		}
 		return urlPath;
+	}
+	
+	@RequestMapping("member-drop-page")
+	public String memberDropPage() {
+		return "user/memberDropPage";
+	}
+	
+	@RequestMapping("member-drop")
+	public String memberDrop(Model model, HttpServletRequest request, RedirectAttributes rtts) {
+		model.addAttribute("rtts", rtts);
+		model.addAttribute("request", request);
+		memberCommand = new MemberDropCommand();
+		memberCommand.execute(sqlSession, model);
+		return "redirect:main";
 	}
 	
 	

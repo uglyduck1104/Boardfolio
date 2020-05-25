@@ -4,27 +4,26 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <script type="text/javascript">
-var userJoin = "${userJoin}";
-var failure = "${failure}";
-var isMemberUpdate = "${isMemberUpdate}";
-var isPwUpdate = "${isPwUpdate}";
-if( userJoin == "SUCCESS" ){
-	alert("회원가입이 완료되었습니다.");
+var isJoin = "${isJoin}";
+if( isJoin == "YES" ){
+	var isJoinRes = "${isJoinRes}";
+	if( isJoinRes > 0 ){
+		alert("회원가입이 완료되었습니다.");
+	} else {
+		alert("회원가입이 실패했습니다.");
+		history.back();
+	}
 } 
-
-if( userJoin == "FAIL" ){ 
-	alert("회원가입이 실패했습니다.");
-	history.back();
-}
-
+var failure = "${failure}";
 if( failure == "noneId" ){
 	alert("일치하는 아이디가 없습니다.");
-} 
-
-if( failure == "missMatchIdPw" ){
+} else if ( failure == "missMatchIdPw" ){
 	alert("아이디 패스워드가 일치하지 않습니다.");
-} 
+} else if ( failure == "withDrawId" ){
+	alert("탈퇴 처리된 계정입니다.");
+}
 
+var isMemberUpdate = "${isMemberUpdate}";
 if( isMemberUpdate == "YES" ){
 	var isMemberUpdateRes = "${isMemberUpdateRes}";
 	if( isMemberUpdateRes > 0){
@@ -34,6 +33,7 @@ if( isMemberUpdate == "YES" ){
 	}
 }
 
+var isPwUpdate = "${isPwUpdate}";
 if( isPwUpdate == "YES" ){
 	var isPwUpdateRes = "${isPwUpdateRes}";
 	if( isPwUpdateRes > 0){
@@ -41,11 +41,11 @@ if( isPwUpdate == "YES" ){
 	} else {
 		alert("비밀번호가 변경이 실패했습니다. 관리자에게 문의하세요.");
 	}
-} 
+}
 </script>
 
 <div class="login-form-wrap">
-	<form id="login-form" method="post">
+	<form id="login-form" action="login" method="post" onsubmit="return formChk(this);">
 		<div class="duck-ico">
 			<img alt="duck-icon" src="./resources/images/login-duck-icon.png" />
 		</div>
