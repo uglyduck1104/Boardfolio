@@ -11,7 +11,6 @@ if( isJoin == "YES" ){
 		alert("회원가입이 완료되었습니다.");
 	} else {
 		alert("회원가입이 실패했습니다.");
-		history.back();
 	}
 } 
 var failure = "${failure}";
@@ -76,8 +75,7 @@ if( isPwUpdate == "YES" ){
 				</label> 
 			</div>
 			<div class="find-area">
-				<a href="#" onclick="return false;">아이디 찾기</a>
-				<a href="#" onclick="return false;">비밀번호 찾기</a>
+				<a href="find-account-page">계정 찾기</a>
 			</div>
 		</div>
 		<div class="submit-wrap">

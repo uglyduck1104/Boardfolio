@@ -10,7 +10,8 @@
 }
 
 .join-wrap .join-form ul li{
-	margin: 20px 0 10px
+	margin: 20px 0 10px;
+	position: relative;
 }
 
 .join-wrap .join-form ul li input{
@@ -28,7 +29,7 @@
 #ico-checked{
     cursor: pointer;
     position: absolute;
-    top: 113px;
+    top: 4px;
     left: 381px;
     width: 28px;
     height: 28px;
@@ -70,7 +71,7 @@
 }
 #pwd-ico{
     position: absolute;
-    top: 176px;
+    top: 0px;
     left: 381px;
     width: 28px;
     height: 34px;

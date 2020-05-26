@@ -16,25 +16,25 @@
 			<ul>
 				<li>
 					<form:input path="id" placeholder="아이디" />
-					<form:errors path="id" cssClass="error-msg" element="li"/>
+					<form:errors path="id" cssClass="error-msg" element="p"/>
 					<div id="ico-checked" class="ico-status" ></div>
 				</li>
 				<li>
 					<form:password path="pw" placeholder="비밀번호" />
-					<form:errors path="pw" cssClass="error-msg" element="li"/>
+					<form:errors path="pw" cssClass="error-msg" element="p"/>
 					<div id="pwd-ico" class="pwd-status" ></div>
 				</li>
 				<li>
 					<form:input path="name" placeholder="이름" />
-					<form:errors path="name" cssClass="error-msg" element="li"/>
+					<form:errors path="name" cssClass="error-msg" element="p"/>
 				</li>
 				<li>
 					<form:input path="nickname" placeholder="닉네임" />
-					<form:errors path="nickname" cssClass="error-msg" element="li"/>
+					<form:errors path="nickname" cssClass="error-msg" element="p"/>
 				</li>
 				<li>
 					<form:input path="email" placeholder="이메일" />
-					<form:errors path="email" cssClass="error-msg" element="li"/>
+					<form:errors path="email" cssClass="error-msg" element="p"/>
 				</li>
 			</ul>
 		</div>		

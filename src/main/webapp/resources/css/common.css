@@ -199,7 +199,7 @@ input{ box-sizing: border-box; }
     font-size: 15px;
     color: #c30b00;
     text-align: left;
-    margin: 0 auto !important;
+    margin: 12px auto !important;
     width: 354px;
 }
 .button-wrap{

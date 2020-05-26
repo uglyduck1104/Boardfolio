@@ -145,7 +145,6 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-				
 		<!-- common fileupload -->		
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->		
 		<dependency>
@@ -164,7 +163,13 @@
 		    <groupId>javax.validation</groupId>
 		    <artifactId>validation-api</artifactId>
 		    <version>2.0.1.Final</version>
-		</dependency>      
+		</dependency>     
+		<!-- jBcrypt -->
+		<dependency>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>0.3m</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>

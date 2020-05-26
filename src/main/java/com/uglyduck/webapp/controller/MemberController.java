@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import com.uglyduck.command.member.MemberCommand;
 import com.uglyduck.command.member.MemberDropCommand;
 import com.uglyduck.command.member.MemberJoinCommand;
 import com.uglyduck.command.member.MemberLoginCommand;
+import com.uglyduck.command.member.MemberPwUpdateCommand;
 import com.uglyduck.command.member.MemberUpdateCommand;
 import com.uglyduck.webapp.dao.MemberDao;
 import com.uglyduck.webapp.dto.MemberDto;
@@ -59,25 +61,24 @@ public class MemberController {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		MemberDto idCheckResult = mDao.idCheck(id);
-		MemberDto idPwCheckResult = mDao.idPwCheck(id, pw);
 		if ( session.getAttribute("mDto") != null ){ // 세션 초기화  
             session.removeAttribute("mDto"); 
         }
-		if( idPwCheckResult != null ) { // 아이디 비밀번호 검증 성공
+		if( idCheckResult != null ) { // 해당 아이디 존재
 			if(idCheckResult.getRole().equals("withdraw")) { // 탈퇴 계정 처리
 				rtts.addFlashAttribute("failure", "withDrawId");
 				urlPath = "redirect:login-form";
-			} else { // 정상 로그인
+			}
+			if( BCrypt.checkpw(pw, idCheckResult.getPw() ) ) { // 암호화된 비밀번호와 평문 비교
 				memberCommand = new MemberLoginCommand();
 				memberCommand.execute(sqlSession, model);
-				session.setAttribute("mDto", idPwCheckResult);
+				session.setAttribute("mDto", idCheckResult);
 				urlPath = "redirect:/";
+			} else { // 아이디 비밀번호 검증 실패
+				rtts.addFlashAttribute("failure", "missMatchIdPw");
+				urlPath = "redirect:login-form";
 			}
-		} else { // 아이디 비밀번호 검증 실패
-			rtts.addFlashAttribute("failure", "missMatchIdPw");
-			urlPath = "redirect:login-form";
-		}
-		if( idCheckResult == null ) { // 일치하는 아이디 없을 때
+		} else { // 해당 아이디가 없음
 			rtts.addFlashAttribute("failure", "noneId");
 			urlPath = "redirect:login-form";
 		}
@@ -140,8 +141,8 @@ public class MemberController {
 		String id = request.getParameter("confirmId");
 		String pw = request.getParameter("confirmPw");
 		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
-		MemberDto mDto = mDao.idPwCheck(id, pw);
-		if( mDto != null ) {
+		MemberDto mDto = mDao.idCheck(id);
+		if( BCrypt.checkpw(pw, mDto.getPw()) ) {
 			urlPath = "redirect:member-info";
 			rtts.addFlashAttribute("mDto", mDto);
 		} else {
@@ -181,21 +182,22 @@ public class MemberController {
 	
 	@RequestMapping("pw-update")
 	public String pwUpdate(Model model, RedirectAttributes rtts, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		model.addAttribute("rtts", rtts);
 		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
 		String urlPath = "";
-		HttpSession session = request.getSession();
 		String oldPw = request.getParameter("oldPw");
-		String newPw = request.getParameter("newPw");
 		String id = request.getParameter("id");
-		MemberDto mDto = mDao.idPwCheck(id, oldPw);
+		MemberDto mDto = mDao.idCheck(id);
 		if( mDto != null ) {
-			rtts.addFlashAttribute("isPwUpdateRes", mDao.pwUpdate(newPw, id));
-			rtts.addFlashAttribute("isPwUpdate", "YES");
-			session.invalidate();
-			urlPath = "redirect:login-form";
-		} else {
-			rtts.addFlashAttribute("isPwUpdate", "NO");
-			urlPath = "redirect:member-update-page";
+			if( BCrypt.checkpw(oldPw, mDto.getPw()) ) {
+				memberCommand = new MemberPwUpdateCommand();
+				memberCommand.execute(sqlSession, model);
+				urlPath = "redirect:login-form";
+			} else {
+				rtts.addFlashAttribute("isPwUpdate", "NO");
+				urlPath = "redirect:member-update-page";
+			}
 		}
 		return urlPath;
 	}
@@ -214,5 +216,14 @@ public class MemberController {
 		return "redirect:main";
 	}
 	
+	@RequestMapping("find-account-page")
+	public String findAccountPage() {
+		return "login/findAccountPage";
+	}
+	
+	@RequestMapping("find-account")
+	public String findAccount() {
+		return "";
+	}
 	
 }
