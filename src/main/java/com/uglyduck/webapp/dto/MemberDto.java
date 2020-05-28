@@ -27,11 +27,12 @@ public class MemberDto {
 	private String ip;
 	private Date reg_date;
 	private String role;
+	private String uuid;
 	
 	// Constructor
 	public MemberDto() { }
 	public MemberDto( String id, String pw, String name, String nickname, String email, String ip,
-			Date reg_date, String role) {
+			Date reg_date, String role, String uuid) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -40,6 +41,7 @@ public class MemberDto {
 		this.ip = ip;
 		this.reg_date = reg_date;
 		this.role = role;
+		this.uuid = uuid;
 	}
 	// getters/setters
 	public String getId() {
@@ -90,10 +92,16 @@ public class MemberDto {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public String getUuid() {
+		return uuid;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 	@Override
 	public String toString() {
 		return "MemberDto [id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname + ", email=" + email
-				+ ", ip=" + ip + ", reg_date=" + reg_date + ", role=" + role + "]";
+				+ ", ip=" + ip + ", reg_date=" + reg_date + ", role=" + role + ", uuid=" + uuid + "]";
 	}
 	
 }

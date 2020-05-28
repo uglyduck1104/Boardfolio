@@ -98,7 +98,7 @@ public class BoardController {
 	
 	@SuppressWarnings("unchecked")
 	@ResponseBody
-	@RequestMapping(value="file-upload", produces="application/json")
+	@RequestMapping(value="file-upload", produces="application/json; charset=UTF-8")
 	public String fileUpload(MultipartHttpServletRequest multiRequest, HttpServletRequest request) {
 		List<MultipartFile> uploadFileList = multiRequest.getFiles("upload");
 		JSONObject obj = new JSONObject();

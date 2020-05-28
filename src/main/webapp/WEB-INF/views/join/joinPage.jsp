@@ -15,25 +15,25 @@
 		<div class="join-form">
 			<ul>
 				<li>
-					<form:input path="id" placeholder="아이디" />
+					<form:input path="id" placeholder="아이디" maxlength="20"/>
 					<form:errors path="id" cssClass="error-msg" element="p"/>
 					<div id="ico-checked" class="ico-status" ></div>
 				</li>
 				<li>
-					<form:password path="pw" placeholder="비밀번호" />
+					<form:password path="pw" placeholder="비밀번호" maxlength="20"/>
 					<form:errors path="pw" cssClass="error-msg" element="p"/>
 					<div id="pwd-ico" class="pwd-status" ></div>
 				</li>
 				<li>
-					<form:input path="name" placeholder="이름" />
+					<form:input path="name" placeholder="이름" maxlength="20"/>
 					<form:errors path="name" cssClass="error-msg" element="p"/>
 				</li>
 				<li>
-					<form:input path="nickname" placeholder="닉네임" />
+					<form:input path="nickname" placeholder="닉네임" maxlength="20"/>
 					<form:errors path="nickname" cssClass="error-msg" element="p"/>
 				</li>
 				<li>
-					<form:input path="email" placeholder="이메일" />
+					<form:input path="email" placeholder="이메일" maxlength="30"/>
 					<form:errors path="email" cssClass="error-msg" element="p"/>
 				</li>
 			</ul>

@@ -125,7 +125,7 @@ public class ReplyController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@RequestMapping("reply-ajax-list")
+	@RequestMapping(value="reply-ajax-list", produces="application/json; charset=UTF-8", method=RequestMethod.GET)
 	@ResponseBody
 	public String replyAjaxList(HttpServletRequest request) {
 		ReplyDao rDao = sqlSession.getMapper(ReplyDao.class);

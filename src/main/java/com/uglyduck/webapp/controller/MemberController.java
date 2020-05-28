@@ -11,6 +11,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,7 @@ import com.uglyduck.command.member.MemberCommand;
 import com.uglyduck.command.member.MemberDropCommand;
 import com.uglyduck.command.member.MemberJoinCommand;
 import com.uglyduck.command.member.MemberLoginCommand;
+import com.uglyduck.command.member.MemberNewPasswordCommand;
 import com.uglyduck.command.member.MemberPwUpdateCommand;
 import com.uglyduck.command.member.MemberUpdateCommand;
 import com.uglyduck.webapp.dao.MemberDao;
@@ -217,13 +219,49 @@ public class MemberController {
 	}
 	
 	@RequestMapping("find-account-page")
-	public String findAccountPage() {
+	public String findAccountPage(Model model) {
+		model.addAttribute("memberDto", new MemberDto());
 		return "login/findAccountPage";
 	}
 	
-	@RequestMapping("find-account")
-	public String findAccount() {
-		return "";
+	@RequestMapping(value="find-account", method=RequestMethod.POST)
+	public String findAccount(@Valid MemberDto mDto, BindingResult bdr, Model model,
+							  RedirectAttributes rtts) {
+		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+		MemberDto memberDto = mDao.emailConfirm(mDto);
+		String urlPath = "";
+		if( bdr.getFieldError("email") != null ) {
+			urlPath = "login/findAccountPage";
+		} else {
+			if( memberDto != null ) {
+				rtts.addFlashAttribute("mDto", memberDto);
+				urlPath = "redirect:confirm-pass";
+			} else {
+				rtts.addFlashAttribute("isEmailConfirm", "NO");
+				urlPath = "redirect:find-account-page";
+			}
+		}
+		return urlPath;
 	}
+	
+	@RequestMapping("new-password-page")
+	public String newPasswordPage(Model model, HttpServletRequest request) {
+		String uuid = request.getParameter("uuid"); 
+		String id = request.getParameter("id");
+		model.addAttribute("uuid", uuid);
+		model.addAttribute("id", id);
+		return "login/newPasswordPage";
+	}
+	
+	@RequestMapping("new-password")
+	public String newPassword(Model model, HttpServletRequest request, RedirectAttributes rtts) {
+		model.addAttribute("request", request);
+		model.addAttribute("rtts", rtts);
+		memberCommand = new MemberNewPasswordCommand();
+		memberCommand.execute(sqlSession, model);
+		return "redirect:login-form";
+		
+	}
+	
 	
 }

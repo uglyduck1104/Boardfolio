@@ -63,9 +63,5 @@ $(function(){
 			return true;
 		}
 	});
-	
-	// Form 영역 입력 길이 제한
-	$("input[type=text], input[type=password]").each(function(){
-		$(this).attr("maxlength", "20");
-	});
+	 
 });

@@ -56,5 +56,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ID = #{param1}
 	</update>
 	
+	<select id="emailConfirm" resultType="memberDto">
+		SELECT
+			*
+		FROM
+			MEMBER
+		WHERE
+			Email = #{email}
+	</select>
+	
+	<update id="uuidUpdate">
+		UPDATE
+			MEMBER
+		SET
+			UUID = #{param1}
+		WHERE
+			ID = #{param2}
+	</update>
+	
+	<update id="newPassword">
+		UPDATE
+			MEMBER
+		SET
+			PW = #{param1}
+		WHERE
+			ID = #{param2} AND UUID = #{param3}
+	</update>
 	
 </mapper>

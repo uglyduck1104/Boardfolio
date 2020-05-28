@@ -85,5 +85,4 @@ if( isPwUpdate == "YES" ){
 		</div>	
 	</form>
 </div>
-<script type="text/javascript" src="resources/js/login.js" ></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %> 

@@ -170,6 +170,18 @@
 			<artifactId>jbcrypt</artifactId>
 			<version>0.3m</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			 <groupId>org.springframework</groupId>
+			 <artifactId>spring-context-support</artifactId>
+			 <version>${org.springframework-version}</version>
+		</dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
 	</dependencies>
     <build>
         <plugins>

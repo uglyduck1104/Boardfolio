@@ -10,4 +10,7 @@ public interface MemberDao {
 	public int modifyMember(MemberDto mDto);
 	public int pwUpdate(String pw, String id);
 	public int dropMember(String id);
+	public MemberDto emailConfirm(MemberDto	mDto);
+	public int uuidUpdate(String uuid, String id);
+	public int newPassword(String pw, String id, String uuid);
 }
