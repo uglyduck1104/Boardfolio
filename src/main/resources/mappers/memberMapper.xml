@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addMember" parameterType="memberDto">
 		INSERT INTO 
 			MEMBER
-		VALUES (#{id}, #{pw}, #{name}, #{nickname}, #{email}, #{ip}, SYSDATE, 'user')
+		VALUES (#{id}, #{pw}, #{name}, #{nickname}, #{email}, #{ip}, SYSDATE, 'user', 'null')
 	</insert>
 	
 	<select id="idCheck" resultType="memberDto">
@@ -82,5 +82,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			ID = #{param2} AND UUID = #{param3}
 	</update>
+	
+	<select id="memberList" resultType="memberDto">
+		SELECT
+			*
+		FROM
+			MEMBER
+		ORDER BY
+			REG_DATE DESC
+	</select>
 	
 </mapper>

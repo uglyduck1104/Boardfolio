@@ -1,6 +1,8 @@
 package com.uglyduck.webapp.dao;
 
 
+import java.util.List;
+
 import com.uglyduck.webapp.dto.MemberDto;
 
 public interface MemberDao {
@@ -13,4 +15,5 @@ public interface MemberDao {
 	public MemberDto emailConfirm(MemberDto	mDto);
 	public int uuidUpdate(String uuid, String id);
 	public int newPassword(String pw, String id, String uuid);
+	public List<MemberDto> memberList();
 }

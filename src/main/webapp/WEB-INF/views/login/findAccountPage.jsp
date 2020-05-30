@@ -20,7 +20,7 @@ if( isEmailConfirm == "NO" ){
 			<ul>
 				<li>
 					<p>회원 가입시 입력하신 이메일 주소를 입력하시면,</p>
-					<p>해당 이메일로 아이디 및 비밀번호 변경링크를 보드립니다.</p>
+					<p>해당 이메일로 아이디 및 비밀번호 변경링크를 보내드립니다.</p>
 				</li>
 				<li>
 					<form:input path="email" name="email" placeholder="this@form.com" />

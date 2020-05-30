@@ -26,6 +26,8 @@ public class MemberNewPasswordCommand implements MemberCommand {
 		String hashPw = BCrypt.hashpw(pw, BCrypt.gensalt());
 		rtts.addFlashAttribute("isPwUpdate", "YES");
 		rtts.addFlashAttribute("isPwUpdateRes", mDao.newPassword(hashPw, id, uuid));
+		uuid = "expired";
+		mDao.uuidUpdate(uuid, id);
 
 	}
 
