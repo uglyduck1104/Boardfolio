@@ -11,7 +11,6 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,9 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.uglyduck.command.member.MemberCommand;
+import com.uglyduck.command.member.MemberCookieSaveCommand;
 import com.uglyduck.command.member.MemberDropCommand;
 import com.uglyduck.command.member.MemberJoinCommand;
-import com.uglyduck.command.member.MemberLoginCommand;
 import com.uglyduck.command.member.MemberNewPasswordCommand;
 import com.uglyduck.command.member.MemberPwUpdateCommand;
 import com.uglyduck.command.member.MemberUpdateCommand;
@@ -62,6 +61,7 @@ public class MemberController {
 		model.addAttribute("response", response);
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		String ip = request.getRemoteAddr();
 		MemberDto idCheckResult = mDao.idCheck(id);
 		if ( session.getAttribute("mDto") != null ){ // 세션 초기화  
             session.removeAttribute("mDto"); 
@@ -72,8 +72,9 @@ public class MemberController {
 				urlPath = "redirect:login-form";
 			}
 			if( BCrypt.checkpw(pw, idCheckResult.getPw() ) ) { // 암호화된 비밀번호와 평문 비교
-				memberCommand = new MemberLoginCommand();
-				memberCommand.execute(sqlSession, model);
+				memberCommand = new MemberCookieSaveCommand(); // 쿠키 저장
+				memberCommand.execute(sqlSession, model); 
+				mDao.updateLog(ip, id); // 로그인 시 최근 접속 ip 업데이트
 				session.setAttribute("mDto", idCheckResult);
 				urlPath = "redirect:/";
 			} else { // 아이디 비밀번호 검증 실패

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-public class MemberLoginCommand implements MemberCommand {
+public class MemberCookieSaveCommand implements MemberCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {

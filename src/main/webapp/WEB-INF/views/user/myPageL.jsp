@@ -32,7 +32,6 @@
 				<dd>
 					<ul class="menu-list">
 						<li><a href="admin-member-list">회원 관리</a></li>
-						<li><a href="admin-withdraw-list">탈퇴 회원 관리</a></li>
 					</ul>
 				</dd>
 			</dl>

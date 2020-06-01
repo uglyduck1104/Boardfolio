@@ -55,7 +55,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/admin-member-list" />
 			<mvc:mapping path="/admin-member-view" />
-			<mvc:mapping path="/admin-withdraw-list" />
+			<mvc:mapping path="/admin-member-drop" />
 			<mvc:mapping path="/admin-board-list" />
 			<beans:ref bean="adminInterceptor"/>
 		</mvc:interceptor>

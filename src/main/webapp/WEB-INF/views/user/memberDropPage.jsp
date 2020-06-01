@@ -10,7 +10,7 @@
 		<div class="cont-wrap">
 			<h3>회원 탈퇴시 아래의 조취가 취해 집니다.</h3>
 			<ul>
-				<li>작성된 게시물은 삭제되지 않으며, 해당 홈페이로 소유권이 귀속됩니다.</li>
+				<li>작성된 게시물은 삭제되지 않으며, 해당 홈페이지로 소유권이 귀속됩니다.</li>
 				<li>게시물 삭제가 필요한 경우에는 관리자(admin@theuglyduckling.kr)로 문의해 주시기 바랍니다.</li>
 			</ul>
 				<input type="hidden" value="${ sessionScope.mDto.id }" name="id" />

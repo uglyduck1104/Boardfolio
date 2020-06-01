@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addMember" parameterType="memberDto">
 		INSERT INTO 
-			MEMBER
+			MEMBER(ID, PW, NAME, NICKNAME, EMAIL, IP, REG_DATE, ROLE, UUID)
 		VALUES (#{id}, #{pw}, #{name}, #{nickname}, #{email}, #{ip}, SYSDATE, 'user', 'null')
 	</insert>
 	
@@ -38,6 +38,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ID = #{id} 
 	</update>
 	
+	<update id="updateLog">
+		UPDATE
+			MEMBER
+		SET
+			IP = #{param1}, LOG = sysdate
+		WHERE
+			ID = #{param2}
+	</update>
+	
 	<update id="pwUpdate">
 		UPDATE
 			MEMBER
@@ -51,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE
 			MEMBER
 		SET
-			ROLE = 'withdraw'
+			NAME = 'expired', Email = 'expired', IP = 'expired', ROLE = 'withdraw', UUID = 'expired', LOG = SYSDATE
 		WHERE
 			ID = #{param1}
 	</update>
@@ -83,13 +92,116 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ID = #{param2} AND UUID = #{param3}
 	</update>
 	
-	<select id="memberList" resultType="memberDto">
+	<select id="memberList" resultType="memberDto" parameterType="String">
 		SELECT
 			*
 		FROM
-			MEMBER
-		ORDER BY
-			REG_DATE DESC
+			(SELECT
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					*
+				FROM 
+					MEMBER A
+				WHERE
+				<if test="param1 == 'all' or param1 == null">
+					NOT ROLE = 'admin' 
+				</if>
+				<if test="param1 == 'user'">
+					ROLE = 'user'
+				</if>
+				<if test="param1 == 'withdraw'">
+					ROLE = 'withdraw'
+				</if>
+				ORDER BY
+					REG_DATE DESC) R)
+		WHERE
+			R_NUM BETWEEN #{param2} AND #{param3}
 	</select>
+	
+	<select id="memberListSize" resultType="int" parameterType="hashmap">
+		SELECT 
+			COUNT(*)
+		FROM 
+			MEMBER
+		WHERE
+			<if test="_parameter == 'all' or _parameter == null">
+				NOT ROLE = 'admin' 
+			</if>
+			<if test="_parameter == 'user'">
+				ROLE = 'user'
+			</if>
+			<if test="_parameter == 'withdraw'">
+				ROLE = 'withdraw'
+			</if>
+	</select>
+	
+	<select id="search" resultType="memberDto" parameterType="String">
+		SELECT
+			*
+		FROM
+			(SELECT
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					*
+				FROM 
+					MEMBER A
+				WHERE
+					<if test="param1 == 'all' or param1 == null">
+						NOT ROLE = 'admin' 
+					</if>
+					<if test="param1 == 'user'">
+						ROLE = 'user'
+					</if>
+					<if test="param1 == 'withdraw'">
+						ROLE = 'withdraw'
+					</if>
+					AND CONTAINS (id, '%'||#{param2}||'%') > 0
+				ORDER BY
+					REG_DATE DESC) R)
+		WHERE
+			R_NUM BETWEEN #{param3} AND #{param4}
+	</select>
+	
+	<select id="searchListSize" resultType="int" parameterType="String">
+		SELECT 
+			COUNT(*)
+		FROM 
+			MEMBER
+		WHERE
+			NOT ROLE = 'admin' AND CONTAINS (id, '%'||#{param1}||'%') > 0
+	</select>
+	
+	<select id="memberCountBoard" resultType="int" parameterType="String">
+		SELECT
+			COUNT(*)
+		FROM	
+			(SELECT
+				A.MEMBER_ID, B.ID
+			FROM
+				BOARD A, MEMBER B
+			WHERE
+				A.MEMBER_ID = B.ID
+			)
+		WHERE
+			ID = #{param1}
+	</select>
+	
+	<select id="memberCountReply" resultType="int" parameterType="String">
+		SELECT
+			COUNT(*)
+		FROM	
+			(SELECT
+				A.ID, B.MEMBER_ID
+			FROM
+				MEMBER A, REPLY B
+			WHERE
+				A.ID = B.MEMBER_ID
+			)
+		WHERE
+			ID = #{param1}
+	</select>
+	
 	
 </mapper>

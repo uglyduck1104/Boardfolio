@@ -6,25 +6,23 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.uglyduck.webapp.dao.MemberDao;
-import com.uglyduck.webapp.dto.MemberDto;
 
-public class AdminMemberViewCommand implements AdminCommand {
+public class AdminMemberDropCommand implements AdminCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
 		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		RedirectAttributes rtts = (RedirectAttributes) map.get("rtts");
 		String id = request.getParameter("id");
-		MemberDto mDto = mDao.idCheck(id);
-		int boardCount = mDao.memberCountBoard(id);
-		int replyCount = mDao.memberCountReply(id);
-		model.addAttribute("mDto", mDto);
-		model.addAttribute("boardCount", boardCount);
-		model.addAttribute("replyCount", replyCount);
+		rtts.addFlashAttribute("isAdminMemberDrop", "YES");
+		rtts.addFlashAttribute("isAdminMemberDropRes", mDao.dropMember(id));
 		
+
 	}
 
 }

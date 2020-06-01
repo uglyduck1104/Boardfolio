@@ -3,7 +3,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<script>
+	function memberDrop(){
+		if( confirm('해당 회원을 탈퇴 처리하겠습니까?') ){
+			return true;
+		}
+		return false;
+	}
+</script>
 <div class="board-wrap">
+	<div class="member-title">
+		<h2>기본정보</h2>
+	</div>
+	<table>
+		<tbody>
+			<tr>
+				<td>가입일</td>
+				<td><fmt:formatDate value="${mDto.reg_date }" type="both" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="member-title">
+		<h2>개인정보</h2>
+	</div>
 	<table>
 		<tbody>
 			<tr>
@@ -23,18 +45,57 @@
 				<td>${mDto.email }</td>
 			</tr>
 			<tr>
-				<td>아이피</td>
-				<td>${mDto.ip }</td>
-			</tr>
-			<tr>
-				<td>가입일</td>
-				<td><fmt:formatDate value="${mDto.reg_date }" type="both" /></td>
-			</tr>
-			<tr>
 				<td>권한</td>
-				<td>${mDto.role }</td>
+			<c:if test="${ mDto.role eq 'user'}">
+				<td>회원</td>
+			</c:if>
+			<c:if test="${ mDto.role eq 'withdraw'}">
+				<td>탈퇴 회원</td>
+			</c:if>
 			</tr>
 		</tbody>
 	</table>
+	<div class="member-title">
+		<h2>활동정보</h2>
+	</div>
+	<table>
+		<tbody>
+			<tr>
+				<td>최근 접속일</td>
+				<c:if test="${ mDto.log ne null }">
+					<td><fmt:formatDate value="${mDto.log }" type="both"/></td>
+				</c:if>
+				<c:if test="${ mDto.log eq null }">
+					<td>접속 기록이 없습니다.</td>
+				</c:if>
+			</tr>
+			<tr>
+				<td>최근 접속 아이피</td>
+				<td>${mDto.ip }</td>
+			</tr>
+			<tr>
+				<td>등록한 게시물 개수</td>
+				<c:if test="${ boardCount gt 0 }">
+					<td>${boardCount }개</td>
+				</c:if>
+				<c:if test="${ boardCount le 0 }">
+					<td>0개</td>
+				</c:if>
+			<tr>
+			<tr>
+				<td>등록한 댓글 수</td>
+				<c:if test="${ replyCount gt 0 }">
+					<td>${replyCount }개</td>
+				</c:if>
+				<c:if test="${ replyCount le 0 }">
+					<td>0개</td>
+				</c:if>
+			</tr>
+		</tbody>
+	</table>
+	<form action="admin-member-drop" method="post" onsubmit="return memberDrop();">
+		<input type="hidden" name="id" value="${ mDto.id }" /> 
+		<button type="submit">강제 탈퇴</button>
+	</form>
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

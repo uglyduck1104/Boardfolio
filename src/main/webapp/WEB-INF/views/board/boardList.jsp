@@ -41,17 +41,17 @@
 		<h2>DUCKLING</h2>
 	</div>
 	<div>
-		<div class="sort-wrap">
-			<ul>
-				<li><a href="javascript:sortList('latest')">최신순</a></li>
-				<li><a href="javascript:sortList('recommend')">추천순</a></li>
-				<li><a href="javascript:sortList('reply')">댓글순</a></li>
-				<li><a href="javascript:sortList('hit')">조회순</a></li>
-			</ul>
-		</div>
-		<div class="button-wrap">
-			<a href="write-page">새 글쓰기</a>
-		</div>
+	<div class="sort-wrap">
+		<ul>
+			<li><a href="javascript:sortList('latest')">최신순</a></li>
+			<li><a href="javascript:sortList('recommend')">추천순</a></li>
+			<li><a href="javascript:sortList('reply')">댓글순</a></li>
+			<li><a href="javascript:sortList('hit')">조회순</a></li>
+		</ul>
+	</div>
+	<div class="button-wrap">
+		<a href="write-page">새 글쓰기</a>
+	</div>
 	</div>
 	<div>
 		<table class="board-list">
