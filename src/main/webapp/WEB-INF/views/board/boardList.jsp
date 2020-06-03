@@ -66,17 +66,17 @@
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
-					<th>글쓴이</th>
+					<th>작성자</th>
 					<th>조회수</th>
 					<th>작성일</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty list}" >
+					<c:when test="${empty list}">
 					<tr>
 						<td colspan="5">등록된 게시물이 없습니다.</td>
-					<tr>
+					</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="bDto" items="${list}">
@@ -87,7 +87,7 @@
 							<td>${ bDto.member_id }</td>
 							<td>${ bDto.hits_cnt }</td>
 							<td>${ bDto.board_dt }</td>
-						<tr>
+						</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>

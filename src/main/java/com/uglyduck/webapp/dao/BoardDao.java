@@ -18,6 +18,7 @@ import com.uglyduck.webapp.dto.BoardDto;
  * search: 게시물 검색어 기준 목록 조회
  * searchListSize: 게시물 검색어 기준 목록 개수 조회 
  * memberWriteList: 내가 쓴 게시물 조회
+ * adminBoardList: 관리자용 게시물 조회
  *
  */
 public interface BoardDao {
@@ -35,6 +36,8 @@ public interface BoardDao {
 	public List<BoardDto> search(String query, String sort, int begin, int end);
 	public int searchListSize(String query);
 	public List<BoardDto> memberWriteList(String id, int begin, int end);
-
+	public List<BoardDto> adminBoardList(int begin, int end);
+	public List<BoardDto> adminBoardSearch(String query, String beginDate, String endDate, int begin, int end);
+	public int adminBoardSearchSize(String query, String beginDate, String endDate);
 	
 }

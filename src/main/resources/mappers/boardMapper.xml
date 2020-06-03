@@ -171,4 +171,77 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			R_NUM BETWEEN #{param2} AND #{param3}
 	</select>
 	
+	
+	<select id="adminBoardList" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.GOOD_CNT, A.BOARD_DT, (
+						SELECT COUNT(*) 
+						FROM REPLY B 
+						WHERE B.BOARD_NO = A.BOARD_NO
+					) AS REPLY_CNT
+				FROM 
+					BOARD A 
+				ORDER BY 
+					BOARD_DT DESC) R)
+		WHERE
+			R_NUM BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="adminBoardSearch" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					A.BOARD_NO, A.TITLE, A.MEMBER_ID, A.HITS_CNT, A.GOOD_CNT, A.BOARD_DT, (
+						SELECT COUNT(*) 
+						FROM REPLY B 
+						WHERE B.BOARD_NO = A.BOARD_NO
+					) AS REPLY_CNT
+				FROM 
+					BOARD A
+				WHERE
+				<choose>
+					<when test="param1 == ''">			
+						BOARD_DT BETWEEN #{param2} AND #{param3}
+					</when>
+					<when test="param2 == '' and param3 == ''">
+						CONTAINS (title, '%'||#{param1}||'%') > 0
+					</when>
+					<otherwise>
+						CONTAINS (title, '%'||#{param1}||'%') > 0 AND BOARD_DT BETWEEN #{param2} AND #{param3}
+					</otherwise>
+				</choose>
+				ORDER BY 
+					BOARD_DT DESC) R)
+		WHERE
+			R_NUM BETWEEN #{param4} AND #{param5}
+	</select>
+	
+	<select id="adminBoardSearchSize" resultType="int" parameterType="String">
+		SELECT 
+			COUNT(*)
+		FROM 
+			BOARD
+		WHERE
+		<choose>
+			<when test="param1 == ''">			
+				BOARD_DT BETWEEN #{param2} AND #{param3}
+			</when>
+			<when test="param2 == '' and param3 == ''">
+				CONTAINS (title, '%'||#{param1}||'%') > 0
+			</when>
+			<otherwise>
+				CONTAINS (title, '%'||#{param1}||'%') > 0 AND BOARD_DT BETWEEN #{param2} AND #{param3}
+			</otherwise>
+		</choose>
+	</select>
 </mapper>

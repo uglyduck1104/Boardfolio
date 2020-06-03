@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.uglyduck.command.admin.AdminBoardListCommand;
 import com.uglyduck.command.admin.AdminCommand;
 import com.uglyduck.command.admin.AdminMemberDropCommand;
 import com.uglyduck.command.admin.AdminMemberListCommand;
@@ -44,8 +46,16 @@ public class AdminController {
 		adminCommand = new AdminMemberDropCommand();
 		adminCommand.execute(sqlSession, model);
 		return "redirect:admin-member-list";
-		
 	}
+	
+	@RequestMapping(value="admin-board-list")
+	public String adminBoardList(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		adminCommand = new AdminBoardListCommand();
+		adminCommand.execute(sqlSession, model);
+		return "admin/adminBoardList";
+	}
+	
 	
 	
 }

@@ -59,7 +59,7 @@ function sortList(sortValue){
 					<c:when test="${empty list}" >
 					<tr>
 						<td colspan="3">등록된 회원이 없습니다.</td>
-					<tr>
+					</tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="mDto" items="${list}">
@@ -72,7 +72,7 @@ function sortList(sortValue){
 								<td>탈퇴 회원</td>
 							</c:if>
 							<td>${ mDto.reg_date }</td>
-						<tr>
+						</tr>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
