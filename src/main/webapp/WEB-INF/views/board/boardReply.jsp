@@ -31,6 +31,6 @@
 	</table>
 </form>
 <table>
-<tbody id="reply-view"></tbody>
+	<tbody id="reply-view"></tbody>
 </table>
-<script type="text/javascript" src="resources/js/board.js" ></script>
+<script type="text/javascript" src="resources/js/reply.js" ></script>

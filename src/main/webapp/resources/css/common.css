@@ -53,6 +53,11 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+::selection {
+	background:#101010;
+	color: #ff9951;
+	text-shadow: none;
+}
 /* HTML5 구버전 브라우저 초기화 */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -142,7 +147,6 @@ input{ box-sizing: border-box; }
     background-color: #BDBDBD;
     margin: 0 10px;
 }
-
 /* common-main */
 #main{
 	width: 1180px;
@@ -202,10 +206,38 @@ input{ box-sizing: border-box; }
     margin: 12px auto !important;
     width: 354px;
 }
+.title-wrap{
+    display: inline-block;
+    font-family: "nbgB";
+    font-size: 35px;
+    border-bottom: 4px solid black;
+    margin-bottom: 50px;
+}
+/* head-list */
+.sort-wrap{
+	float: left;
+}
+.sort-wrap > ul > li{
+	display: inline-block;
+	font-family: "ngB";
+}
+.sort-wrap > ul > li > a{
+	margin-right: 20px;
+	color: #828282;
+}
+.sort-wrap > ul > li > a:hover{
+	padding-bottom: 4px;
+	border-bottom: 2px solid #828282;
+}
+.sort-wrap > ul > li > a.active{
+	padding-bottom: 4px;
+	color: #000000;
+	border-bottom: 2px solid #000000;
+}
 .button-wrap{
     float: right;
     position: relative;
-    bottom: 10px;
+    bottom: 45px;
     border-radius: 5px;
     background: #4cae4c;
     cursor: pointer;
@@ -232,12 +264,42 @@ input{ box-sizing: border-box; }
     background-size: 391px;
     background-position: -272px -10px;
 }
-.title-wrap{
-    display: inline-block;
-    font-family: "nbgB";
-    font-size: 35px;
-    border-bottom: 4px solid black;
-    margin-bottom: 50px;
+.search-wrap{
+	float: right;
+	position: relative;
+	left: 96px;
+	top: -3px;
+	width: 26%;
+}
+.search-wrap #searchInput{
+	border: 1px solid black;
+	padding: 6px 59px 6px 6px !important;
+}
+.search-wrap #searchBtn{
+   	width: 25%;
+   	cursor: pointer;
+   	border: 0;
+   	position: absolute;
+   	left: 275px;
+   	top: 1px;
+    width: 28px;
+    height: 28px;
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 523px;
+    background-position: -394px -12px;
+}
+.search-wrap .ico{
+	display: block;
+    position: absolute;
+    cursor: pointer;
+    top: 1px;
+    left: 247px;
+    border: 0;
+    width: 28px;
+    height: 28px;
+	background: url(../images/iconset.png) no-repeat;
+    background-size: 413px;
+    background-position: -339px -7px;
 }
 
 /* pageNavi */
@@ -308,4 +370,5 @@ input{ box-sizing: border-box; }
 	background-color: #202020;
     color: #fff;
 }
+
 /* my-page-wrap */

@@ -38,14 +38,10 @@ public class AdminBoardListCommand implements AdminCommand {
 		if( (query == null || query.length() == 0) == true && 
 			(beginDate == null || beginDate.length() == 0) == true && 
 			(endDate == null || endDate.length() == 0) == true ) {
-			System.out.println(query == null || query.length() == 0);
-			System.out.println(beginDate == null || beginDate.length() == 0);
-			System.out.println(endDate == null || endDate.length() == 0);
 			totalRecord = bDao.getBoardListSize();
 			pagingView = Paging.getPaging("admin-board-list?", nowPage, recordPerPage, totalRecord);
 			list = bDao.adminBoardList(begin, end);
 		} else {
-			System.out.println("띠용");
 			totalRecord = bDao.adminBoardSearchSize(query, beginDate, endDate);
 			pagingView = Paging.getPaging("admin-board-list?query=" + query + 
 										  "&beginDate=" + beginDate + 

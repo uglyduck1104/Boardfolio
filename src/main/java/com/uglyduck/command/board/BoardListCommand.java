@@ -62,6 +62,7 @@ public class BoardListCommand implements BoardCommand {
 		model.addAttribute("list", list);
 		model.addAttribute("pagingView", pagingView);
 		model.addAttribute("currentPage", nowPage);
+		model.addAttribute("sort", sort);
 
 	}
 

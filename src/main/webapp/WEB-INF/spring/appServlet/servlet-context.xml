@@ -29,6 +29,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/update-page" />
+			<mvc:mapping path="/write-page" />
 			<mvc:mapping path="/board-write" />
 			<mvc:mapping path="/board-update" />
 			<mvc:mapping path="/board-drop" />
