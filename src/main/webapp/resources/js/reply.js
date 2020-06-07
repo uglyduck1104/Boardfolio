@@ -28,6 +28,8 @@ $(function(){
 			success: function(data){
 				$("#reply-view").empty();
 				var htmls = "";
+				var dataSize = data["dataSize"];
+				htmls += "<tr class='reply-size'><td>댓글 " + dataSize + "개</td></tr>"; 
 				if( data["dataSize"] > 0){
 					$.each(data.data, function(index, item){
 						var member_id = this.member_id; 
@@ -37,18 +39,20 @@ $(function(){
 						var reply_no = this.reply_no
 						reply_dt = reply_dt.replace(/-/gi,"");
 						htmls += `<tr class='comment-${index}'><td>`;
-						htmls += member_id;
-						htmls += reply_dt;
-						htmls += "<span>" + reply_con + "</span>";
+						htmls += "<div>"
+						htmls += "<span>" + member_id + "</span>";
+						htmls += "<p class='date-format'>" + reply_dt + "</p>";
 						if( isYourId ){
+							htmls += `<button type='button' class='out-side-btn' onclick='replyUpdateArea(${index})'>수정하기</button>`;
+							htmls += `<button type='button' class='out-side-btn' onclick='replyDrop(${index}, "${item.reply_no}")'>삭제하기</button>`;
 							htmls += `<div class='comment-${index}' style="display:none;">`;
-							htmls += `<input type='text' name='replyCon' value='${item.reply_con}'/>`;
+							htmls += `<textarea name='replyCon'>${item.reply_con}</textarea>`;
 							htmls += `<button type='button' onclick='replyUpdate(${index}, "${item.reply_con}", "${item.reply_no}")'>수정</button>`;
 							htmls += `<button type='button' onclick='replyReset(${index})'>취소</button>`;
 							htmls += "</div>";
-							htmls += `<button type='button' onclick='replyUpdateArea(${index})'>수정하기</button>`;
-							htmls += `<button type='button' onclick='replyDrop(${index}, "${item.reply_no}")'>삭제하기</button>`;
 						}
+						htmls += "<p class='reply-con'>" + reply_con + "</p>";
+						htmls += "</div>"
 						htmls += "</td></tr>";
 					});
 					$("#reply-con").val('');
@@ -101,14 +105,15 @@ $(function(){
 				  "&boardNo=" + boardNo,
 			success: function(obj){
 				if(obj["btnStat"]=="good"){
-					$("#badStat").css("background","gray");
-					$("#goodStat").css("background","");
+					$("#goodStat").addClass("goodActive");
+					$("#badStat").removeClass("badActive");
 				} else if(obj["btnStat"]=="bad"){
-					$("#goodStat").css("background","gray");
-					$("#badStat").css("background","");
+					$("#goodStat").removeClass("goodActive");
+					$("#badStat").addClass("badActive");
 				} else {
-					$("#badStat").css("background","");
-					$("#goodStat").css("background","");
+					$("#goodStat").removeClass("goodActive");
+					$("#badStat").removeClass("badActive");
+					
 				}
 			},
 			error: function(){
@@ -129,20 +134,20 @@ function refreshRecBtnStat(){
 
 function replyUpdateArea(index){
 	var replyArea = $(`.comment-${index}`);
-	replyArea.children('td').children('div').css("display","block");
-	replyArea.children('td').children('span').css("display","none");
+	replyArea.children('td').children('div').children('div').css("display","block");
+	replyArea.children('td').children('div').children('p.reply-con').css("display","none");
 } // end replyUpdateArea()
 
 function replyReset(index){
 	var replyArea = $(`.comment-${index}`);
-	replyArea.children('td').children('div').css("display","none");
-	replyArea.children('td').children('span').css("display","inline");
+	replyArea.children('td').children('div').children('div').css("display","none");
+	replyArea.children('td').children('div').children('p.reply-con').css("display","block");
 	
 } // end replyReset()
 
 function replyUpdate(index, content, no){
 	var replyArea = $(`.comment-${index}`);
-	var replyCon = replyArea.children('td').children('div').children('input').val();
+	var replyCon = replyArea.children('td').children('div').children('div').children('textarea').val();
 	if( content != replyCon && replyCon != ""){
 		jQuery.ajax({
 			url: "reply-update",

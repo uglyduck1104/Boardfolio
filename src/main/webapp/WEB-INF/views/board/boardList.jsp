@@ -109,32 +109,26 @@ window.onload = function(){
 							</td>
 							<c:choose>
 								<c:when test="${ bDto.reply_cnt gt 999}">
-									<td class="txt-format">
-										<fmt:parseNumber value="${ bDto.reply_cnt/1000 }" integerOnly="true" />k
-									</td>
+									<td class="txt-format reply-cnt"><fmt:parseNumber value="${ bDto.reply_cnt/1000 }" integerOnly="true" />k</td>
 								</c:when>
 								<c:otherwise>
-									<td class="txt-format">${ bDto.reply_cnt }</td>
+									<td class="txt-format reply-cnt">${ bDto.reply_cnt }</td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${ bDto.good_cnt gt 999}">
-									<td class="txt-format">
-										<fmt:parseNumber value="${ bDto.good_cnt/1000 }" integerOnly="true" />k
-									</td>
+									<td class="txt-format good-cnt"><fmt:parseNumber value="${ bDto.good_cnt/1000 }" integerOnly="true" />k</td>
 								</c:when>
 								<c:otherwise>
-									<td class="txt-format">${ bDto.good_cnt }</td>
+									<td class="txt-format good-cnt">${ bDto.good_cnt }</td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${ bDto.hits_cnt gt 999}">
-									<td class="txt-format">
-										<fmt:parseNumber value="${ bDto.hits_cnt/1000 }" integerOnly="true" />k
-									</td>
+									<td class="txt-format hits-cnt"><fmt:parseNumber value="${ bDto.hits_cnt/1000 }" integerOnly="true" />k</td>
 								</c:when>
 								<c:otherwise>
-									<td class="txt-format">${ bDto.hits_cnt }</td>
+									<td class="txt-format hits-cnt">${ bDto.hits_cnt }</td>
 								</c:otherwise>
 							</c:choose>
 							<td>

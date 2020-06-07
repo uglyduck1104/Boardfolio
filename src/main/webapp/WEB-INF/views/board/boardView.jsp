@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <script>
 var board_no = "${bDto.board_no}";
@@ -13,61 +14,82 @@ function deleteBoard(){
 	}
 }
 </script>
-<div class="board-wrap">
+<div class="board-view-wrap">
 	<table>
 		<tbody>
 			<tr>
-				<td>게시글 번호</td>
-				<td id="boardNo">${bDto.board_no }</td>
-			</tr>
-			<tr>
-				<td>작성자</td>
-				<td>${bDto.member_id }</td>
-			</tr>
-			<tr>
-				<td>조회수</td>
-				<td>${bDto.hits_cnt }</td>
-			</tr>
-			<tr>
-				<td>추천수</td>
-				<td>${bDto.good_cnt }</td>
-			</tr>
-			<tr>
-				<td>댓글수</td>
-				<td>${bDto.reply_cnt }</td>
-			</tr>
-			<tr>
-				<td>작성일</td>
-				<td>${bDto.board_dt }</td>
-			</tr>
-			<tr>
-				<td>제목</td>
-				<td>${bDto.title }</td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td><pre class="unreset">${bDto.contents }</pre></td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="3">
-				<c:if test="${ sessionScope.mDto.id eq bDto.member_id }">
-					<button type="button" onclick="updatePage()">수정</button>
-					<button type="button" onclick="deleteBoard()">삭제</button>
-				</c:if>
-					<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
+				<td>
+					<div class="info-wrap">
+						<span>${ bDto.member_id }</span>
+						<p class="date-format"><fmt:formatDate value="${bDto.board_dt }" type="both" /></p>
+					</div>
+					<div class="cnt-wrap">
+						<c:choose>
+							<c:when test="${ bDto.reply_cnt gt 999}">
+								<p class="txt-format reply-cnt"><fmt:parseNumber value="${ bDto.reply_cnt/1000 }" integerOnly="true" />k</p>
+							</c:when>
+							<c:otherwise>
+								<p class="txt-format reply-cnt">${ bDto.reply_cnt }</p>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${ bDto.good_cnt gt 999}">
+								<p class="txt-format good-cnt"><fmt:parseNumber value="${ bDto.good_cnt/1000 }" integerOnly="true" />k</p>
+							</c:when>
+							<c:otherwise>
+								<p class="txt-format good-cnt">${ bDto.good_cnt }</p>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${ bDto.hits_cnt gt 999}">
+								<p class="txt-format hits-cnt"><fmt:parseNumber value="${ bDto.hits_cnt/1000 }" integerOnly="true" />k</p>
+							</c:when>
+							<c:otherwise>
+								<p class="txt-format hits-cnt">${ bDto.hits_cnt }</p>
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</td>
 			</tr>
-		</tfoot>
+			<tr>
+				<c:if test="${ sessionScope.mDto ne null }">
+					<td>
+						<div>
+							<span id="boardNo" class="bNum">${bDto.board_no }</span>
+							<h2>${bDto.title }</h2>
+							<div class="title-navi">
+								<c:if test="${ sessionScope.mDto.id eq bDto.member_id }">
+									<button type="button" onclick="updatePage()">수정</button>
+									<button type="button" onclick="deleteBoard()">삭제</button>
+								</c:if>
+									<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
+							</div>
+							<hr/>
+							<div class="unreset">${bDto.contents }</div>
+						</div>
+						<div class="recommend-btn-wrap">
+							<button type="button" id="goodStat" onclick="countRecs('good')"><span>추천하기</span></button>
+							<button type="button" id="badStat" onclick="countRecs('bad')"><span>비추천하기</span></button>
+							<input type="hidden" id="memberId" value="${ sessionScope.mDto.id }" />
+						</div>
+					</td>
+					</c:if>
+					<c:if test="${ sessionScope.mDto eq null }">
+					<td class="resizeWrap">
+						<div class="resizeArea">
+							<span id="boardNo" class="bNum">${bDto.board_no }</span>
+							<h2>${bDto.title }</h2>
+							<div class="title-navi">
+								<button type="button" onclick="location.href='board-list'">목록으로 이동</button>
+							</div>
+							<hr/>
+							<div class="unreset">${bDto.contents }</div>
+						</div>
+					</td>
+				</c:if>
+			</tr>
+		</tbody>
 	</table>
-	<c:if test="${ sessionScope.mDto ne null }">
-		<div>
-			<button type="button" id="goodStat" onclick="countRecs('good')">추천하기</button>
-			<button type="button" id="badStat" onclick="countRecs('bad')">비추천하기</button>
-			<input type="hidden" id="memberId" value="${ sessionScope.mDto.id }" />
-		</div>
-	</c:if>
 </div>
 <%@ include file="/WEB-INF/views/board/boardReply.jsp" %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

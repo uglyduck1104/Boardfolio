@@ -47,7 +47,7 @@ public class ReplyController {
 			mDto = (MemberDto)session.getAttribute("mDto");
 			mId = mDto.getId();
 		}
-		int rSize = rDao.getReplyTotalCount();
+		int rSize = rDao.getReplyTotalCount(boardNo);
 		JSONObject jsonObj = new JSONObject();
 		JSONArray jArray = new JSONArray();
 		for( int i = 0; i < rList.size(); i++ ) {

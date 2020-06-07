@@ -19,56 +19,15 @@
 	font-size: 18px;
 	vertical-align: middle;
 }
-
 .board-wrap table tbody tr td a{
 	font-family: "ngB";
+	word-break: break-all;
 }
-
 .board-wrap table tbody tr td a:hover{
 	border-bottom: 2px solid #000000;
 }
 .board-wrap table tbody tr td p{
 	margin-top: 10px;
-}
-.board-wrap .board-list tbody tr td .bNum{
-	color: #8a8a8a;
-}
-.board-wrap .board-list tbody tr td .bNum:before{
-	content: '#';
-	display: inline;
-}
-.board-wrap .board-list tbody tr td.txt-format{
-	color: #8a8a8a;
-	font-size: 15px;
-}
-.board-wrap .board-list tbody tr td.txt-format:before{
-	content: '';
-    display: inline-block;
-    position: relative;
-    top: 2px;
-    left: -2px;
-    width: 16px;
-    height: 16px;
-    margin: 0 auto;
-}
-tbody tr td:nth-child(2):before{
-    background: url(../images/iconset.png) no-repeat;
-    background-size: 358px;
-    background-position: -325px -9px;
-}
-tbody tr td:nth-child(3):before{
-    background: url(../images/iconset.png) no-repeat;
-    background-size: 358px;
-    background-position: -11px -44px;
-}
-tbody tr td:nth-child(4):before{
-    background: url(../images/iconset.png) no-repeat;
-    background-size: 358px;
-    background-position: -37px -45px;
-}
-.board-wrap .board-list tbody tr td .date-format{
-	font-size: 15px;
-	color: #8a8a8a;
 }
 .board-wrap #write-form{
 	width: 100%;
@@ -82,4 +41,238 @@ tbody tr td:nth-child(4):before{
 }
 .board-wrap tfoot tr td{
 	text-align: center;
+}
+.board-view-wrap table{
+	margin: 0 auto;
+	width: 100%;
+}
+.board-view-wrap table tbody tr{
+	background: #feffff;
+}
+.board-view-wrap table tbody tr:first-child td{
+	padding: 16px;
+}
+.board-view-wrap table tbody tr td{
+	font-size: 18px;
+	vertical-align: middle;
+	border: 1px solid #d5d5d5;
+	box-sizing: border-box;
+}
+.board-view-wrap table tbody tr td a{
+	font-family: "ngB";
+}
+.board-view-wrap table tbody tr td h2{
+	font-family: "nbgB";
+	font-size: 22px;
+	margin-top: 15px;
+	word-break: break-all;
+}
+.board-view-wrap table tbody tr td hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+.board-view-wrap table tbody tr:last-child > td > div:first-child{
+	padding: 16px;
+	display: block;
+    float: left;
+    width: 920px;
+    border-right: 1px solid #ddd;
+}
+.board-view-wrap table tbody tr:last-child > td > div:last-child{
+    width: 225px;
+    float: left;
+}
+.resizeWrap{
+	padding: 16px;
+}
+.resizeArea{
+	width: 100% !important;
+	padding: 0 !important;
+	border: 0 !important;
+}
+.recommend-btn-wrap > button{
+	border: 0;
+	cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    margin: 16px auto;
+    width: 115px;
+    height: 40px;
+    text-align: left;
+    padding: 0 0 0 9px;
+    background: #7f7f7f;
+    color: #ffffff;
+}
+.recommend-btn-wrap > button > span{
+    position: relative;
+    top: -8px;
+}
+.recommend-btn-wrap > button:before{
+	content: '';
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    width: 30px;
+    height: 30px;
+    margin-right: 7px;
+}
+.goodActive{
+	background: #4f99ff !important;
+    color: #ffffff !important;
+}
+.badActive{
+	background: #ff3718 !important;
+    color: #ffffff !important;
+}
+#goodStat:before{
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 638px;
+    background-position: -263px -77px;
+}
+#badStat:before{
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 638px;
+    background-position: -317px -77px;
+}
+.board-view-wrap .info-wrap{
+	float: left;
+}
+.board-view-wrap .cnt-wrap{
+	float: right;
+	line-height: 2.3;
+    position: relative;
+    right: 11px;
+}
+.board-view-wrap .cnt-wrap p{
+	display: inline-block;
+	margin: 0 12px;
+}
+.board-view-wrap .cnt-wrap .txt-format{
+	color: #000000;
+}
+.board-view-wrap .cnt-wrap .reply-cnt:before{
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 358px;
+    background-position: -64px -44px;
+}
+.board-view-wrap .cnt-wrap .good-cnt:before{
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 358px;
+    background-position: -120px -44px;
+}
+.board-view-wrap .cnt-wrap .hits-cnt:before{
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 358px;
+    background-position: -92px -44px;
+}
+.border-reply{
+	margin-top: 20px;
+}
+.border-reply tr{
+	background: #feffff;
+}
+.border-reply tr td{
+	font-size: 18px;
+	padding: 16px;
+	vertical-align: middle;
+	border: 1px solid #d5d5d5;
+	box-sizing: border-box;
+}
+.border-reply table{
+	margin: 0 auto;
+	width: 100%;
+}
+.border-reply #reply-form tr td div{
+	display: table-cell;
+	vertical-align: middle;
+}
+.border-reply #reply-form tr td div:last-child{
+	padding: 10px;
+}
+#reply-btn{
+	border: 0;
+	cursor: pointer;
+    width: 70px;
+    height: 27px;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #fff;
+    background: #06a250;
+}
+#reply-btn:hover{
+    background: #04813f;
+}
+.border-reply #reply-form tr td textarea{
+	display: block;
+	font-family: inherit;
+	font-size: 15px;
+	width: 1030px;
+	margin-top: 10px;
+	padding: 10px;
+}
+.reply-size{
+	background: #dedede !important;
+}
+.border-reply #reply-view tr td div p:last-child{
+	padding: 15px 0;
+}
+.border-reply #reply-view tr td div > button.out-side-btn{
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	color: #8a8a8a;
+	font-size: 13px;
+	background: #feffff;
+}
+.border-reply #reply-view tr td div > button.out-side-btn:hover{
+	color: #282828;
+	text-decoration: underline;
+}
+.border-reply #reply-view tr td div > button.out-side-btn:nth-child(even):before{
+	content: '';
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background: #8a8a8a;
+    margin: 0 5px;
+}
+.border-reply #reply-view tr td div div{
+	position: relative;
+	padding: 15px 0;
+}
+.reply-con{
+	overflow-x: auto;
+    word-break: break-all; 
+}
+.border-reply #reply-view tr td div div textarea{
+	
+    font-family: inherit;
+    resize: none;
+    font-size: 15px;
+    width: 1030px;
+    padding: 10px;
+    overflow-x: auto;
+    word-break: break-all; 
+}
+.border-reply #reply-view tr td div div button{
+	position: absolute;
+    top: 13px;
+	margin-left: 5px;
+	border-radius: 5px;
+	vertical-align: middle;
+    border: 0;
+    cursor: pointer;
+    width: 40px;
+    height: 58px;
+    font-size: 15px;
+    color: #fff;
+}
+.border-reply #reply-view tr td div div button:first-of-type{
+    background: #06a250;
+}
+.border-reply #reply-view tr td div div button:last-of-type{
+    background: #a21f12;
+    right: 4px;
 }

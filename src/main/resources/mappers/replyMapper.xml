@@ -21,6 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			COUNT(*)	
 		FROM 
 			REPLY
+		WHERE
+			BOARD_NO = #{param1}
 	</select>
 	
 	<insert id="replyWrite" parameterType="replyDto">
