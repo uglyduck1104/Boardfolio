@@ -49,7 +49,7 @@
 }
 #ico-checked.ico-false:after{
 	display: block;
-    content: '중복 불가';
+    content: '사용 불가';
     position: relative;
     top: 29px;
     left: -6px;

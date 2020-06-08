@@ -15,6 +15,9 @@ function deleteBoard(){
 }
 </script>
 <div class="board-view-wrap">
+	<div class="title-wrap">
+		<h2>DUCKLING</h2>
+	</div>
 	<table>
 		<tbody>
 			<tr>
@@ -73,8 +76,8 @@ function deleteBoard(){
 							<input type="hidden" id="memberId" value="${ sessionScope.mDto.id }" />
 						</div>
 					</td>
-					</c:if>
-					<c:if test="${ sessionScope.mDto eq null }">
+				</c:if>
+				<c:if test="${ sessionScope.mDto eq null }">
 					<td class="resizeWrap">
 						<div class="resizeArea">
 							<span id="boardNo" class="bNum">${bDto.board_no }</span>

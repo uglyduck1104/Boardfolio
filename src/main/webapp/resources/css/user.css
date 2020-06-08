@@ -16,3 +16,128 @@
 	float: right;
 	width: 940px;
 }
+.user-main{
+	text-align: center;
+}
+.user-main .cont-title{
+	display: block;
+	font-size: 47px;
+	font-family: "ng";
+	margin-bottom: 23px;
+	letter-spacing: -3px;
+}
+.cont-wrap h3{
+	font-size: 14px;
+	color: #555555;
+}
+.cont-wrap .cont-area{
+	background: #ffffff;
+	padding: 30px;
+	margin-top: 24px;
+	border-top: 1px solid #838383; 
+}
+.cont-wrap .cont-area .cont-area-title{
+	font-size: 24px;
+	letter-spacing: -1px;
+	font-family: "nbg";
+	padding: 15px 0;
+}
+.cont-wrap .cont-area p:last-of-type{
+	color: #555555;
+	font-size: 14px;
+	letter-spacing: -1px;
+	padding-bottom: 30px;
+}
+.cont-wrap .cont-area img{
+	width: 100px;
+}
+.cont-wrap .cont-area input[type=password]{
+	border: 1px solid #dddddd;
+	width: 298px;
+	padding: 7px;
+	font-size: 14px;
+	color: #888888;
+}
+.cont-wrap .cont-btn-wrap{
+	padding-top: 20px;
+}
+.cont-wrap .cont-btn-wrap button{
+	border: 1px solid #616161;
+	cursor: pointer;
+	border-radius: 2px;
+	font-size: 14px;
+	padding: 7px 60px;
+}
+.cont-wrap .cont-btn-wrap button:first-child{
+	background: #ffffff;
+}
+.cont-wrap .cont-btn-wrap button:last-child{
+	background: #3c3c3c;
+	color: #ffffff;
+}
+
+.cont-wrap .cont-info{
+	margin-top: 40px;
+}
+.cont-wrap .cont-info ul{
+    float: left;
+    width: 420px;
+    padding: 16px;
+    border: 1px solid #c7c7c7;
+    background: #feffff;
+}
+.cont-wrap .cont-info ul li{
+	margin-top: 18px;
+}
+.cont-wrap .cont-info ul li:first-of-type{
+	margin: 0;
+}
+.cont-wrap .cont-info ul li label{
+	display: block;
+	text-align: left;
+	font-size: 15px;
+	margin-bottom: 8px;
+	font-family: 'ngB';
+}
+.cont-wrap .cont-info ul li input{
+	padding: 10px;
+	font-size: 16px;
+	width: 100%;
+}
+.cont-wrap .cont-info ul li button{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #b08a00;
+    border-radius: 3px;
+    background: #ffecb3;
+}
+.cont-wrap .cont-info div{
+    float: left;
+   	width: 300px;
+   	margin-left: 40px;
+    padding: 16px;
+    border: 1px solid #c7c7c7;
+    background: #feffff;
+}
+.cont-wrap .cont-info div button{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #b08a00;
+    border-radius: 3px;
+}
+.cont-wrap .cont-info div button:first-of-type{
+	background: #ffcd39;
+	margin-bottom: 15px;
+    border: 1px solid #ca9700;
+}
+.cont-wrap .cont-info div button:last-of-type{
+	background: #feffff;
+    border: 1px solid #c7c7c7;
+}
+.cont-wrap .cont-info .error-msg{
+	margin: 10px 0 18px !important;
+}

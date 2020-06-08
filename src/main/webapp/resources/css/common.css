@@ -98,6 +98,9 @@ input{ box-sizing: border-box; }
 	min-height:500px;
     padding: 52px 0 140px;
 }
+button{
+	cursor: pointer;
+}
 /* common-header */
 #header{
 	width: 100%;

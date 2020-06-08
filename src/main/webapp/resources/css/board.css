@@ -167,28 +167,78 @@
     background-size: 358px;
     background-position: -92px -44px;
 }
-.border-reply{
+.board-update table tbody tr:last-child > td{
+	padding: 16px !important;
+}
+.board-update table tbody tr:last-child > td > div{
+	width: auto !important;
+	float: none !important;
+	border-right: 0 !important;
+	padding: 0 !important;
+}
+.board-update table tbody tr:last-child input{
+	width: 100%;
+	margin-top: 10px;
+    padding: 10px;
+    font-family: "ngB";
+    font-size: 15px;
+}
+.board-update table tfoot{
+	text-align: center;
+}
+.board-update table tfoot tr{
+	width: 100%;
+}
+.board-update table tfoot tr td{
+	padding: 16px;
+}
+.board-update table tfoot tr td button{
+	cursor: pointer;
+	border: 1px solid #333333;
+	border-radius: 3px;
+	margin: 10px;
+    width: 130px;
+    height: 40px;
+    font-size: 14px;
+}
+.board-update table tfoot tr td button:first-of-type{
+	background: #ffe596;
+	border: 1px solid #bf9000;
+}
+.board-update table tfoot tr td button:last-of-type{
+	background: #feffff;
+	border: 1px solid #333333;
+}
+.board-update table tfoot tr td button{
+	cursor: pointer;
+	border-radius: 3px;
+	margin: 10px;
+    width: 130px;
+    height: 40px;
+    font-size: 14px;
+}
+.board-reply{
 	margin-top: 20px;
 }
-.border-reply tr{
+.board-reply tr{
 	background: #feffff;
 }
-.border-reply tr td{
+.board-reply tr td{
 	font-size: 18px;
 	padding: 16px;
 	vertical-align: middle;
 	border: 1px solid #d5d5d5;
 	box-sizing: border-box;
 }
-.border-reply table{
+.board-reply table{
 	margin: 0 auto;
 	width: 100%;
 }
-.border-reply #reply-form tr td div{
+.board-reply #reply-form tr td div{
 	display: table-cell;
 	vertical-align: middle;
 }
-.border-reply #reply-form tr td div:last-child{
+.board-reply #reply-form tr td div:last-child{
 	padding: 10px;
 }
 #reply-btn{
@@ -204,7 +254,7 @@
 #reply-btn:hover{
     background: #04813f;
 }
-.border-reply #reply-form tr td textarea{
+.board-reply #reply-form tr td textarea{
 	display: block;
 	font-family: inherit;
 	font-size: 15px;
@@ -215,10 +265,10 @@
 .reply-size{
 	background: #dedede !important;
 }
-.border-reply #reply-view tr td div p:last-child{
+.board-reply #reply-view tr td div p:last-child{
 	padding: 15px 0;
 }
-.border-reply #reply-view tr td div > button.out-side-btn{
+.board-reply #reply-view tr td div > button.out-side-btn{
 	border: 0;
 	padding: 0;
 	cursor: pointer;
@@ -226,11 +276,11 @@
 	font-size: 13px;
 	background: #feffff;
 }
-.border-reply #reply-view tr td div > button.out-side-btn:hover{
+.board-reply #reply-view tr td div > button.out-side-btn:hover{
 	color: #282828;
 	text-decoration: underline;
 }
-.border-reply #reply-view tr td div > button.out-side-btn:nth-child(even):before{
+.board-reply #reply-view tr td div > button.out-side-btn:nth-child(even):before{
 	content: '';
     display: inline-block;
     width: 1px;
@@ -238,7 +288,7 @@
     background: #8a8a8a;
     margin: 0 5px;
 }
-.border-reply #reply-view tr td div div{
+.board-reply #reply-view tr td div div{
 	position: relative;
 	padding: 15px 0;
 }
@@ -246,7 +296,7 @@
 	overflow-x: auto;
     word-break: break-all; 
 }
-.border-reply #reply-view tr td div div textarea{
+.board-reply #reply-view tr td div div textarea{
 	
     font-family: inherit;
     resize: none;
@@ -256,7 +306,7 @@
     overflow-x: auto;
     word-break: break-all; 
 }
-.border-reply #reply-view tr td div div button{
+.board-reply #reply-view tr td div div button{
 	position: absolute;
     top: 13px;
 	margin-left: 5px;
@@ -269,10 +319,10 @@
     font-size: 15px;
     color: #fff;
 }
-.border-reply #reply-view tr td div div button:first-of-type{
+.board-reply #reply-view tr td div div button:first-of-type{
     background: #06a250;
 }
-.border-reply #reply-view tr td div div button:last-of-type{
+.board-reply #reply-view tr td div div button:last-of-type{
     background: #a21f12;
     right: 4px;
 }

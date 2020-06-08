@@ -168,7 +168,7 @@ public class MemberController {
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("request", request);
 		model.addAttribute("rtts", rtts);
-		if( bdr.hasErrors() ) {
+		if( bdr.hasFieldErrors("email") || bdr.hasFieldErrors("nickname") || bdr.hasFieldErrors("name") ) {
 			urlPath = "user/memberInfo";
 		} else {
 			memberCommand = new MemberUpdateCommand();

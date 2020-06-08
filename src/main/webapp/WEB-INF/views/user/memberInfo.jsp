@@ -11,34 +11,39 @@ function memberDrop(){
 }
 </script>
 <div class="user-main">
-	<div class="title-wrap">
+	<div class="cont-title">
 		<h2>회원정보 수정</h2>
 	</div>
 	<form:form action="member-update" method="post" modelAttribute="memberDto">
 		<div class="cont-wrap">
-			<ul>
-				<li>
-					<form:input path="name" value="${ mDto.name }" placeholder="이름" />
-					<form:errors path="name" cssClass="error-msg" element="li"/>
-				</li>
-				<li>
-					<form:input path="nickname" value="${ mDto.nickname }" placeholder="닉네임" />
-					<form:errors path="nickname" cssClass="error-msg" element="li"/>
-				</li>
-				<li>
-					<form:input path="email" value="${ mDto.email }" placeholder="이메일" />
-					<form:errors path="email" cssClass="error-msg" element="li"/>
-				</li>
-				<li>
-					<input type="hidden" name="id" value="${sessionScope.mDto.id }" />
-					<input type="hidden" name="pw" value="${sessionScope.mDto.pw }" />
-					<button type="submit">정보 수정</button>
-				</li>
-			</ul>
-		</div>
-		<div class="cont-btn-wrap">
-			<button type="button" onclick="pwUpdatePage()">비밀번호 변경</button>
-			<button type="button" onclick="memberDrop()">회원 탈퇴</button>
+			<h3>회원님의 소중한 정보를 안전하게 관리하세요.</h3>
+			<div class="cont-info">
+				<ul>
+					<li>
+						<label for="member-name">이름</label>
+						<form:input path="name" id="member-name" value="${ mDto.name }" placeholder="이름" />
+						<form:errors path="name" cssClass="error-msg" element="li"/>
+					</li>
+					<li>
+						<label for="member-nickname">닉네임</label>
+						<form:input path="nickname" id="member-nickname" value="${ mDto.nickname }" placeholder="닉네임" />
+						<form:errors path="nickname" cssClass="error-msg" element="li"/>
+					</li>
+					<li>
+						<label for="member-email">이메일</label>
+						<form:input path="email" id="member-email" value="${ mDto.email }" placeholder="이메일" />
+						<form:errors path="email" cssClass="error-msg" element="li"/>
+					</li>
+					<li>
+						<input type="hidden" name="id" value="${sessionScope.mDto.id }" />
+						<button type="submit">정보 수정</button>
+					</li>
+				</ul>
+				<div>
+					<button type="button" onclick="pwUpdatePage()">비밀번호 변경</button>
+					<button type="button" onclick="memberDrop()">회원 탈퇴</button>
+				</div>
+			</div>
 		</div>
 	</form:form>
 </div>
