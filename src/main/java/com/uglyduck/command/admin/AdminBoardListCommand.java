@@ -23,7 +23,6 @@ public class AdminBoardListCommand implements AdminCommand {
 		String query = request.getParameter("query");
 		String beginDate = request.getParameter("beginDate");
 		String endDate = request.getParameter("endDate");
-		System.out.println("query: " + query + " beginDate: " + beginDate + " endDate: " + endDate);
 		int nowPage = 1;
 		if( currentPage != null && currentPage.length() != 0 ) {
 			nowPage = Integer.parseInt(currentPage);

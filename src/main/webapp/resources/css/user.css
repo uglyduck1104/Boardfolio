@@ -23,7 +23,7 @@
 	display: block;
 	font-size: 47px;
 	font-family: "ng";
-	margin-bottom: 23px;
+	margin-bottom: 40px;
 	letter-spacing: -3px;
 }
 .cont-wrap h3{
@@ -140,4 +140,18 @@
 }
 .cont-wrap .cont-info .error-msg{
 	margin: 10px 0 18px !important;
+}
+.cont-middle{
+	float: none !important;
+	margin: 0 auto;
+}
+.cont-middle button{
+	width: 208px !important;
+}
+.cont-middle button:last-of-type{
+    background: #feffff !important;
+    border: 1px solid #c7c7c7 !important;
+}
+.my-board td{
+	text-align: left !important;
 }

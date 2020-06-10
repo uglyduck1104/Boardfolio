@@ -5,7 +5,7 @@
 	<h2>새 글쓰기</h2>
 </div>
 
-<div class="board-wrap" >
+<div class="board-view-wrap board-update" >
 	<form action="board-write" name="formField" id="write-form" method="POST" onsubmit="return formSubmit();">
 		<table>
 			<tbody>
@@ -14,7 +14,7 @@
 				</tr>
 				<tr>
 					<td class="unreset">
-						<textarea name="contents"></textarea>
+						<div><textarea name="contents"></textarea></div>
 					</td>
 				</tr>
 			</tbody>

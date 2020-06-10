@@ -3,23 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/WEB-INF/views/user/myPageL.jsp" />
 <div class="user-main">
-	<div class="title-wrap">
+	<div class="cont-title">
 		<h2>내가 쓴 게시물</h2>
 	</div>
 	<div class="board-wrap">
 		<table class="board-list">
 			<colgroup>
-	       		<col width="20%">
-	       		<col width="*">
-	       		<col width="25%">
+	       		<col width="70%">
+	       		<col width="15%">
 	        </colgroup>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성일</th>
-				</tr>
-			</thead>
 			<tbody id="board-write-list">
 			</tbody>
 		</table>

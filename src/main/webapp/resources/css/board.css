@@ -176,7 +176,7 @@
 	border-right: 0 !important;
 	padding: 0 !important;
 }
-.board-update table tbody tr:last-child input{
+.board-update table tbody input{
 	width: 100%;
 	margin-top: 10px;
     padding: 10px;
@@ -191,15 +191,6 @@
 }
 .board-update table tfoot tr td{
 	padding: 16px;
-}
-.board-update table tfoot tr td button{
-	cursor: pointer;
-	border: 1px solid #333333;
-	border-radius: 3px;
-	margin: 10px;
-    width: 130px;
-    height: 40px;
-    font-size: 14px;
 }
 .board-update table tfoot tr td button:first-of-type{
 	background: #ffe596;

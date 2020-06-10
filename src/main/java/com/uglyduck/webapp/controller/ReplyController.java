@@ -145,6 +145,7 @@ public class ReplyController {
 			JSONObject obj = new JSONObject();
 			obj.put("board_no", list.get(i).getBoard_no());
 			obj.put("reply_con", list.get(i).getReply_con());
+			obj.put("member_id", id);
 			obj.put("reply_dt", list.get(i).getReply_dt().toString().replaceAll("-", "/"));
 			jArray.add(obj);
 		}

@@ -22,30 +22,33 @@ function pwUpdate(){
 </script>
 
 <div class="user-main">
-	<div class="title-wrap">
+	<div class="cont-title">
 		<h2>비밀번호 변경</h2>
 	</div>
 	<form action="pw-update" name="pwForm" method="post" onsubmit="return pwUpdate();">
 		<div class="cont-wrap">
-			<p>변경할 비밀번호를 입력해 주세요.</p>
-			<ul>
-				<li>
-					<input type="password" name="oldPw" placeholder="현재 비밀번호" maxlength="20" required/>
-				</li>
-				<li>
-					<input type="password" name="newPw" placeholder="새로운 비밀번호" maxlength="20" required/>
-				</li>
-				<li>
-					<input type="password" name="newPwConfirm" placeholder="새로운 비밀번호 확인" maxlength="20" required/>
-				</li>
-				<li>
-					<input type="hidden" name="id" value="${sessionScope.mDto.id }" />
-				</li>
-			</ul>
-		</div>
-		<div class="cont-btn-wrap">
-			<button type="submit">비밀번호 변경</button>
-			<button type="button" onclick="location.href='/'">취소</button>
+			<h3>변경할 비밀번호를 입력해 주세요.</h3>
+			<div class="cont-info">
+				<ul class="cont-middle">
+					<li>
+						<label for="curPw">현재 비밀번호</label>
+						<input type="password" name="oldPw" id="curPw" maxlength="20" required/>
+					</li>
+					<li>
+						<label for="newPw">새 비밀번호</label>
+						<input type="password" name="newPw" id="newPw" maxlength="20" required/>
+					</li>
+					<li>
+						<label for="newPwCon">새 비밀번호 확인</label>
+						<input type="password" name="newPwConfirm" id="newPwCon" maxlength="20" required/>
+					</li>
+					<li>
+						<input type="hidden" name="id" value="${sessionScope.mDto.id }" />
+						<button type="submit">비밀번호 변경</button>
+						<button type="button" onclick="location.href='/'">취소</button>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</form>
 </div>

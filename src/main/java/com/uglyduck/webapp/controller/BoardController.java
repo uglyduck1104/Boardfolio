@@ -156,6 +156,7 @@ public class BoardController {
 		for( int i = 0; i < list.size(); i++ ) {
 			JSONObject obj = new JSONObject();
 			obj.put("board_no", list.get(i).getBoard_no());
+			obj.put("member_id", id);
 			obj.put("title", list.get(i).getTitle());
 			obj.put("board_dt", list.get(i).getBoard_dt().toString().replaceAll("-", "/"));
 			jArray.add(obj);
