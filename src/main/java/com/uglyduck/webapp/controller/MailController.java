@@ -56,7 +56,7 @@ public class MailController {
 			PrintWriter out = response.getWriter();
 			StringBuilder sb = new StringBuilder();
 			sb.append("<script>")
-			  .append("alert('메일을 발송했습니다. 이메일을 확인해주세요.');")
+			  .append("location.href='email-info';")
 			  .append("</script>");
 			out.println(sb.toString());
 			out.flush();
@@ -64,6 +64,11 @@ public class MailController {
 			e.printStackTrace();
 		}
 		return "login/loginPage";
+	}
+	
+	@RequestMapping("email-info")
+	public String emailInfo() {
+		return "login/emailInfo";
 	}
 	
 

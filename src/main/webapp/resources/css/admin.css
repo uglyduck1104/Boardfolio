@@ -1,0 +1,99 @@
+@charset "UTF-8";
+.admin-main .search-wrap #searchInput{
+    padding: 6px 58px 6px 6px;
+    font-size: 15px;
+    width: 100%;
+    font-family: "ngB";
+}
+.admin-main .search-wrap{
+	float: right;
+	left: 0px;
+	top: -3px;
+	width: 26%;
+}
+.admin-main .search-wrap #searchBtn{
+    left: 213px;
+    top: 1px;
+}
+.admin-main .search-wrap .ico{
+    top: 1px;
+    left: 186px;
+}
+.admin-member-wrap{
+    padding-top: 20px;
+    clear: both;
+}
+.admin-member-wrap table{
+	width: 100%;
+	margin: 0 auto;
+}
+.admin-member-wrap thead #head-line{
+    background: #373737;
+    color: #ffffff;
+}
+.admin-member-area thead tr th {
+    padding: 13px;
+    font-family: "ng";
+    text-align: center;
+}
+.admin-member-area tbody tr td {
+    padding: 13px;
+    border-bottom: 1px solid #333333;
+    text-align: left;
+    vertical-align: middle;
+    overflow-x: auto;
+    word-break: break-all;
+}
+.admin-member-area tbody tr td a {
+    background: #333333;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 13px;
+    border-radius: 5px;
+}
+.admin-member-area tbody tr td:nth-of-type(3) {
+	text-align: center;
+}
+.admin-member-area tbody tr td:last-of-type {
+	text-align: center;
+}
+.admin-board-main .search-wrap{
+	width: 100%;
+}
+.admin-board-main .search-block:first-of-type{
+	float: left;
+}
+.admin-board-main .search-block:last-of-type{
+	float: right;
+}
+.admin-board-main .search-block input{
+    padding: 6px 58px 6px 6px;
+    font-size: 15px;
+    font-family: "ngB";
+}
+.admin-board-main .search-block label{
+    font-size: 16px;
+    font-family: "nbg";
+    margin-bottom: 5px;
+    display: block;
+}
+.admin-board-main .search-wrap #searchBtn{
+    top: 22px;
+    right: 3px;
+}
+.admin-board-main .search-wrap .ico{
+    top: 22px;
+    right: 31px;
+}
+.admin-board-main .admin-member-area tbody tr td:first-of-type {
+	text-align: center;
+}
+.admin-board-main .admin-member-area tbody tr td:nth-of-type(3) {
+	text-align: left;
+}
+.admin-board-main .admin-member-area tbody tr td:nth-of-type(4) {
+	text-align: right;
+}
+.admin-board-main .admin-member-area tbody tr td:nth-of-type(5) {
+	text-align: center;
+}

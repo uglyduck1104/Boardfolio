@@ -44,7 +44,7 @@ if( isPwUpdate == "YES" ){
 </script>
 
 <div class="login-form-wrap">
-	<form id="login-form" action="login" method="post" onsubmit="return formChk(this);">
+	<form id="login-form" action="login" method="post"">
 		<div class="duck-ico">
 			<img alt="duck-icon" src="./resources/images/login-duck-icon.png" />
 		</div>
@@ -55,14 +55,14 @@ if( isPwUpdate == "YES" ){
 			<c:choose>
 				<c:when test="${ cookie.id ne null }">	
 					<ul>
-						<li><input type="text" name="id" value="${ cookie.id.getValue() }" placeholder="아이디" /></li>
-						<li><input type="password" name="pw" placeholder="비밀번호" /></li>
+						<li><input type="text" name="id" value="${ cookie.id.getValue() }" placeholder="아이디" required/></li>
+						<li><input type="password" name="pw" placeholder="비밀번호" required/></li>
 					</ul>
 				</c:when>
 				<c:otherwise>	
 					<ul>
-						<li><input type="text" name="id" placeholder="아이디" /></li>
-						<li><input type="password" name="pw" placeholder="비밀번호" /></li>
+						<li><input type="text" name="id" placeholder="아이디" required/></li>
+						<li><input type="password" name="pw" placeholder="비밀번호" required/></li>
 					</ul>
 				</c:otherwise>
 			</c:choose>

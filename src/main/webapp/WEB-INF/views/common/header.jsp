@@ -12,6 +12,7 @@
 <link href="<c:url value="/resources/css/board.css"/>" type="text/css" rel="stylesheet">
 <link href="<c:url value="/resources/css/unreset.css"/>" type="text/css" rel="stylesheet">
 <link href="<c:url value="/resources/css/user.css"/>" type="text/css" rel="stylesheet">
+<link href="<c:url value="/resources/css/admin.css"/>" type="text/css" rel="stylesheet">
 <link href="<c:url value="/resources/css/datepicker3.css" />" type="text/css" rel="stylesheet" >
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

@@ -61,7 +61,7 @@ function deleteBoard(){
 							<span id="boardNo" class="bNum">${bDto.board_no }</span>
 							<h2>${bDto.title }</h2>
 							<div class="title-navi">
-								<c:if test="${ sessionScope.mDto.id eq bDto.member_id }">
+								<c:if test="${ sessionScope.mDto.id eq bDto.member_id or sessionScope.mDto.id eq 'admin'}">
 									<button type="button" onclick="updatePage()">수정</button>
 									<button type="button" onclick="deleteBoard()">삭제</button>
 								</c:if>

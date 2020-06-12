@@ -26,8 +26,7 @@
 }
 .check-wrap .chk-area{
 	display: inline-block;
-   	position: relative;
-    left: -20px;
+	float: left;
 }
 .check-wrap .chk-area input{
 	position: absolute;
@@ -46,16 +45,9 @@
 .check-wrap .find-area a{
 	font-size: 15px;
 }
-.check-wrap .find-area a:last-child:before{
-    content: '';
-    display: inline-block;
-    width: 1px;
-    height: 15px;
-    margin: 0px 5px 0;
-    background-color: #919191;
-    position: relative;
-    top: 2px;
-    left: -2px;
+.check-wrap .find-area a:hover{
+	color: #2400ab;
+	border-bottom: 1px solid #2400ab;
 }
 .chk-area input + label:before{
 	content: '';
@@ -77,4 +69,62 @@
    	margin-top: 20px;
 	width: 307px;
     background: #4077B3;
+}
+.find-wrap{
+	text-align: center;
+}
+.find-form{
+    background: #ffffff;
+    padding: 30px;
+    width: 650px;
+    margin: 0 auto;
+    border-top: 1px solid #333333;
+}
+.find-form h3{
+	font-size: 17px;
+	color: #333333;
+	font-family: "nbg";
+}
+.find-form ul{
+	width: 450px;
+	margin: 0 auto;
+}
+.find-form .find-info{
+	background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #eeeeee;
+    font-size: 16px;
+    margin: 15px auto;
+}
+.find-form .find-info p{
+	margin: 6px 0;
+}
+.find-form ul li input{
+	width: 100%;
+	font-size: 14px;
+	padding: 10px;
+}
+.find-form ul li .error-msg{
+	margin: 7px 0 !important;
+}
+.find-btn-wrap ul li {
+    display: block;
+    width: 100%;
+}
+.find-btn-wrap ul li button {
+	border: 0;
+	cursor: pointer;
+	color: #ffffff;
+    font-size: 17px;
+    font-family: "nbgB";
+    width: 100%;
+    padding: 10px 30px;
+    margin-top: 16px;
+}
+.find-btn-wrap ul li:first-of-type button {
+	background: #4077B3;
+}
+.find-btn-wrap ul li:last-of-type button {
+	background: #686868;
 }
