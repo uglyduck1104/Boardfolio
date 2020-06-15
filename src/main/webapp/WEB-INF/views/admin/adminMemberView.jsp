@@ -11,7 +11,13 @@
 		return false;
 	}
 </script>
-<div class="board-wrap">
+<div class="admin-view-wrap">
+	<c:if test="${ mDto.role eq 'user' }">
+		<form action="admin-member-drop" method="post" onsubmit="return memberDrop();">
+			<input type="hidden" name="id" value="${ mDto.id }" /> 
+			<button type="submit">강제 탈퇴</button>
+		</form>
+	</c:if>
 	<div class="member-title">
 		<h2>기본정보</h2>
 	</div>
@@ -68,25 +74,27 @@
 					<td>${mDto.ip }</td>
 				</tr>
 			</c:if>
-			<tr>
 			<c:choose>
 				<c:when test="${ mDto.role eq 'user' }">
-					<td>최근 접속일</td>
+					<tr>
+						<td>최근 접속일</td>
 					<c:if test="${ mDto.log ne null }">
 						<td><fmt:formatDate value="${mDto.log }" type="both"/></td>
 					</c:if>
 					<c:if test="${ mDto.log eq null }">
 						<td>접속 기록이 없습니다.</td>
 					</c:if>
+					</tr>
 				</c:when>
 				<c:otherwise>
-					<td>탈퇴일</td>
+					<tr>
+						<td>탈퇴일</td>
 					<c:if test="${ mDto.log ne null }">
 						<td><fmt:formatDate value="${mDto.log }" type="both"/></td>
 					</c:if>
+					</tr>
 				</c:otherwise>	
 			</c:choose>
-			</tr>
 			<tr>
 				<td>등록한 게시물 개수</td>
 				<c:if test="${ boardCount gt 0 }">
@@ -95,7 +103,7 @@
 				<c:if test="${ boardCount le 0 }">
 					<td>0개</td>
 				</c:if>
-			<tr>
+			</tr>
 			<tr>
 				<td>등록한 댓글 수</td>
 				<c:if test="${ replyCount gt 0 }">
@@ -107,11 +115,5 @@
 			</tr>
 		</tbody>
 	</table>
-	<c:if test="${ mDto.role eq 'user' }">
-		<form action="admin-member-drop" method="post" onsubmit="return memberDrop();">
-			<input type="hidden" name="id" value="${ mDto.id }" /> 
-			<button type="submit">강제 탈퇴</button>
-		</form>
-	</c:if>
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

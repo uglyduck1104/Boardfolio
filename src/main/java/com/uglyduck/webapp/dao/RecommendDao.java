@@ -17,5 +17,6 @@ public interface RecommendDao {
 	public int setRecommend(String memberId, int boardNo, String recVote);
 	public int updateRecommend(String memberId, int boardNo, String recVote);
 	public int resetRecommend(String memberId, int boardNo);
+	public int memberRecommendListSize(String id);
 	
 }

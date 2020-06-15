@@ -22,6 +22,7 @@
 				<ul class="menu-list">
 					<li><a href="member-write-list">내가 쓴 게시물</a></li>
 					<li><a href="member-reply-list">내가 쓴 댓글</a></li>
+					<li><a href="member-reco-list">내가 추천한 게시물</a></li>
 				</ul>
 			</dd>
 		</dl>

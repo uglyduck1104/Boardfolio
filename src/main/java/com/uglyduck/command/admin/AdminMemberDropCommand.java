@@ -22,7 +22,6 @@ public class AdminMemberDropCommand implements AdminCommand {
 		rtts.addFlashAttribute("isAdminMemberDrop", "YES");
 		rtts.addFlashAttribute("isAdminMemberDropRes", mDao.dropMember(id));
 		
-
 	}
 
 }

@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ROWNUM R_NUM, R.*
 			FROM
 				(SELECT
-					A.BOARD_NO, A.REPLY_CON, A.REPLY_DT
+					*
 				FROM 
 					REPLY A
 				WHERE
@@ -65,6 +65,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				R)
 		WHERE
 			R_NUM BETWEEN #{param2} AND #{param3}
+	</select>
+	
+	<select id="memberReplyListSize" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM 
+			REPLY
+		WHERE
+			MEMBER_ID = #{param1}
 	</select>
 	
 </mapper>

@@ -17,4 +17,5 @@ public interface ReplyDao {
 	public int replyDrop(int replyNo);
 	// 내가 쓴 댓글 조회
 	public List<ReplyDto> memberReplyList(String id, int begin, int end);
+	public int memberReplyListSize(String id);
 }

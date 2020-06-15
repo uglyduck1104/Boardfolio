@@ -47,6 +47,7 @@
 			<mvc:mapping path="/pw-update" />
 			<mvc:mapping path="/member-write-list" />
 			<mvc:mapping path="/member-reply-list" />
+			<mvc:mapping path="/member-reco-list" />
 			<beans:ref bean="memberInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

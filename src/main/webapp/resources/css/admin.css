@@ -97,3 +97,39 @@
 .admin-board-main .admin-member-area tbody tr td:nth-of-type(5) {
 	text-align: center;
 }
+.admin-view-wrap .member-title{
+	border-bottom: 1px solid #333333;
+	padding: 8px;
+	margin: 20px 0 3px;
+}
+.admin-view-wrap .member-title:first-of-type{
+	margin: 0 0 3px;
+}
+.admin-view-wrap h2{
+	font-size: 18px;
+}
+.admin-view-wrap table{
+	margin: 0 auto;
+	width: 100%;
+}
+.admin-view-wrap table tr td{
+	padding: 16px;
+}
+.admin-view-wrap table tr td:first-of-type {
+    width: 360px;
+}
+.admin-view-wrap table tr td:last-of-type {
+	font-family: "ng";
+}
+.admin-view-wrap form{
+	text-align: right;
+}
+.admin-view-wrap form button{
+	border: 0;
+	background: #333333;
+	color: #ffffff;
+	font-size: 16px;
+	border-radius: 3px;
+	padding: 6px 12px;
+	
+}

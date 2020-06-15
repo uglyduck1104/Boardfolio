@@ -9,7 +9,7 @@
 	<div class="board-wrap">
 		<table class="board-list">
 			<colgroup>
-	       		<col width="70%">
+	       		<col width="50%">
 	       		<col width="15%">
 	        </colgroup>
 			<tbody id="board-write-list">

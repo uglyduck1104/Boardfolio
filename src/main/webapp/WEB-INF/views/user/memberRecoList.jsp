@@ -4,7 +4,7 @@
 <jsp:include page="/WEB-INF/views/user/myPageL.jsp" />
 <div class="user-main">
 	<div class="cont-title">
-		<h2>내가 쓴 댓글</h2>
+		<h2>내가 추천한 게시물</h2>
 	</div>
 	<div class="board-wrap">
 		<table class="board-list">
@@ -12,11 +12,11 @@
 	       		<col width="50%">
 	       		<col width="15%">
 	        </colgroup>
-			<tbody id="reply-write-list">
+			<tbody id="board-reco-list">
 			</tbody>
 		</table>
 		<input type="hidden" id="id" value=${ sessionScope.mDto.id } />
 	</div>
 </div>
-<script type="text/javascript" src="resources/js/myReplyList.js" ></script>
+<script type="text/javascript" src="resources/js/myRecoList.js" ></script>
 <jsp:include page="/WEB-INF/views/user/myPageR.jsp" />

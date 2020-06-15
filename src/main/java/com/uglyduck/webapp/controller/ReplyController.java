@@ -1,5 +1,6 @@
 package com.uglyduck.webapp.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,8 +39,10 @@ public class ReplyController {
 	@ResponseBody
 	public String getReplyList(@RequestParam int boardNo, HttpServletRequest request) {
 		ReplyDao rDao = sqlSession.getMapper(ReplyDao.class);
+		
 		HttpSession session = request.getSession();
 		List<ReplyDto> rList = rDao.getReplyList(boardNo);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd a h:mm:ss");
 		MemberDto mDto = null;
 		String aId = null;
 		String mId = null;
@@ -55,7 +58,7 @@ public class ReplyController {
 			obj.put("reply_no", rList.get(i).getReply_no());
 			obj.put("member_id", rList.get(i).getMember_id());
 			obj.put("reply_con", rList.get(i).getReply_con());
-			obj.put("reply_dt", rList.get(i).getReply_dt().toString().replaceAll("-", ""));
+			obj.put("reply_dt", sdf.format(rList.get(i).getReply_dt()));
 			aId = rList.get(i).getMember_id();
 			if( mDto != null ) {
 				if( !mId.equals(aId) ) {
@@ -129,6 +132,7 @@ public class ReplyController {
 	@ResponseBody
 	public String replyAjaxList(HttpServletRequest request) {
 		ReplyDao rDao = sqlSession.getMapper(ReplyDao.class);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd a h:mm:ss");
 		String id = request.getParameter("id");
 		String currentPage = request.getParameter("currentPage");
 		int nowPage = 1;
@@ -145,8 +149,8 @@ public class ReplyController {
 			JSONObject obj = new JSONObject();
 			obj.put("board_no", list.get(i).getBoard_no());
 			obj.put("reply_con", list.get(i).getReply_con());
-			obj.put("member_id", id);
-			obj.put("reply_dt", list.get(i).getReply_dt().toString().replaceAll("-", "/"));
+			obj.put("member_id", list.get(i).getMember_id());
+			obj.put("reply_dt", sdf.format(list.get(i).getReply_dt()));
 			jArray.add(obj);
 		}
 		jObject.put("data", jArray);

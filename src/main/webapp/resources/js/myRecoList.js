@@ -1,11 +1,11 @@
 $(function(){
 	
-	getMyReplyList();
+	getMyRecommendList();
 	
-	function getMyReplyList(){
+	function getMyRecommendList(){
 		var id = $("#id").val();
 		$.ajax({
-			url: "reply-ajax-list",
+			url: "reco-ajax-list",
 			type: "GET",
 			dataType: "json",
 			data: {"id" : id},
@@ -14,26 +14,26 @@ $(function(){
 				if( data["dataSize"] > 0){
 					$.each(data.data, function(index, item){
 						var board_no = this.board_no; 
-						var reply_con = this.reply_con; 
+						var title = this.title;
 						var member_id = this.member_id;
-						var reply_dt = this.reply_dt;
-						htmls += `<tr class='reply-list-${index} my-board'>`;
+						var board_dt = this.board_dt;
+						htmls += `<tr class='board-list-${index} my-board'>`;
 						htmls += "<td>";
 						htmls += "<span class='bNum'>" + board_no + "</span>";
-						htmls += "<p><a href=board-view?board_no=" + board_no + ">" + reply_con + "</a></p>";
+						htmls += "<p><a href=board-view?board_no=" + board_no + ">" + title + "</a></p>";
 						htmls += "</td>";
 						htmls += "<td>";
 						htmls += "<span>" + member_id + "</span>";
-						htmls += "<p class='date-format'>" + reply_dt + "</p>";
+						htmls += "<p class='date-format'>" + board_dt + "</p>";
 						htmls += "</td>";
 						htmls += "</tr>";
 					});
 				} else {
-					htmls += "<tr><td colspan='2'>등록된 댓글이 없습니다.</td></tr>";
+					htmls += "<tr><td colspan='2'>추천한 게시물이 없습니다.</td></tr>";
 				}
 				if(data["dataSize"] >= 8)
-					htmls += "<tr id='more-btn'><td colspan='2'><button type='button' id='more-btn' onclick='getMoreReplyList(this.value);' value='1'>+ 더 보기</button></td><tr>";
-				$("#reply-write-list").append(htmls);
+					htmls += "<tr id='more-btn'><td colspan='2'><button type='button' id='more-btn' onclick='getMoreRecoList(this.value);' value='1'>+ 더 보기</button></td><tr>";
+				$("#board-reco-list").append(htmls);
 			},
 			error: function(error){
 				alert("에러 발생 : " + error);
@@ -41,11 +41,11 @@ $(function(){
 		});
 	}
 });
-function getMoreReplyList(btnValue){
+function getMoreRecoList(btnValue){
 	var id = document.getElementById("id").value;
 	var currentPage = Number(btnValue) + 1;
 	jQuery.ajax({
-		url: "reply-ajax-list",
+		url: "reco-ajax-list",
 		type: "GET",
 		dataType: "json",
 		data: {"id" : id, "currentPage" : currentPage},
@@ -54,28 +54,27 @@ function getMoreReplyList(btnValue){
 			if( data["dataSize"] > 0){
 				$.each(data.data, function(index, item){
 					var board_no = this.board_no; 
-					var reply_con = this.reply_con; 
+					var title = this.title; 
 					var member_id = this.member_id;
-					var reply_dt = this.reply_dt;
-					htmls += `<tr class='reply-list-${index} my-board'>`;
+					var board_dt = this.board_dt;
+					htmls += `<tr class='board-list-${index} my-board'>`;
 					htmls += "<td>";
 					htmls += "<span class='bNum'>" + board_no + "</span>";
-					htmls += "<p><a href=board-view?board_no=" + board_no + ">" + reply_con + "</a></p>";
+					htmls += "<p><a href=board-view?board_no=" + board_no + ">" + title + "</a></p>";
 					htmls += "</td>";
 					htmls += "<td>";
 					htmls += "<span>" + member_id + "</span>";
-					htmls += "<p class='date-format'>" + reply_dt + "</p>";
+					htmls += "<p class='date-format'>" + board_dt + "</p>";
 					htmls += "</td>";
 					htmls += "</tr>";
 				});
-			} else {
-				htmls += "<tr><td colspan='2'>더 불러올 댓글이 없습니다.</td></tr>";
+			} 
+			if( data["dataSize"] >= 8 ) {
+				htmls += "<tr id='more-btn'><td colspan='2'><button type='button' onclick='getMoreBoardList(this.value);' " + "value=" + currentPage + ">+ 더 보기</button></td><tr>";
 			}
-			if(data["dataSize"] >= 8)
-				htmls += "<tr id='more-btn'><td colspan='2'><button type='button' onclick='getMoreReplyList(this.value);' " + "value=" + currentPage + ">+ 더 보기</button></td><tr>";
 			$("#more-btn").remove();
-			$("#reply-write-list").append(htmls);
-			var height = document.getElementById('reply-write-list').getBoundingClientRect().height;
+			$("#board-write-list").append(htmls);
+			var height = document.getElementById('board-reco-list').getBoundingClientRect().height;
 			document.getElementById("content").style.minHeight = height + "px";
 		},
 		error: function(error){

@@ -104,7 +104,7 @@ button{
 /* common-header */
 #header{
 	width: 100%;
-	background: #FFECB3;
+    background: #FFECB3;
 }
 #header .gnb-wrap{
 	max-width: 1280px;
@@ -113,10 +113,12 @@ button{
 .gnb-wrap .gnb-menu{
 	position: relative;
     max-width: 1920px;
-    min-width: 1260px;
+    min-width: 1280px;
     height: 81px;
     margin: 0 auto;
     text-align: center;
+    background: #FFECB3;
+    padding-right: 40px;
 } 
 .gnb-menu .logo-wrap{
 	float: left;
@@ -167,10 +169,13 @@ button{
 }
 .footer-wrap{
 	background: #202020;
-	padding: 20px;
-	color: #808080;
-	letter-spacing: -0.8px;
-	font-size: 15px;
+    padding: 20px;
+    color: #808080;
+    letter-spacing: -0.8px;
+    font-size: 15px;
+    min-width: 1280px;
+    margin: 0 auto;
+    height: 68px;
 }
 .footer-wrap p:first-child{
 	margin-bottom: 20px;
@@ -178,7 +183,50 @@ button{
 .footer-wrap p:last-child{
 	color: #ffffff;
 }
-
+/* common-myPage */
+.my-page-cont .main-top{
+    text-align: left;
+    font-size: 22px;
+    font-family: "nbgB";
+    padding: 0 24px;
+    background: linear-gradient(-90deg, #7AB600, #7AB600 45%, #E1EE06);
+    line-height: 64px;
+}
+.my-page-cont .main-bottom{
+	width: 100%;
+	display: table;
+    border-right: 1px solid #bebebe;
+    border-left: 1px solid #bebebe;
+    border-bottom: 1px solid #bebebe;
+    box-sizing: border-box;
+}
+.my-page-cont .main-bottom ul{
+	padding: 30px 0px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+.my-page-cont .main-bottom .mid-col:before{
+	content: '';
+	display: inline-block;
+	width: 1px;
+	height:67px;
+	background: #bebebe;
+	float:left;
+}
+.my-page-cont .main-bottom ul li a{
+	display: inline-block;
+	font-size: 18px;
+	font-family: "ngB";
+	margin-bottom: 20px;
+}
+.my-page-cont .main-bottom ul li a:hover{
+	text-decoration: underline;
+}
+.my-page-cont .main-bottom ul li p{
+	font-size: 30px;
+	font-family: "nbgB";
+}
 /* common-items */
 .sub-title{
 	margin-bottom: 30px;

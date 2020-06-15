@@ -1,6 +1,7 @@
 package com.uglyduck.webapp.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
 
@@ -141,6 +142,7 @@ public class BoardController {
 	@RequestMapping(value="board-ajax-list", produces="application/json; charset=UTF-8", method = RequestMethod.GET)
 	public String boardAjaxList(HttpServletRequest request) {
 		BoardDao bDao = sqlSession.getMapper(BoardDao.class);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd a h:mm:ss");
 		String id = request.getParameter("id");
 		String currentPage = request.getParameter("currentPage");
 		int nowPage = 1;
@@ -156,9 +158,46 @@ public class BoardController {
 		for( int i = 0; i < list.size(); i++ ) {
 			JSONObject obj = new JSONObject();
 			obj.put("board_no", list.get(i).getBoard_no());
-			obj.put("member_id", id);
+			obj.put("member_id", list.get(i).getMember_id());
 			obj.put("title", list.get(i).getTitle());
-			obj.put("board_dt", list.get(i).getBoard_dt().toString().replaceAll("-", "/"));
+			obj.put("board_dt", sdf.format(list.get(i).getBoard_dt()));
+			jArray.add(obj);
+		}
+		jObject.put("data", jArray);
+		jObject.put("dataSize", list.size());
+		return jObject.toJSONString();
+	}
+	
+	
+	@RequestMapping("member-reco-list")
+	public String memberRecoList() {
+		return "user/memberRecoList";
+	}
+	
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@RequestMapping(value="reco-ajax-list", produces="application/json; charset=UTF-8", method = RequestMethod.GET)
+	public String recoAjaxList(HttpServletRequest request) {
+		BoardDao bDao = sqlSession.getMapper(BoardDao.class);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd a h:mm:ss");
+		String id = request.getParameter("id");
+		String currentPage = request.getParameter("currentPage");
+		int nowPage = 1;
+		if( currentPage != null && currentPage.length() != 0 ) {
+			nowPage = Integer.parseInt(currentPage);
+		}
+		int recordPerPage = 8;
+		int begin = (nowPage - 1) * recordPerPage + 1; 
+		int end = begin + recordPerPage - 1;
+		List<BoardDto> list = bDao.memberRecommendList(id, begin, end);
+		JSONObject jObject = new JSONObject();
+		JSONArray jArray = new JSONArray();
+		for( int i = 0; i < list.size(); i++ ) {
+			JSONObject obj = new JSONObject();
+			obj.put("board_no", list.get(i).getBoard_no());
+			obj.put("member_id", list.get(i).getMember_id());
+			obj.put("title", list.get(i).getTitle());
+			obj.put("board_dt", sdf.format(list.get(i).getBoard_dt()));
 			jArray.add(obj);
 		}
 		jObject.put("data", jArray);

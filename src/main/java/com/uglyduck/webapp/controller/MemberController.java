@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.uglyduck.command.member.MemberActivityCommand;
 import com.uglyduck.command.member.MemberCommand;
 import com.uglyduck.command.member.MemberCookieSaveCommand;
 import com.uglyduck.command.member.MemberDropCommand;
@@ -129,7 +130,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("my-page")
-	public String myPage() {
+	public String myPage(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		memberCommand = new MemberActivityCommand();
+		memberCommand.execute(sqlSession, model);
 		return "user/myPage";
 	}
 	

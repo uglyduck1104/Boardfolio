@@ -45,6 +45,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD
 	</select>
 	
+	<select id="memberBoardListSize" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM 
+			BOARD
+		WHERE
+			MEMBER_ID = #{param1}
+	</select>
+	
 	<insert id="boardWrite" parameterType="boardDto">
 		INSERT INTO
 			BOARD(BOARD_NO, MEMBER_ID, TITLE, CONTENTS, BOARD_DT, BOARD_IP, HITS_CNT, GOOD_CNT, REPLY_CNT)
@@ -159,11 +168,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ROWNUM R_NUM, R.*
 			FROM
 				(SELECT 
-					A.BOARD_NO, A.TITLE, A.BOARD_DT
+					A.BOARD_NO, A.MEMBER_ID ,A.TITLE, A.BOARD_DT
 				FROM 
 					BOARD A
 				WHERE 
 					MEMBER_ID = #{param1} 
+				ORDER BY
+					BOARD_DT DESC) 
+				R)
+		WHERE
+			R_NUM BETWEEN #{param2} AND #{param3}
+	</select>
+	
+	<select id="memberRecommendList" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					A.BOARD_NO, A.MEMBER_ID, A.TITLE, A.BOARD_DT
+				FROM 
+					BOARD A, RECOMMEND B
+				WHERE 
+					A.BOARD_NO = B.BOARD_NO AND B.MEMBER_ID = #{param1} AND B.REC_VOTE='good' 
 				ORDER BY
 					BOARD_DT DESC) 
 				R)
@@ -244,4 +273,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</otherwise>
 		</choose>
 	</select>
+	
 </mapper>
