@@ -7,7 +7,7 @@ import com.uglyduck.webapp.dto.BoardDto;
  * 
  * @author Uglyduck
  * getBoardList: 게시물 전체 목록 조회
- * getBoardListSize: 게시물 개수 조회
+ * getBoardListSize: 게시물 전체 개수 조회
  * boardWrite: 게시물 추가
  * boardView: 게시물 상세 보기
  * boardUpdate: 게시물 수정

@@ -4,7 +4,7 @@
 <jsp:include page="/WEB-INF/views/user/myPageL.jsp" />
 <div class="user-main">
 	<div class="cont-title">
-		<h2>내가 추천한 게시물</h2>
+		<h2>내가 추천한 게시글</h2>
 	</div>
 	<div class="board-wrap">
 		<table class="board-list">

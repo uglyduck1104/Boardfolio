@@ -8,6 +8,7 @@ public interface ReplyDao {
 
 	// 댓글 조회
 	public List<ReplyDto> getReplyList(int boardNo);
+	public int getReplyListSize();
 	public int getReplyTotalCount(int boardNo);
 	// 댓글 삽입
 	public int replyWrite(ReplyDto rDto);

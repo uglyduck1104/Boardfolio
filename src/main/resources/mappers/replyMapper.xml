@@ -16,6 +16,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			REPLY_NO DESC
 	</select>
 	
+	<select id="getReplyListSize" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM 
+			REPLY
+	</select>
+	
 	<select id="getReplyTotalCount" resultType="int">
 		SELECT 
 			COUNT(*)	

@@ -214,16 +214,48 @@ button{
 	background: #bebebe;
 	float:left;
 }
-.my-page-cont .main-bottom ul li a{
+.my-page-cont .main-bottom div{
+	display: table;
+	width: 100%;
+}
+.my-page-cont .main-bottom a{
+	display: block;
+	font-size: 18px;
+	font-family: "ngB";
+	margin-bottom: 20px;
+	text-align: center;
+}
+.my-page-cont .main-bottom .caption-title{
+    display: table-caption;
+    position: relative;
+    font-size: 21px;
+    margin: 0 auto;
+    padding: 10px 23px;
+    text-align: left;
+    background: #dadada;
+}
+.my-page-cont .main-bottom .caption-title:after{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 11px;
+    margin: 0 3px;
+    background: url(../images/iconset.png) no-repeat;
+    background-size: 395px;
+    background-position: -228px -47px;
+}
+.my-page-cont .main-bottom span{
 	display: inline-block;
 	font-size: 18px;
 	font-family: "ngB";
 	margin-bottom: 20px;
 }
-.my-page-cont .main-bottom ul li a:hover{
+.my-page-cont .main-bottom a:hover{
 	text-decoration: underline;
 }
-.my-page-cont .main-bottom ul li p{
+.my-page-cont .main-bottom p{
 	font-size: 30px;
 	font-family: "nbgB";
 }

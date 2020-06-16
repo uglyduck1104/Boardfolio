@@ -29,7 +29,7 @@ $(function(){
 						htmls += "</tr>";
 					});
 				} else {
-					htmls += "<tr><td colspan='2'>추천한 게시물이 없습니다.</td></tr>";
+					htmls += "<tr><td colspan='2'>추천한 게시글이 없습니다.</td></tr>";
 				}
 				if(data["dataSize"] >= 8)
 					htmls += "<tr id='more-btn'><td colspan='2'><button type='button' id='more-btn' onclick='getMoreRecoList(this.value);' value='1'>+ 더 보기</button></td><tr>";

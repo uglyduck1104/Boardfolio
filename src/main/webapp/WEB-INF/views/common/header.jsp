@@ -57,7 +57,7 @@ console.log(isLogout);
 						<c:if test="${ sessionScope.mDto ne null }">
 							<ul>
 								<li>${ sessionScope.mDto.id }님</li>
-								<li><a href="my-page?id=${ sessionScope.mDto.id }">My page</a></li>
+								<li><a href="my-page">My page</a></li>
 								<li><a href="logout">Logout</a></li>
 							</ul>
 						</c:if>
