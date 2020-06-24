@@ -71,16 +71,17 @@ public class MemberController {
 			if(idCheckResult.getRole().equals("withdraw")) { // 탈퇴 계정 처리
 				rtts.addFlashAttribute("failure", "withDrawId");
 				urlPath = "redirect:login-form";
-			}
-			if( BCrypt.checkpw(pw, idCheckResult.getPw() ) ) { // 암호화된 비밀번호와 평문 비교
-				memberCommand = new MemberCookieSaveCommand(); // 쿠키 저장
-				memberCommand.execute(sqlSession, model); 
-				mDao.updateLog(ip, id); // 로그인 시 최근 접속 ip 업데이트
-				session.setAttribute("mDto", idCheckResult);
-				urlPath = "redirect:/";
-			} else { // 아이디 비밀번호 검증 실패
-				rtts.addFlashAttribute("failure", "missMatchIdPw");
-				urlPath = "redirect:login-form";
+			} else {
+				if( BCrypt.checkpw(pw, idCheckResult.getPw()) ) { // 암호화된 비밀번호와 평문 비교
+					memberCommand = new MemberCookieSaveCommand(); // 쿠키 저장
+					memberCommand.execute(sqlSession, model); 
+					mDao.updateLog(ip, id); // 로그인 시 최근 접속 ip 업데이트
+					session.setAttribute("mDto", idCheckResult);
+					urlPath = "redirect:/";
+				} else { // 아이디 비밀번호 검증 실패
+					rtts.addFlashAttribute("failure", "missMatchIdPw");
+					urlPath = "redirect:login-form";
+				}
 			}
 		} else { // 해당 아이디가 없음
 			rtts.addFlashAttribute("failure", "noneId");
@@ -93,7 +94,7 @@ public class MemberController {
 	public String logout(RedirectAttributes rtts, HttpSession session) {
 		rtts.addFlashAttribute("isLogout", "YES");
 		session.invalidate(); 
-        return "redirect:/main";
+        return "redirect:/";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -220,7 +221,7 @@ public class MemberController {
 		model.addAttribute("request", request);
 		memberCommand = new MemberDropCommand();
 		memberCommand.execute(sqlSession, model);
-		return "redirect:main";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("find-account-page")

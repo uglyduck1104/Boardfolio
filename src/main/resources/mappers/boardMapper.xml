@@ -274,4 +274,80 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose>
 	</select>
 	
+	<select id="todayBestList" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT 
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					BOARD_NO, TITLE, CONTENTS, MEMBER_ID, BOARD_DT
+				FROM 
+					BOARD
+				WHERE
+					BOARD_DT BETWEEN SYSDATE-1 AND SYSDATE	
+				ORDER BY
+					GOOD_CNT DESC) R)
+		WHERE 
+			R_NUM BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="weekBestList" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT 
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					BOARD_NO, TITLE, CONTENTS, MEMBER_ID, BOARD_DT
+				FROM 
+					BOARD
+				WHERE
+					BOARD_DT BETWEEN SYSDATE-7 AND SYSDATE	
+				ORDER BY
+					GOOD_CNT DESC) R)
+		WHERE 
+			R_NUM BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="monthBestList" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT 
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					BOARD_NO, TITLE, CONTENTS, MEMBER_ID, BOARD_DT
+				FROM 
+					BOARD
+				WHERE
+					BOARD_DT BETWEEN SYSDATE-30 AND SYSDATE	
+				ORDER BY
+					GOOD_CNT DESC) R)
+		WHERE 
+			R_NUM BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="yearBestList" resultType="boardDto">
+		SELECT
+			*
+		FROM
+			(SELECT 
+				ROWNUM R_NUM, R.*
+			FROM
+				(SELECT 
+					BOARD_NO, TITLE, CONTENTS, MEMBER_ID, BOARD_DT
+				FROM 
+					BOARD
+				WHERE
+					BOARD_DT BETWEEN SYSDATE-365 AND SYSDATE	
+				ORDER BY
+					GOOD_CNT DESC) R)
+		WHERE 
+			R_NUM BETWEEN #{param1} AND #{param2}
+	</select>
+	
 </mapper>

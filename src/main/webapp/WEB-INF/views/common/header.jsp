@@ -31,7 +31,6 @@ if( isMemberDrop == "YES" ){
 		alert("회원 탈퇴가 실패하였습니다. 관리자에게 문의해주세요.");
 	}
 }
-console.log(isLogout); 
 </script>
 </head>
 <body>
