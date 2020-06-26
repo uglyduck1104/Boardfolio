@@ -18,7 +18,7 @@
 					<c:choose>
 						<c:when test="${empty todayBestList}">
 							<tr>
-								<td colspan="2">추천 게시물이 없습니다.</td>
+								<td colspan="2">오늘의 추천 게시물이 없습니다.</td>
 								
 							</tr>
 						</c:when>
@@ -57,7 +57,7 @@
 					<c:choose>
 						<c:when test="${empty weekBestList}">
 							<tr>
-								<td colspan="2">추천 게시물이 없습니다.</td>
+								<td colspan="2">주간 추천 게시물이 없습니다.</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -95,7 +95,7 @@
 					<c:choose>
 						<c:when test="${empty monthBestList}">
 							<tr>
-								<td colspan="2">추천 게시물이 없습니다.</td>
+								<td colspan="2">월간 추천 게시물이 없습니다.</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -133,7 +133,7 @@
 					<c:choose>
 						<c:when test="${empty yearBestList}">
 							<tr>
-								<td colspan="2">추천 게시물이 없습니다.</td>
+								<td colspan="2">연간 추천 게시물이 없습니다.</td>
 							</tr>
 						</c:when>
 						<c:otherwise>

@@ -23,15 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			REC_VOTE = 'good'
 	</select>
 	
-	<select id="memberRecommendListSize" resultType="int">
-		SELECT
-			COUNT(*)
-		FROM
-			RECOMMEND
-		WHERE
-			MEMBER_ID = #{param1} AND REC_VOTE = 'good'
-	</select>
-	
 	<insert id="setRecommend" parameterType="recommendDto">
 		INSERT INTO
 			RECOMMEND(REC_NO, MEMBER_ID, BOARD_NO, REC_VOTE)
@@ -54,4 +45,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			MEMBER_ID = #{param1} AND BOARD_NO = #{param2}
 	</delete>
 	
+	<select id="memberRecommendListSize" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			RECOMMEND
+		WHERE
+			MEMBER_ID = #{param1} AND REC_VOTE = 'good'
+	</select>
 </mapper>
