@@ -45,10 +45,8 @@ public class ReplyController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy. MM. dd a h:mm:ss");
 		MemberDto mDto = null;
 		String aId = null;
-		String mId = null;
 		if (session.getAttribute("mDto") != null) {
 			mDto = (MemberDto)session.getAttribute("mDto");
-			mId = mDto.getId();
 		}
 		int rSize = rDao.getReplyTotalCount(boardNo);
 		JSONObject jsonObj = new JSONObject();
@@ -61,11 +59,12 @@ public class ReplyController {
 			obj.put("reply_dt", sdf.format(rList.get(i).getReply_dt()));
 			aId = rList.get(i).getMember_id();
 			if( mDto != null ) {
-				if( !mId.equals(aId) ) {
-					obj.put("isYourId", false);
-				} else {
-					obj.put("isYourId", true);
+				if( mDto.getRole().equals("admin") ) {
+					obj.put("isAdmin", true);
 				}
+				if( mDto.getId().equals(aId) ) {
+					obj.put("isYourId", true);
+				} 
 			} else {
 				obj.put("isYourId", null);
 			}

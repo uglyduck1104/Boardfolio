@@ -36,13 +36,14 @@ $(function(){
 						var reply_con = this.reply_con; 
 						var reply_dt = this.reply_dt;
 						var isYourId = this.isYourId;
+						var isAdmin = this.isAdmin;
 						var reply_no = this.reply_no
 						reply_dt = reply_dt.replace(/-/gi,"");
 						htmls += `<tr class='comment-${index}'><td>`;
 						htmls += "<div>"
 						htmls += "<span>" + member_id + "</span>";
 						htmls += "<p class='date-format'>" + reply_dt + "</p>";
-						if( isYourId ){
+						if( isYourId || isAdmin ){
 							htmls += `<button type='button' class='out-side-btn' onclick='replyUpdateArea(${index})'>수정하기</button>`;
 							htmls += `<button type='button' class='out-side-btn' onclick='replyDrop(${index}, "${item.reply_no}")'>삭제하기</button>`;
 							htmls += `<div class='comment-${index}' style="display:none;">`;
