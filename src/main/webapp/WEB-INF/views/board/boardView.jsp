@@ -94,5 +94,6 @@ function deleteBoard(){
 		</tbody>
 	</table>
 </div>
+<script type="text/javascript" src="resources/js/recommend.js" ></script>
 <%@ include file="/WEB-INF/views/board/boardReply.jsp" %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
