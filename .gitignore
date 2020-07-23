@@ -1,0 +1,16 @@
+
+target/classes/config/mybatisConfig.xml
+target/classes/config/mybatisConfig.xml
+target/classes/config/mybatisConfig.xml
+target/classes/log4j.xml
+target/m2e-wtp/web-resources/META-INF/maven/com.uglyduck/webapp/pom.xml
+target/test-classes/log4j.xml
+target/test-classes/logback-test.xml
+target/classes/config/mybatisConfig.xml
+target/classes/mappers/boardMapper.xml
+target/classes/logback.xml
+target/classes/mappers/memberMapper.xml
+target/classes/mappers/recommendMapper.xml
+target/classes/mappers/replyMapper.xml
+target/m2e-wtp/web-resources/META-INF/maven/com.uglyduck/webapp/pom.properties
+target/m2e-wtp/web-resources/META-INF/maven/com.uglyduck/webapp/pom.xml

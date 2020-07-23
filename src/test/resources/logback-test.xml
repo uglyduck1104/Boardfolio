@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- Appenders -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</Pattern>
+		</encoder>
+	</appender> 
+	
+	<!-- Application Loggers -->
+	<logger name="org.springframework" level="info" />
+	<logger name="com.uglyduck.webapp" level="info" />
+	
+	<!-- rootLevel Logger -->
+  	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>
+	

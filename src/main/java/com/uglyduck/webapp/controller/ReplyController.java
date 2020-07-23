@@ -9,8 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +25,6 @@ import com.uglyduck.webapp.dto.ReplyDto;
 @Controller
 public class ReplyController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ReplyController.class);
 	// Field
 	@Autowired
 	SqlSession sqlSession;
@@ -79,7 +76,6 @@ public class ReplyController {
 	@RequestMapping(value = "reply-write", produces="application/json; charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String replyWrite(ReplyDto rDto) {
-		logger.info("ReplyDto: " + rDto.toString());
 		ReplyDao rDao = sqlSession.getMapper(ReplyDao.class);
 		int result = rDao.replyWrite(rDto);
 		JSONObject obj = new JSONObject();
